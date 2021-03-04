@@ -11,9 +11,9 @@ import lombok.Data;
  * User entity.
  */
 
+@Data
 @Entity
 @Table(name = "user")
-@Data
 public class User {
 
     @Id

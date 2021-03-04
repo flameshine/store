@@ -10,9 +10,9 @@ import lombok.Data;
  * Role entity.
  */
 
+@Data
 @Entity
 @Table(name = "role")
-@Data
 public class Role {
 
     @Id
