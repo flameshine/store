@@ -4,15 +4,20 @@ import java.util.Collection;
 
 import javax.persistence.*;
 
-import lombok.Data;
+import lombok.*;
 
 /**
  * Role entity.
  */
 
-@Data
 @Entity
 @Table(name = "role")
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
+@EqualsAndHashCode
+@ToString
 public class Role {
 
     @Id
@@ -23,6 +28,6 @@ public class Role {
     @Column(name = "role_name", unique = true, nullable = false)
     private String roleName;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "roles")
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "roles")
     private Collection<User> users;
 }

@@ -5,15 +5,20 @@ import java.util.Collection;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
+import lombok.*;
 
 /**
  * User entity.
  */
 
-@Data
 @Entity
 @Table(name = "user")
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
+@EqualsAndHashCode
+@ToString
 public class User {
 
     @Id
@@ -35,16 +40,16 @@ public class User {
     @Transient
     private String confirmationPassword;
 
-    @Column(name = "first_name", nullable = false)
-    private String firstName;
+    @Column(name = "firstname", nullable = false)
+    private String firstname;
 
-    @Column(name = "last_name", nullable = false)
-    private String lastName;
+    @Column(name = "lastname", nullable = false)
+    private String lastname;
 
     @Column(name = "is_active", nullable = false)
     private Boolean isActive;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
 }
