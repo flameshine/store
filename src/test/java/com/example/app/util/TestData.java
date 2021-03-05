@@ -2,10 +2,10 @@ package com.example.app.util;
 
 import java.util.Collections;
 
-import com.example.app.entity.Role;
 import org.testng.annotations.DataProvider;
 
 import com.example.app.entity.User;
+import com.example.app.entity.Role;
 
 /**
  * Class that provides test data.
