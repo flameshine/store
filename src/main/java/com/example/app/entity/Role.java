@@ -10,14 +10,11 @@ import lombok.*;
  * Role entity.
  */
 
+@Data
 @Entity
 @Table(name = "role")
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
-@Getter
-@EqualsAndHashCode
-@ToString
 public class Role {
 
     @Id

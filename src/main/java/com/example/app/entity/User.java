@@ -11,14 +11,11 @@ import lombok.*;
  * User entity.
  */
 
+@Data
 @Entity
 @Table(name = "user")
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
-@Getter
-@EqualsAndHashCode
-@ToString
 public class User {
 
     @Id
