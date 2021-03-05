@@ -25,4 +25,8 @@ public class Role {
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "roles")
     private Collection<User> users;
+
+    public Role() {
+        // intentional for hibernate
+    }
 }
