@@ -1,33 +1,36 @@
 plugins {
-    id 'java'
-    id 'org.springframework.boot' version '2.4.3'
+    id "java"
+    id "org.springframework.boot" version "2.4.3"
 }
 
-description = 'Implementation of the pretty great online marketplace.'
+description = "Implementation of the pretty great online marketplace."
 
-sourceCompatibility = '11'
-
-group 'com.example'
-version '1.0-SNAPSHOT'
+group "com.example"
+version "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
 }
 
-def springBootVersion = '2.4.3'
-def mysqlVersion = '8.0.23'
-def lombokVersion = '1.18.18'
+def springBootVersion = "2.4.3"
+def mysqlVersion = "8.0.23"
+def lombokVersion = "1.18.18"
+def testngVersion = "7.4.0"
 
 dependencies {
 
     implementation "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
     implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
     implementation "org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
 
     implementation "mysql:mysql-connector-java:${mysqlVersion}"
 
-    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    compile "org.projectlombok:lombok:${lombokVersion}"
 
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    testImplementation "org.testng:testng:${testngVersion}"
 }
 
 test {
