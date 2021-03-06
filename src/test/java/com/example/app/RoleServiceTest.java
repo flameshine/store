@@ -18,13 +18,23 @@ import static org.testng.Assert.*;
 @Transactional
 public class RoleServiceTest extends AbstractTestNGSpringContextTests {
 
+    // TODO: prettify.
+
     @Autowired
     private RoleService testTarget;
 
     @Test(dataProviderClass = TestData.class, dataProvider = "roles", priority = 1)
-    public void testFindAll(Role role) {
+    public void testSave(Role role) {
 
         testTarget.save(role);
+
+        var databaseRole = testTarget.findById(role.getId());
+
+        assertNotNull(databaseRole);
+    }
+
+    @Test(dataProviderClass = TestData.class, dataProvider = "roles", priority = 2)
+    public void testFindAll(Role role) {
 
         var databaseRoles = testTarget.findAll();
 
@@ -35,10 +45,8 @@ public class RoleServiceTest extends AbstractTestNGSpringContextTests {
         assertTrue(databaseRoles.contains(role));
     }
 
-    @Test(dataProviderClass = TestData.class, dataProvider = "roles", priority = 2)
+    @Test(dataProviderClass = TestData.class, dataProvider = "roles", priority = 3)
     public void testFindById(Role role) {
-
-        testTarget.save(role);
 
         var databaseRole = testTarget.findById(role.getId());
 
@@ -48,12 +56,8 @@ public class RoleServiceTest extends AbstractTestNGSpringContextTests {
         assertEquals(databaseRole.toString(), role.toString());
     }
 
-    // TODO: find a good way to test save() method.
-
-    @Test(dataProviderClass = TestData.class, dataProvider = "roles", expectedExceptions = EntityNotFoundException.class, priority = 3)
+    @Test(dataProviderClass = TestData.class, dataProvider = "roles", expectedExceptions = EntityNotFoundException.class, priority = 4)
     public void testDelete(Role role) {
-
-        testTarget.save(role);
 
         testTarget.delete(role);
 

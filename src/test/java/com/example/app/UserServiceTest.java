@@ -18,13 +18,23 @@ import static org.testng.Assert.*;
 @Transactional
 public class UserServiceTest extends AbstractTestNGSpringContextTests {
 
+    // TODO: prettify.
+
     @Autowired
     private UserService testTarget;
 
     @Test(dataProviderClass = TestData.class, dataProvider = "users", priority = 1)
-    public void testFindAll(User user) {
+    public void testSave(User user) {
 
         testTarget.save(user);
+
+        var databaseUser = testTarget.findById(user.getId());
+
+        assertNotNull(databaseUser);
+    }
+
+    @Test(dataProviderClass = TestData.class, dataProvider = "users", priority = 2)
+    public void testFindAll(User user) {
 
         var databaseUsers = testTarget.findAll();
 
@@ -35,10 +45,8 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests {
         assertTrue(databaseUsers.contains(user));
     }
 
-    @Test(dataProviderClass = TestData.class, dataProvider = "users", priority = 2)
+    @Test(dataProviderClass = TestData.class, dataProvider = "users", priority = 3)
     public void testFindById(User user) {
-
-        testTarget.save(user);
 
         var databaseUser = testTarget.findById(user.getId());
 
@@ -48,12 +56,8 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests {
         assertEquals(databaseUser.toString(), user.toString());
     }
 
-    // TODO: find a good way to test save() method.
-
-    @Test(dataProviderClass = TestData.class, dataProvider = "users", expectedExceptions = EntityNotFoundException.class, priority = 3)
+    @Test(dataProviderClass = TestData.class, dataProvider = "users", expectedExceptions = EntityNotFoundException.class, priority = 4)
     public void testDelete(User user) {
-
-        testTarget.save(user);
 
         testTarget.delete(user);
 

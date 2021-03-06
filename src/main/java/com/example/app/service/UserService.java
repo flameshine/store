@@ -10,11 +10,11 @@ import com.example.app.entity.User;
 
 public interface UserService {
 
+    void save(User user);
+
     List<User> findAll();
 
     User findById(Long id);
-
-    void save(User user);
 
     void delete(User user);
 }
