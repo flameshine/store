@@ -19,14 +19,14 @@ import static org.testng.Assert.*;
 public class RoleServiceTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
-    private RoleService service;
+    private RoleService testTarget;
 
     @Test(dataProviderClass = TestData.class, dataProvider = "roles", priority = 1)
     public void testFindAll(Role role) {
 
-        service.save(role);
+        testTarget.save(role);
 
-        var databaseRoles = service.findAll();
+        var databaseRoles = testTarget.findAll();
 
         assertNotNull(databaseRoles);
 
@@ -38,9 +38,9 @@ public class RoleServiceTest extends AbstractTestNGSpringContextTests {
     @Test(dataProviderClass = TestData.class, dataProvider = "roles", priority = 2)
     public void testFindById(Role role) {
 
-        service.save(role);
+        testTarget.save(role);
 
-        var databaseRole = service.findById(role.getId());
+        var databaseRole = testTarget.findById(role.getId());
 
         assertNotNull(databaseRole);
 
@@ -48,16 +48,16 @@ public class RoleServiceTest extends AbstractTestNGSpringContextTests {
         assertEquals(databaseRole.toString(), role.toString());
     }
 
-    // TODO: find a good way to test service layer save() method.
+    // TODO: find a good way to test save() method.
 
     @Test(dataProviderClass = TestData.class, dataProvider = "roles", expectedExceptions = EntityNotFoundException.class, priority = 3)
     public void testDelete(Role role) {
 
-        service.save(role);
+        testTarget.save(role);
 
-        service.delete(role);
+        testTarget.delete(role);
 
-        service.findById(role.getId());
+        testTarget.findById(role.getId());
 
         fail();
     }

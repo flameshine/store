@@ -34,7 +34,7 @@ public class RoleServiceImplementation implements RoleService {
 
     @Override
     public Role findById(Long id) {
-        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException(String.format("Role with id %d not found!", id)));
+        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException(String.format("Role with id %d not found.", id)));
     }
 
     @Override

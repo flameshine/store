@@ -19,14 +19,14 @@ import static org.testng.Assert.*;
 public class UserServiceTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
-    private UserService service;
+    private UserService testTarget;
 
     @Test(dataProviderClass = TestData.class, dataProvider = "users", priority = 1)
     public void testFindAll(User user) {
 
-        service.save(user);
+        testTarget.save(user);
 
-        var databaseUsers = service.findAll();
+        var databaseUsers = testTarget.findAll();
 
         assertNotNull(databaseUsers);
 
@@ -38,9 +38,9 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests {
     @Test(dataProviderClass = TestData.class, dataProvider = "users", priority = 2)
     public void testFindById(User user) {
 
-        service.save(user);
+        testTarget.save(user);
 
-        var databaseUser = service.findById(user.getId());
+        var databaseUser = testTarget.findById(user.getId());
 
         assertNotNull(databaseUser);
 
@@ -48,16 +48,16 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests {
         assertEquals(databaseUser.toString(), user.toString());
     }
 
-    // TODO: find a good way to test service layer save() method.
+    // TODO: find a good way to test save() method.
 
     @Test(dataProviderClass = TestData.class, dataProvider = "users", expectedExceptions = EntityNotFoundException.class, priority = 3)
     public void testDelete(User user) {
 
-        service.save(user);
+        testTarget.save(user);
 
-        service.delete(user);
+        testTarget.delete(user);
 
-        service.findById(user.getId());
+        testTarget.findById(user.getId());
 
         fail();
     }
