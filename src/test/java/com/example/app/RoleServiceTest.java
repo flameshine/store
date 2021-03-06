@@ -18,15 +18,25 @@ import static org.testng.Assert.*;
 @Transactional
 public class RoleServiceTest extends AbstractTestNGSpringContextTests {
 
+    // TODO: prettify.
+
     @Autowired
-    private RoleService service;
+    private RoleService testTarget;
 
     @Test(dataProviderClass = TestData.class, dataProvider = "roles", priority = 1)
+    public void testSave(Role role) {
+
+        testTarget.save(role);
+
+        final var databaseRole = testTarget.findById(role.getId());
+
+        assertNotNull(databaseRole);
+    }
+
+    @Test(dataProviderClass = TestData.class, dataProvider = "roles", priority = 2)
     public void testFindAll(Role role) {
 
-        service.save(role);
-
-        var databaseRoles = service.findAll();
+        final var databaseRoles = testTarget.findAll();
 
         assertNotNull(databaseRoles);
 
@@ -35,12 +45,10 @@ public class RoleServiceTest extends AbstractTestNGSpringContextTests {
         assertTrue(databaseRoles.contains(role));
     }
 
-    @Test(dataProviderClass = TestData.class, dataProvider = "roles", priority = 2)
+    @Test(dataProviderClass = TestData.class, dataProvider = "roles", priority = 3)
     public void testFindById(Role role) {
 
-        service.save(role);
-
-        var databaseRole = service.findById(role.getId());
+        final var databaseRole = testTarget.findById(role.getId());
 
         assertNotNull(databaseRole);
 
@@ -48,16 +56,12 @@ public class RoleServiceTest extends AbstractTestNGSpringContextTests {
         assertEquals(databaseRole.toString(), role.toString());
     }
 
-    // TODO: find a good way to test service layer save() method.
-
-    @Test(dataProviderClass = TestData.class, dataProvider = "roles", expectedExceptions = EntityNotFoundException.class, priority = 3)
+    @Test(dataProviderClass = TestData.class, dataProvider = "roles", expectedExceptions = EntityNotFoundException.class, priority = 4)
     public void testDelete(Role role) {
 
-        service.save(role);
+        testTarget.delete(role);
 
-        service.delete(role);
-
-        service.findById(role.getId());
+        testTarget.findById(role.getId());
 
         fail();
     }
