@@ -1,0 +1,22 @@
+services:
+
+  docker-mysql:
+    image: mysql:8.0.23
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=UltimateStore
+    ports:
+      - 3307:3306
+
+  ultimate-store:
+    image: ultimate-store
+    depends_on:
+      - docker-mysql
+    ports:
+      - 8081:8081
+    environment:
+      - DATABASE_HOST=docker-mysql
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=root
+      - DATABASE_NAME=UltimateStore
+      - DATABASE_PORT=3306
