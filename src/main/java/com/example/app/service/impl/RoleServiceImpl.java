@@ -1,4 +1,4 @@
-package com.example.app.service.implementation;
+package com.example.app.service.impl;
 
 import java.util.List;
 
@@ -18,12 +18,12 @@ import com.example.app.entity.Role;
 
 @Service
 @Transactional
-public class RoleServiceImplementation implements RoleService {
+public class RoleServiceImpl implements RoleService {
 
     private final RoleRepository repository;
 
     @Autowired
-    public RoleServiceImplementation(RoleRepository repository) {
+    public RoleServiceImpl(RoleRepository repository) {
         this.repository = repository;
     }
 
