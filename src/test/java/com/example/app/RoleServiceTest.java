@@ -69,6 +69,6 @@ public class RoleServiceTest extends AbstractTestNGSpringContextTests {
 
         testTarget.delete(role);
 
-        verify(repository, atLeastOnce()).delete(any());
+        verify(repository, atLeastOnce()).delete(any(Role.class));
     }
 }

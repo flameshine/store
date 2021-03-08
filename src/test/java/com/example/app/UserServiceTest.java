@@ -69,6 +69,6 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests {
 
         testTarget.delete(user);
 
-        verify(repository, atLeastOnce()).delete(any());
+        verify(repository, atLeastOnce()).delete(any(User.class));
     }
 }
