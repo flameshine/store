@@ -1,4 +1,4 @@
-package com.example.app.service.implementation;
+package com.example.app.service.impl;
 
 import java.util.List;
 
@@ -18,18 +18,13 @@ import com.example.app.entity.User;
 
 @Service
 @Transactional
-public class UserServiceImplementation implements UserService {
+public class UserServiceImpl implements UserService {
 
     private final UserRepository repository;
 
     @Autowired
-    public UserServiceImplementation(UserRepository repository) {
+    public UserServiceImpl(UserRepository repository) {
         this.repository = repository;
-    }
-
-    @Override
-    public void save(User user) {
-        repository.save(user);
     }
 
     @Override
@@ -40,6 +35,11 @@ public class UserServiceImplementation implements UserService {
     @Override
     public User findById(Long id) {
         return repository.findById(id).orElseThrow(() -> new EntityNotFoundException(String.format("User with id %d not found.", id)));
+    }
+
+    @Override
+    public void save(User user) {
+        repository.save(user);
     }
 
     @Override

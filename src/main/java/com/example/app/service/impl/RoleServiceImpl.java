@@ -1,4 +1,4 @@
-package com.example.app.service.implementation;
+package com.example.app.service.impl;
 
 import java.util.List;
 
@@ -18,18 +18,13 @@ import com.example.app.entity.Role;
 
 @Service
 @Transactional
-public class RoleServiceImplementation implements RoleService {
+public class RoleServiceImpl implements RoleService {
 
     private final RoleRepository repository;
 
     @Autowired
-    public RoleServiceImplementation(RoleRepository repository) {
+    public RoleServiceImpl(RoleRepository repository) {
         this.repository = repository;
-    }
-
-    @Override
-    public void save(Role role) {
-        repository.save(role);
     }
 
     @Override
@@ -40,6 +35,11 @@ public class RoleServiceImplementation implements RoleService {
     @Override
     public Role findById(Long id) {
         return repository.findById(id).orElseThrow(() -> new EntityNotFoundException(String.format("Role with id %d not found.", id)));
+    }
+
+    @Override
+    public void save(Role role) {
+        repository.save(role);
     }
 
     @Override
