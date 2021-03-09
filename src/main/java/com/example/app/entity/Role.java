@@ -25,6 +25,8 @@ public class Role {
     @Column(name = "role_name", unique = true, nullable = false)
     private String roleName;
 
+    // TODO: rework this entity initialization.
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "role")
     private Set<User> users = new HashSet<>(0);
 }

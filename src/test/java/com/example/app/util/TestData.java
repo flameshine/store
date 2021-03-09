@@ -5,8 +5,7 @@ import java.util.Collections;
 
 import org.testng.annotations.DataProvider;
 
-import com.example.app.entity.User;
-import com.example.app.entity.Role;
+import com.example.app.entity.*;
 
 import static com.example.app.util.Utils.EMPTY_STRING;
 
@@ -22,17 +21,13 @@ public final class TestData {
     public static Object[][] users() {
         return new Object[][] {
                 {
-                    List.of(new User(1L, "name1", "email1@test", "password1", null, "firstname1", "lastname1", true, new Role(1L, "name1", Collections.emptySet())),
-                            new User(2L, "name2", "email2@test", "password2", null, "firstname2", "lastname2", true, new Role(1L, "name1", Collections.emptySet())),
-                            new User(3L, "name3", "email3@test", "password3", null, "firstname3", "lastname3", true, new Role(1L, "name1", Collections.emptySet())))
+                    List.of(new User(1L, "name1", "email1@test", "password1", null, "firstname1", "lastname1", true, new Role(1L, "name1", Collections.emptySet())), new User(2L, "name2", "email2@test", "password2", null, "firstname2", "lastname2", true, new Role(1L, "name1", Collections.emptySet())), new User(3L, "name3", "email3@test", "password3", null, "firstname3", "lastname3", true, new Role(1L, "name1", Collections.emptySet())))
                 },
                 {
                     List.of(new User(), new User(), new User())
                 },
                 {
-                    List.of(new User(1L, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null),
-                            new User(2L, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null),
-                            new User(3L, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null))
+                    List.of(new User(1L, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null), new User(2L, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null), new User(3L, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null))
                 },
         };
     }
@@ -41,17 +36,13 @@ public final class TestData {
     public static Object[][] roles() {
         return new Object[][] {
                 {
-                    List.of(new Role(1L, "name1", Collections.emptySet()),
-                            new Role(2L, "name2", Collections.emptySet()),
-                            new Role(3L, "name3", Collections.emptySet()))
+                    List.of(new Role(1L, "name1", Collections.emptySet()), new Role(2L, "name2", Collections.emptySet()), new Role(3L, "name3", Collections.emptySet()))
                 },
                 {
                     List.of(new Role(), new Role(), new Role())
                 },
                 {
-                    List.of(new Role(1L, EMPTY_STRING, null),
-                            new Role(2L, EMPTY_STRING, null),
-                            new Role(3L, EMPTY_STRING, null))
+                    List.of(new Role(1L, EMPTY_STRING, null), new Role(2L, EMPTY_STRING, null), new Role(3L, EMPTY_STRING, null))
                 },
         };
     }
