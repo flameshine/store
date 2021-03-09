@@ -1,11 +1,9 @@
 package com.example.app.entity;
 
-import java.util.Collection;
-
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * User entity.
@@ -46,7 +44,7 @@ public class User {
     @Column(name = "is_active", nullable = false)
     private Boolean isActive;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Collection<Role> roles;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "role")
+    private Role role;
 }
