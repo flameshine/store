@@ -18,15 +18,15 @@ import com.example.app.entity.User;
 @RequestMapping("/users")
 public class UserController {
 
-    private final UserService userServiceImpl;
+    private final UserService service;
 
     @Autowired
-    public UserController(UserService userServiceImpl) {
-        this.userServiceImpl = userServiceImpl;
+    public UserController(UserService service) {
+        this.service = service;
     }
 
     @GetMapping
     public List<User> showAllUsers() {
-        return userServiceImpl.findAll();
+        return service.findAll();
     }
 }
