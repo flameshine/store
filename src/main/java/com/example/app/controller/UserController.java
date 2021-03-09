@@ -3,9 +3,7 @@ package com.example.app.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.app.service.UserService;
 import com.example.app.entity.User;
@@ -28,5 +26,10 @@ public class UserController {
     @GetMapping
     public List<User> showAllUsers() {
         return service.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public User showUser(@PathVariable("id") Long id) {
+        return service.findById(id);
     }
 }
