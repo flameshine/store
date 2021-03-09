@@ -1,68 +1,74 @@
 package com.example.app;
 
-import javax.persistence.EntityNotFoundException;
+import java.util.List;
+import java.util.Optional;
 
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.testng.annotations.Test;
+import org.mockito.*;
+import org.testng.annotations.*;
 
-import com.example.app.service.UserService;
+import com.example.app.service.impl.UserServiceImpl;
+import com.example.app.repository.UserRepository;
 import com.example.app.util.TestData;
 import com.example.app.entity.User;
 
+import static org.mockito.Mockito.*;
 import static org.testng.Assert.*;
 
-@SpringBootTest
-@Transactional
 public class UserServiceTest extends AbstractTestNGSpringContextTests {
 
-    // TODO: prettify.
+    @InjectMocks
+    private UserServiceImpl testTarget;
 
-    @Autowired
-    private UserService testTarget;
+    @Mock
+    private UserRepository repository;
 
-    @Test(dataProviderClass = TestData.class, dataProvider = "users", priority = 1)
+    @BeforeClass
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
+
+    @Test(dataProviderClass = TestData.class, dataProvider = "users")
+    public void testFindAll(List<User> expected) {
+
+        doReturn(expected).when(repository).findAll();
+
+        final var actual = testTarget.findAll();
+
+        assertNotNull(actual);
+
+        assertEquals(actual.size(), 3);
+
+        verify(repository, atLeastOnce()).findAll();
+    }
+
+    @Test(dataProviderClass = TestData.class, dataProvider = "user")
+    public void testFindById(User expected) {
+
+        doReturn(Optional.of(expected)).when(repository).findById(anyLong());
+
+        final var actual = testTarget.findById(anyLong());
+
+        assertNotNull(actual);
+
+        assertEquals(actual, expected);
+
+        verify(repository, atLeastOnce()).findById(anyLong());
+    }
+
+    @Test(dataProviderClass = TestData.class, dataProvider = "user")
     public void testSave(User user) {
 
         testTarget.save(user);
 
-        final var databaseUser = testTarget.findById(user.getId());
-
-        assertNotNull(databaseUser);
+        verify(repository, atLeastOnce()).save(any());
     }
 
-    @Test(dataProviderClass = TestData.class, dataProvider = "users", priority = 2)
-    public void testFindAll(User user) {
-
-        final var databaseUsers = testTarget.findAll();
-
-        assertNotNull(databaseUsers);
-
-        assertFalse(databaseUsers.isEmpty());
-
-        assertTrue(databaseUsers.contains(user));
-    }
-
-    @Test(dataProviderClass = TestData.class, dataProvider = "users", priority = 3)
-    public void testFindById(User user) {
-
-        final var databaseUser = testTarget.findById(user.getId());
-
-        assertNotNull(databaseUser);
-
-//      we need to compare this objects as a strings due to some hibernate data fetching features
-        assertEquals(databaseUser.toString(), user.toString());
-    }
-
-    @Test(dataProviderClass = TestData.class, dataProvider = "users", expectedExceptions = EntityNotFoundException.class, priority = 4)
+    @Test(dataProviderClass = TestData.class, dataProvider = "user")
     public void testDelete(User user) {
 
         testTarget.delete(user);
 
-        testTarget.findById(user.getId());
-
-        fail();
+        verify(repository, atLeastOnce()).delete(any(User.class));
     }
 }

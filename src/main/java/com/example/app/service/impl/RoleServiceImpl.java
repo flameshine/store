@@ -28,11 +28,6 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public void save(Role role) {
-        repository.save(role);
-    }
-
-    @Override
     public List<Role> findAll() {
         return List.copyOf(repository.findAll());
     }
@@ -40,6 +35,11 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Role findById(Long id) {
         return repository.findById(id).orElseThrow(() -> new EntityNotFoundException(String.format("Role with id %d not found.", id)));
+    }
+
+    @Override
+    public void save(Role role) {
+        repository.save(role);
     }
 
     @Override
