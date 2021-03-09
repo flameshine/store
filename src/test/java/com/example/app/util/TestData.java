@@ -22,13 +22,17 @@ public final class TestData {
     public static Object[][] users() {
         return new Object[][] {
                 {
-                    List.of(new User(1L, "name1", "email1@test", "password1", null, "firstname1", "lastname1", true, Collections.emptyList()), new User(2L, "name2", "email2@test", "password2", null, "firstname2", "lastname2", true, Collections.emptyList()), new User(3L, "name3", "email3@test", "password3", null, "firstname3", "lastname3", true, Collections.emptyList()))
+                    List.of(new User(1L, "name1", "email1@test", "password1", null, "firstname1", "lastname1", true, new Role(1L, "name1", Collections.emptySet())),
+                            new User(2L, "name2", "email2@test", "password2", null, "firstname2", "lastname2", true, new Role(1L, "name1", Collections.emptySet())),
+                            new User(3L, "name3", "email3@test", "password3", null, "firstname3", "lastname3", true, new Role(1L, "name1", Collections.emptySet())))
                 },
                 {
                     List.of(new User(), new User(), new User())
                 },
                 {
-                    List.of(new User(1L, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null), new User(2L, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null), new User(3L, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null))
+                    List.of(new User(1L, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null),
+                            new User(2L, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null),
+                            new User(3L, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null))
                 },
         };
     }
@@ -37,13 +41,17 @@ public final class TestData {
     public static Object[][] roles() {
         return new Object[][] {
                 {
-                    List.of(new Role(1L, "name1", Collections.emptyList()), new Role(2L, "name2", Collections.emptyList()), new Role(3L, "name3", Collections.emptyList()))
+                    List.of(new Role(1L, "name1", Collections.emptySet()),
+                            new Role(2L, "name2", Collections.emptySet()),
+                            new Role(3L, "name3", Collections.emptySet()))
                 },
                 {
                     List.of(new Role(), new Role(), new Role())
                 },
                 {
-                    List.of(new Role(1L, EMPTY_STRING, null), new Role(2L, EMPTY_STRING, null), new Role(3L, EMPTY_STRING, null))
+                    List.of(new Role(1L, EMPTY_STRING, null),
+                            new Role(2L, EMPTY_STRING, null),
+                            new Role(3L, EMPTY_STRING, null))
                 },
         };
     }
@@ -52,13 +60,13 @@ public final class TestData {
     public static Object[][] user() {
         return new Object[][] {
                 {
-                    new User(1L, "name", "email@test", "password", null, "firstname", "lastname", true, Collections.emptyList())
-                },
-                {
-                    new User()
+                    new User(1L, "name", "email@test", "password", null, "firstname", "lastname", true, new Role(4L, "name4", Collections.emptySet()))
                 },
                 {
                     new User(1L, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null)
+                },
+                {
+                    new User()
                 },
         };
     }
@@ -67,7 +75,7 @@ public final class TestData {
     public static Object[][] role() {
         return new Object[][] {
                 {
-                    new Role(1L, "name", Collections.emptyList())
+                    new Role(1L, "name", Collections.emptySet())
                 },
                 {
                     new Role()

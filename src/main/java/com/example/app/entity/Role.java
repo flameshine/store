@@ -1,6 +1,6 @@
 package com.example.app.entity;
 
-import java.util.Collection;
+import java.util.*;
 
 import javax.persistence.*;
 
@@ -25,6 +25,6 @@ public class Role {
     @Column(name = "role_name", unique = true, nullable = false)
     private String roleName;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "roles")
-    private Collection<User> users;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "role")
+    private Set<User> users = new HashSet<>(0);
 }
