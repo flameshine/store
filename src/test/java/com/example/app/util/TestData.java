@@ -54,10 +54,10 @@ public final class TestData {
                     new User(1L, "name", "email@test", "password", null, "firstname", "lastname", true, new Role(4L, "name4", Collections.emptySet()))
                 },
                 {
-                    new User(1L, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null)
+                    new User()
                 },
                 {
-                    new User()
+                    new User(1L, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null)
                 },
         };
     }
