@@ -24,12 +24,12 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> showAllUsers() {
+    public List<User> findAll() {
         return service.findAll();
     }
 
     @GetMapping("/{id}")
-    public User showUser(@PathVariable("id") Long id) {
+    public User findById(@PathVariable("id") Long id) {
         return service.findById(id);
     }
 }

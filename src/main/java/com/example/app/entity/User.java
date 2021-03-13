@@ -2,8 +2,8 @@ package com.example.app.entity;
 
 import javax.persistence.*;
 
-import lombok.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 /**
  * User entity.
@@ -14,12 +14,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "user")
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id", unique = true, nullable = false)
-    private Long id;
+@EqualsAndHashCode(callSuper = true)
+public class User extends Persistable {
 
     @Column(name = "user_name", unique = true, nullable = false)
     private String userName;
@@ -31,8 +27,8 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @JsonIgnore
     @Transient
+    @JsonIgnore
     private String confirmationPassword;
 
     @Column(name = "firstname", nullable = false)
@@ -44,7 +40,7 @@ public class User {
     @Column(name = "is_active", nullable = false)
     private Boolean isActive;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "role")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
     private Role role;
 }
