@@ -1,5 +1,7 @@
 package com.example.app.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,7 +17,9 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class User extends Persistable {
+public class User extends Persistable implements Serializable {
+
+    private static final long serialVersionUID = 4756172225734787914L;
 
     @Column(name = "user_name", unique = true, nullable = false)
     private String userName;

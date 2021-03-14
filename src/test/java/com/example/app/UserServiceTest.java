@@ -45,15 +45,15 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests {
     @Test(dataProviderClass = TestData.class, dataProvider = "user")
     public void testFindById(User expected) {
 
-        doReturn(Optional.of(expected)).when(repository).findById(anyLong());
+        doReturn(Optional.of(expected)).when(repository).findById(any());
 
-        final var actual = testTarget.findById(anyLong());
+        final var actual = testTarget.findById(any());
 
         assertNotNull(actual);
 
         assertEquals(actual, expected);
 
-        verify(repository, atLeastOnce()).findById(anyLong());
+        verify(repository, atLeastOnce()).findById(any());
     }
 
     @Test(dataProviderClass = TestData.class, dataProvider = "user")
@@ -67,8 +67,8 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests {
     @Test(dataProviderClass = TestData.class, dataProvider = "user")
     public void testDelete(User user) {
 
-        testTarget.delete(user);
+        testTarget.deleteById(user.getId());
 
-        verify(repository, atLeastOnce()).delete(any(User.class));
+        verify(repository, atLeastOnce()).deleteById(any());
     }
 }
