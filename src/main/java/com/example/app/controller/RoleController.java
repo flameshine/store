@@ -5,37 +5,37 @@ import java.util.List;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.example.app.service.UserService;
-import com.example.app.entity.User;
+import com.example.app.service.RoleService;
+import com.example.app.entity.Role;
 
 /**
- * Controller for the {@link com.example.app.entity.User} entity.
+ * Controller for the {@link com.example.app.entity.Role} entity.
  */
 
 @RestController
-@RequestMapping("/users")
-public class UserController {
+@RequestMapping("/roles")
+public class RoleController {
 
-    private final UserService service;
+    private final RoleService service;
 
     @Autowired
-    public UserController(UserService service) {
+    public RoleController(RoleService service) {
         this.service = service;
     }
 
     @GetMapping
-    public List<User> findAll() {
+    public List<Role> findAll() {
         return service.findAll();
     }
 
     @GetMapping("/{id}")
-    public User findById(@PathVariable("id") Long id) {
+    public Role findById(@PathVariable("id") Long id) {
         return service.findById(id);
     }
 
     @PostMapping
-    public void save(@RequestBody User user) {
-        service.save(user);
+    public void save(@RequestBody Role role) {
+        service.save(role);
     }
 
     @DeleteMapping("/{id}")

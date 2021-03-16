@@ -1,5 +1,7 @@
 package com.example.app.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 import lombok.Data;
@@ -10,7 +12,9 @@ import lombok.Data;
 
 @Data
 @MappedSuperclass
-public class Persistable {
+public class Persistable implements Serializable {
+
+    private static final long serialVersionUID = -489955066772567663L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

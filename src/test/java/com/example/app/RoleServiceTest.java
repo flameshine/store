@@ -45,15 +45,15 @@ public class RoleServiceTest extends AbstractTestNGSpringContextTests {
     @Test(dataProviderClass = TestData.class, dataProvider = "role")
     public void testFindById(Role expected) {
 
-        doReturn(Optional.of(expected)).when(repository).findById(anyLong());
+        doReturn(Optional.of(expected)).when(repository).findById(any());
 
-        final var actual = testTarget.findById(anyLong());
+        final var actual = testTarget.findById(any());
 
         assertNotNull(actual);
 
         assertEquals(actual, expected);
 
-        verify(repository, atLeastOnce()).findById(anyLong());
+        verify(repository, atLeastOnce()).findById(any());
     }
 
     @Test(dataProviderClass = TestData.class, dataProvider = "role")
@@ -67,8 +67,8 @@ public class RoleServiceTest extends AbstractTestNGSpringContextTests {
     @Test(dataProviderClass = TestData.class, dataProvider = "role")
     public void testDelete(Role role) {
 
-        testTarget.delete(role);
+        testTarget.deleteById(role.getId());
 
-        verify(repository, atLeastOnce()).delete(any(Role.class));
+        verify(repository, atLeastOnce()).deleteById(any());
     }
 }
