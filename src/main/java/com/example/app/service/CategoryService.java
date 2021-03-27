@@ -1,0 +1,20 @@
+package com.example.app.service;
+
+import java.util.List;
+
+import com.example.app.entity.Category;
+
+/**
+ * Service for basic interactions with {@link com.example.app.entity.Category} entity.
+ */
+
+public interface CategoryService {
+
+    List<Category> findAll();
+
+    Category findById(Long id);
+
+    void save(Category role);
+
+    void deleteById(Long id);
+}
