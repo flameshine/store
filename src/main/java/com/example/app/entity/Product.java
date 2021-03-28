@@ -19,10 +19,14 @@ import lombok.*;
 @Table(name = "product")
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
-public class Product extends Persistable implements Serializable {
+public class Product implements Serializable {
 
     private static final long serialVersionUID = -5240415785520578477L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "product_id", unique = true, nullable = false)
+    protected Long id;
 
     @Column(name = "product_name", unique = true, nullable = false)
     private String productName;
@@ -47,6 +51,9 @@ public class Product extends Persistable implements Serializable {
     private Integer reserve;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "category_id", referencedColumnName = "category_id", nullable = false)
     private Category category;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Purchase purchase;
 }
