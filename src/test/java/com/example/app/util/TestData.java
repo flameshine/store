@@ -22,13 +22,13 @@ public final class TestData {
     public static Object[][] users() {
         return new Object[][] {
                 {
-                    List.of(new User("name1", "email1@test", "password1", null, "firstname1", "lastname1", true, new Role("name1")), new User("name2", "email2@test", "password2", null, "firstname2", "lastname2", true, new Role("name2")), new User("name3", "email3@test", "password3", null, "firstname3", "lastname3", true, new Role("name3")))
+                    List.of(new User(1L, "name1", "email1@test", "password1", null, "firstname1", "lastname1", true, new Role()), new User(2L, "name2", "email2@test", "password2", null, "firstname2", "lastname2", true, new Role()), new User(3L, "name3", "email3@test", "password3", null, "firstname3", "lastname3", true, new Role()))
                 },
                 {
                     List.of(new User(), new User(), new User())
                 },
                 {
-                    List.of(new User(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null), new User(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null), new User(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null))
+                    List.of(new User(null, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null), new User(null, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null), new User(null, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null))
                 },
         };
     }
@@ -37,13 +37,13 @@ public final class TestData {
     public static Object[][] roles() {
         return new Object[][] {
                 {
-                    List.of(new Role("name1"), new Role("name2"), new Role("name3"))
+                    List.of(new Role(1L, "name1"), new Role(2L, "name2"), new Role(3L, "name3"))
                 },
                 {
                     List.of(new Role(), new Role(), new Role())
                 },
                 {
-                    List.of(new Role(EMPTY_STRING), new Role(EMPTY_STRING), new Role(EMPTY_STRING))
+                    List.of(new Role(null, EMPTY_STRING), new Role(null, EMPTY_STRING), new Role(null, EMPTY_STRING))
                 },
         };
     }
@@ -52,13 +52,13 @@ public final class TestData {
     public static Object[][] user() {
         return new Object[][] {
                 {
-                    new User("name", "email@test", "password", null, "firstname", "lastname", true, new Role("name"))
+                    new User(0L, "name", "email@test", "password", null, "firstname", "lastname", true, new Role())
                 },
                 {
                     new User()
                 },
                 {
-                    new User(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null)
+                    new User(null, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null)
                 },
         };
     }
@@ -67,13 +67,13 @@ public final class TestData {
     public static Object[][] role() {
         return new Object[][] {
                 {
-                    new Role("name")
+                    new Role(0L, "name")
                 },
                 {
                     new Role()
                 },
                 {
-                    new Role(EMPTY_STRING)
+                    new Role(null, EMPTY_STRING)
                 },
         };
     }
@@ -82,13 +82,13 @@ public final class TestData {
     public static Object[][] products() {
         return new Object[][] {
                 {
-                    List.of(new Product("name1", BigDecimal.ZERO, new Date(), new Date(), 0, 0, new Category("name1")), new Product("name2", BigDecimal.ZERO, new Date(), new Date(), 0, 0, new Category("name2")), new Product("name3", BigDecimal.ZERO, new Date(), new Date(), 0, 0, new Category("name3")))
+                    List.of(new Product(1L, "name1", BigDecimal.ZERO, new Date(), new Date(), 0, 0, new Category(), new Purchase()), new Product(2L, "name2", BigDecimal.ZERO, new Date(), new Date(), 0, 0, new Category(), new Purchase()), new Product(3L, "name3", BigDecimal.ZERO, new Date(), new Date(), 0, 0, new Category(), new Purchase()))
                 },
                 {
                     List.of(new Product(), new Product(), new Product())
                 },
                 {
-                    List.of(new Product(EMPTY_STRING, null, null, null, 0, 0, null), new Product(EMPTY_STRING, null, null, null, 0, 0, null), new Product(EMPTY_STRING, null, null, null, 0, 0, null))
+                    List.of(new Product(null, EMPTY_STRING, null, null, null, 0, 0, null, null), new Product(null, EMPTY_STRING, null, null, null, 0, 0, null, null), new Product(null, EMPTY_STRING, null, null, null, 0, 0, null, null))
                 },
         };
     }
@@ -97,13 +97,13 @@ public final class TestData {
     public static Object[][] categories() {
         return new Object[][] {
                 {
-                    List.of(new Category("name1"), new Category("name2"), new Category("name3"))
+                    List.of(new Category(1L, "name1"), new Category(2L, "name2"), new Category(3L, "name3"))
                 },
                 {
                     List.of(new Category(), new Category(), new Category())
                 },
                 {
-                    List.of(new Category(EMPTY_STRING), new Category(EMPTY_STRING), new Category(EMPTY_STRING))
+                    List.of(new Category(null, EMPTY_STRING), new Category(null, EMPTY_STRING), new Category(null, EMPTY_STRING))
                 },
         };
     }
@@ -112,13 +112,13 @@ public final class TestData {
     public static Object[][] product() {
         return new Object[][] {
                 {
-                    new Product("name", BigDecimal.ZERO, new Date(), new Date(), 0, 0, new Category("name"))
+                    new Product(0L, "name", BigDecimal.ZERO, new Date(), new Date(), 0, 0, new Category(), new Purchase())
                 },
                 {
                     new Product()
                 },
                 {
-                    new Product(EMPTY_STRING, null, null, null, 0, 0, null)
+                    new Product(null, EMPTY_STRING, null, null, null, 0, 0, null, null)
                 },
         };
     }
@@ -127,13 +127,13 @@ public final class TestData {
     public static Object[][] category() {
         return new Object[][] {
                 {
-                    new Category("name")
+                    new Category(0L, "name")
                 },
                 {
                     new Category()
                 },
                 {
-                    new Category(EMPTY_STRING)
+                    new Category(null, EMPTY_STRING)
                 },
         };
     }

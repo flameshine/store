@@ -15,10 +15,14 @@ import lombok.*;
 @Table(name = "role")
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
-public class Role extends Persistable implements Serializable {
+public class Role implements Serializable {
 
     private static final long serialVersionUID = 2431567030846691089L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "role_id", unique = true, nullable = false)
+    protected Long id;
 
     @Column(name = "role_name", unique = true, nullable = false)
     private String roleName;
