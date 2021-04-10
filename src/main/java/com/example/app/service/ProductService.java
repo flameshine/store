@@ -5,7 +5,7 @@ import java.util.List;
 import com.example.app.entity.Product;
 
 /**
- * Service for basic interactions with {@link com.example.app.entity.Product} entity.
+ * Service for the basic interactions with {@link com.example.app.entity.Product} entity.
  */
 
 public interface ProductService {
