@@ -5,7 +5,7 @@ import java.util.List;
 import com.example.app.entity.Role;
 
 /**
- * Service for basic interactions with {@link com.example.app.entity.Role} entity.
+ * Service for the basic interactions with {@link com.example.app.entity.Role} entity.
  */
 
 public interface RoleService {
