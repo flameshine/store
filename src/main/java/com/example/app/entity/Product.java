@@ -1,14 +1,17 @@
 package com.example.app.entity;
 
 import java.util.Date;
+import java.util.Collection;
 import java.math.BigDecimal;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import lombok.*;
+import org.hibernate.validator.constraints.Length;
 
 /**
  * Product entity.
@@ -29,9 +32,12 @@ public class Product implements Serializable {
     protected Long id;
 
     @Column(name = "product_name", unique = true, nullable = false)
+    @NotBlank(message = "Product name is required.")
+    @Length(min = 5, max = 15, message = "Product name must be between 5 and 15 characters.")
     private String productName;
 
     @Column(name = "price", nullable = false)
+    @NotBlank(message = "Price is required.")
     private BigDecimal price;
 
     @CreationTimestamp
@@ -45,15 +51,17 @@ public class Product implements Serializable {
     private Date modifyDate;
 
     @Column(name = "quantity", nullable = false)
+    @NotBlank(message = "Quantity is required.")
     private Integer quantity;
 
     @Column(name = "reserve", nullable = false)
+    @NotBlank(message = "Reserve name is required.")
     private Integer reserve;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id", referencedColumnName = "category_id", nullable = false)
     private Category category;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Purchase purchase;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "products")
+    private Collection<Purchase> purchases;
 }

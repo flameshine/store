@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.app.entity.Product;
 
 /**
- * Repository that manages the {@link com.example.app.entity.Product} entity.
+ * Repository that handles the {@link com.example.app.entity.Product} entity.
  */
 
 @Repository
