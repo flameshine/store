@@ -13,7 +13,7 @@ import com.example.app.entity.Purchase;
  */
 
 @RestController
-@RequestMapping("/purchase")
+@RequestMapping("/purchases")
 public class PurchaseController {
 
     private final PurchaseService service;
