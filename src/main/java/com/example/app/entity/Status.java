@@ -7,6 +7,5 @@ package com.example.app.entity;
 public enum Status {
     REGISTERED,
     PAID,
-    CANCELLED,
-    UNDEFINED
+    CANCELLED
 }

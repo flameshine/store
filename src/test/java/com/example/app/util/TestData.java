@@ -82,7 +82,7 @@ public final class TestData {
     public static Object[][] purchases() {
         return new Object[][] {
                 {
-                    List.of(new Purchase(1L, Status.UNDEFINED, new User(), List.of()), new Purchase(2L, Status.UNDEFINED, new User(), List.of()), new Purchase(3L, Status.UNDEFINED, new User(), List.of()))
+                    List.of(new Purchase(1L, Status.REGISTERED, new User(), List.of()), new Purchase(2L, Status.REGISTERED, new User(), List.of()), new Purchase(3L, Status.REGISTERED, new User(), List.of()))
                 },
                 {
                     List.of(new Purchase(), new Purchase(), new Purchase())
@@ -157,7 +157,7 @@ public final class TestData {
     public static Object[][] purchase() {
         return new Object[][] {
                 {
-                    new Purchase(0L, Status.UNDEFINED, new User(), List.of())
+                    new Purchase(0L, Status.REGISTERED, new User(), List.of())
                 },
                 {
                     new Purchase()
