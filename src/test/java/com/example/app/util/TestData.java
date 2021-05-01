@@ -48,6 +48,51 @@ public final class TestData {
         };
     }
 
+    @DataProvider(name = "products")
+    public static Object[][] products() {
+        return new Object[][] {
+                {
+                    List.of(new Product(1L, "name1", BigDecimal.ZERO, new Date(), new Date(), 0, 0, new Category(), List.of()), new Product(2L, "name2", BigDecimal.ZERO, new Date(), new Date(), 0, 0, new Category(), List.of()), new Product(3L, "name3", BigDecimal.ZERO, new Date(), new Date(), 0, 0, new Category(), List.of()))
+                },
+                {
+                    List.of(new Product(), new Product(), new Product())
+                },
+                {
+                    List.of(new Product(null, EMPTY_STRING, null, null, null, 0, 0, null, null), new Product(null, EMPTY_STRING, null, null, null, 0, 0, null, null), new Product(null, EMPTY_STRING, null, null, null, 0, 0, null, null))
+                },
+        };
+    }
+
+    @DataProvider(name = "categories")
+    public static Object[][] categories() {
+        return new Object[][] {
+                {
+                    List.of(new Category(1L, "name1"), new Category(2L, "name2"), new Category(3L, "name3"))
+                },
+                {
+                    List.of(new Category(), new Category(), new Category())
+                },
+                {
+                    List.of(new Category(null, EMPTY_STRING), new Category(null, EMPTY_STRING), new Category(null, EMPTY_STRING))
+                },
+        };
+    }
+
+    @DataProvider(name = "purchases")
+    public static Object[][] purchases() {
+        return new Object[][] {
+                {
+                    List.of(new Purchase(1L, Status.UNDEFINED, new User(), List.of()), new Purchase(2L, Status.UNDEFINED, new User(), List.of()), new Purchase(3L, Status.UNDEFINED, new User(), List.of()))
+                },
+                {
+                    List.of(new Purchase(), new Purchase(), new Purchase())
+                },
+                {
+                    List.of(new Purchase(null, null, null, null), new Purchase(null, null, null, null), new Purchase(null, null, null, null))
+                },
+        };
+    }
+
     @DataProvider(name = "user")
     public static Object[][] user() {
         return new Object[][] {
@@ -78,41 +123,11 @@ public final class TestData {
         };
     }
 
-    @DataProvider(name = "products")
-    public static Object[][] products() {
-        return new Object[][] {
-                {
-                    List.of(new Product(1L, "name1", BigDecimal.ZERO, new Date(), new Date(), 0, 0, new Category(), new Purchase()), new Product(2L, "name2", BigDecimal.ZERO, new Date(), new Date(), 0, 0, new Category(), new Purchase()), new Product(3L, "name3", BigDecimal.ZERO, new Date(), new Date(), 0, 0, new Category(), new Purchase()))
-                },
-                {
-                    List.of(new Product(), new Product(), new Product())
-                },
-                {
-                    List.of(new Product(null, EMPTY_STRING, null, null, null, 0, 0, null, null), new Product(null, EMPTY_STRING, null, null, null, 0, 0, null, null), new Product(null, EMPTY_STRING, null, null, null, 0, 0, null, null))
-                },
-        };
-    }
-
-    @DataProvider(name = "categories")
-    public static Object[][] categories() {
-        return new Object[][] {
-                {
-                    List.of(new Category(1L, "name1"), new Category(2L, "name2"), new Category(3L, "name3"))
-                },
-                {
-                    List.of(new Category(), new Category(), new Category())
-                },
-                {
-                    List.of(new Category(null, EMPTY_STRING), new Category(null, EMPTY_STRING), new Category(null, EMPTY_STRING))
-                },
-        };
-    }
-
     @DataProvider(name = "product")
     public static Object[][] product() {
         return new Object[][] {
                 {
-                    new Product(0L, "name", BigDecimal.ZERO, new Date(), new Date(), 0, 0, new Category(), new Purchase())
+                    new Product(0L, "name", BigDecimal.ZERO, new Date(), new Date(), 0, 0, new Category(), List.of())
                 },
                 {
                     new Product()
@@ -134,6 +149,21 @@ public final class TestData {
                 },
                 {
                     new Category(null, EMPTY_STRING)
+                },
+        };
+    }
+
+    @DataProvider(name = "purchase")
+    public static Object[][] purchase() {
+        return new Object[][] {
+                {
+                    new Purchase(0L, Status.UNDEFINED, new User(), List.of())
+                },
+                {
+                    new Purchase()
+                },
+                {
+                    new Purchase(null, null, null, null)
                 },
         };
     }

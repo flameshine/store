@@ -1,6 +1,7 @@
 package com.example.app.entity;
 
 import java.util.Date;
+import java.util.Collection;
 import java.math.BigDecimal;
 import java.io.Serializable;
 
@@ -54,6 +55,6 @@ public class Product implements Serializable {
     @JoinColumn(name = "category_id", referencedColumnName = "category_id", nullable = false)
     private Category category;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Purchase purchase;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "products")
+    private Collection<Purchase> purchases;
 }
