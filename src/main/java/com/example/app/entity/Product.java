@@ -6,10 +6,12 @@ import java.math.BigDecimal;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import lombok.*;
+import org.hibernate.validator.constraints.Length;
 
 /**
  * Product entity.
@@ -30,9 +32,12 @@ public class Product implements Serializable {
     protected Long id;
 
     @Column(name = "product_name", unique = true, nullable = false)
+    @NotBlank(message = "Product name is required.")
+    @Length(min = 5, max = 15, message = "Product name must be between 5 and 15 characters.")
     private String productName;
 
     @Column(name = "price", nullable = false)
+    @NotBlank(message = "Price is required.")
     private BigDecimal price;
 
     @CreationTimestamp
@@ -46,9 +51,11 @@ public class Product implements Serializable {
     private Date modifyDate;
 
     @Column(name = "quantity", nullable = false)
+    @NotBlank(message = "Quantity is required.")
     private Integer quantity;
 
     @Column(name = "reserve", nullable = false)
+    @NotBlank(message = "Reserve name is required.")
     private Integer reserve;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

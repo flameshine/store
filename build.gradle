@@ -3,7 +3,7 @@ plugins {
     id "org.springframework.boot" version "2.4.3"
 }
 
-description = "Implementation of the pretty great online marketplace."
+description = "Implementation of the great online marketplace."
 
 group "com.example"
 version "1.0-SNAPSHOT"
@@ -16,6 +16,8 @@ def springBootVersion = "2.4.3"
 def mysqlVersion = "8.0.23"
 def lombokVersion = "1.18.18"
 def testngVersion = "7.4.0"
+def validationApiVersion = "2.0.1.Final"
+def hibernateValidatorVersion = "7.0.1.Final"
 
 dependencies {
 
@@ -23,8 +25,9 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
     implementation "org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}"
     implementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
-
     implementation "mysql:mysql-connector-java:${mysqlVersion}"
+    implementation "javax.validation:validation-api:${validationApiVersion}"
+    implementation "org.hibernate:hibernate-validator:${hibernateValidatorVersion}"
 
     compile "org.projectlombok:lombok:${lombokVersion}"
 

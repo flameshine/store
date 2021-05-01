@@ -3,8 +3,10 @@ package com.example.app.entity;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 import lombok.*;
+import org.hibernate.validator.constraints.Length;
 
 /**
  * Category entity.
@@ -25,5 +27,7 @@ public class Category implements Serializable {
     protected Long id;
 
     @Column(name = "category_name", unique = true, nullable = false)
+    @NotBlank(message = "Category name is required.")
+    @Length(min = 5, max = 15, message = "Category name must be between 5 and 15 characters.")
     private String categoryName;
 }
