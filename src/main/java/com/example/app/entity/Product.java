@@ -1,7 +1,6 @@
 package com.example.app.entity;
 
-import java.util.Date;
-import java.util.Collection;
+import java.util.*;
 import java.math.BigDecimal;
 import java.io.Serializable;
 

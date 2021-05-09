@@ -12,8 +12,6 @@ public interface PurchaseService {
 
     List<Purchase> findAll();
 
-    Purchase findById(Long id);
-
     void save(Purchase role);
 
     void deleteById(Long id);

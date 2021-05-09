@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration</title>
+</head>
+<body>
+<div class="alert-info" th:if="${message}" th:utext="${message}"></div>
+<form th:action="@{/registration}" th:object="${user}" method="post">
+  <div class="form">
+    <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="alert-danger"></label>
+    <input type="text" th:field="*{username}" name="username" id="username" placeholder="Username" required="required" autofocus="autofocus"/>
+  </div>
+  <div class="form">
+    <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert-danger"></label>
+    <input type="text" th:field="*{email}" name="email" id="email" placeholder="Email" required="required"/>
+  </div>
+  <div class="form">
+    <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="alert-danger"></label>
+    <input type="password" th:field="*{password}" name="password" id="password" placeholder="Password" required="required"/>
+  </div>
+  <div class="form">
+    <label th:if="${#fields.hasErrors('passwordConfirmation')}" th:errors="*{passwordConfirmation}" class="alert-danger"></label>
+    <input type="password" th:field="*{passwordConfirmation}" name="passwordConfirmation" id="passwordConfirmation" placeholder="Password confirmation" required="required"/>
+  </div>
+  <div class="form">
+    <label th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}" class="alert-danger"></label>
+    <input type="text" th:field="*{firstname}" name="firstname" id="firstname" placeholder="Firstname" required="required"/>
+  </div>
+  <div class="form">
+    <label th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}" class="alert-danger"></label>
+    <input type="text" th:field="*{lastname}" name="lastname" id="lastname" placeholder="Lastname" required="required"/>
+  </div>
+  <div class="form">
+    <input type="submit"/>
+  </div>
+</form>
+</body>
+</html>

@@ -27,10 +27,10 @@ public class User implements Serializable {
     @Column(name = "user_id", unique = true, nullable = false)
     protected Long id;
 
-    @Column(name = "user_name", unique = true, nullable = false)
-    @NotBlank(message = "User name is required.")
-    @Length(min = 5, max = 15, message = "User name must be between 5 and 15 characters.")
-    private String userName;
+    @Column(name = "username", unique = true, nullable = false)
+    @NotBlank(message = "Username is required.")
+    @Length(min = 5, max = 15, message = "Username must be between 5 and 15 characters.")
+    private String username;
 
     @Column(name = "email", unique = true, nullable = false)
     @Email(message = "Provide a valid email.")
@@ -39,7 +39,7 @@ public class User implements Serializable {
     @JsonIgnore
     @Column(name = "password", nullable = false)
     @NotBlank(message = "Password is required.")
-    @Min(value = 5, message = "Password must be greater than 5 characters.")
+    @Length(min = 5, message = "Password must be greater than 5 characters.")
     private String password;
 
     @Transient
@@ -58,7 +58,7 @@ public class User implements Serializable {
     @Column(name = "is_active", nullable = false)
     private Boolean isActive;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "role_id", referencedColumnName = "role_id", nullable = false)
     private Role role;
 }

@@ -12,8 +12,6 @@ public interface RoleService {
 
     List<Role> findAll();
 
-    Role findById(Long id);
-
     void save(Role role);
 
     void deleteById(Long id);

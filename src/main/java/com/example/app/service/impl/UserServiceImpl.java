@@ -1,16 +1,17 @@
 package com.example.app.service.impl;
 
 import java.util.List;
-
-import javax.persistence.EntityNotFoundException;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.example.app.service.UserService;
 import com.example.app.repository.UserRepository;
 import com.example.app.entity.User;
+import com.example.app.entity.Role;
 
 /**
  * Implementation of {@link UserService}.
@@ -20,30 +21,40 @@ import com.example.app.entity.User;
 @Transactional
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository repository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserRepository repository) {
-        this.repository = repository;
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public List<User> findAll() {
-        return List.copyOf(repository.findAll());
-    }
-
-    @Override
-    public User findById(Long id) {
-        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException(String.format("User with id %d not found.", id)));
+        return List.copyOf(userRepository.findAll());
     }
 
     @Override
     public void save(User user) {
-        repository.save(user);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setIsActive(true);
+        user.setRole(new Role(1L, "ROLE_USER"));
+        userRepository.save(user);
     }
 
     @Override
     public void deleteById(Long id) {
-        repository.deleteById(id);
+        userRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<User> findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }
