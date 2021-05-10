@@ -2,8 +2,6 @@ package com.example.app.service.impl;
 
 import java.util.List;
 
-import javax.persistence.EntityNotFoundException;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +28,6 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public List<Role> findAll() {
         return List.copyOf(repository.findAll());
-    }
-
-    @Override
-    public Role findById(Long id) {
-        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException(String.format("Role with id %d not found.", id)));
     }
 
     @Override

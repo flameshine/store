@@ -28,11 +28,6 @@ public class CategoryController {
         return service.findAll();
     }
 
-    @GetMapping("/{id}")
-    public Category findById(@PathVariable("id") Long id) {
-        return service.findById(id);
-    }
-
     @PostMapping
     public void save(@RequestBody Category category) {
         service.save(category);

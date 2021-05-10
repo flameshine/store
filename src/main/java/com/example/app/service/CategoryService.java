@@ -12,8 +12,6 @@ public interface CategoryService {
 
     List<Category> findAll();
 
-    Category findById(Long id);
-
     void save(Category role);
 
     void deleteById(Long id);

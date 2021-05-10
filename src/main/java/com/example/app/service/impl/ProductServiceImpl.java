@@ -2,8 +2,6 @@ package com.example.app.service.impl;
 
 import java.util.List;
 
-import javax.persistence.EntityNotFoundException;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +28,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> findAll() {
         return List.copyOf(repository.findAll());
-    }
-
-    @Override
-    public Product findById(Long id) {
-        return repository.findById(id).orElseThrow(() -> new EntityNotFoundException(String.format("Product with id %d not found.", id)));
     }
 
     @Override

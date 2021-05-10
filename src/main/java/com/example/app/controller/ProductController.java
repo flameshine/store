@@ -28,11 +28,6 @@ public class ProductController {
         return service.findAll();
     }
 
-    @GetMapping("/{id}")
-    public Product findById(@PathVariable("id") Long id) {
-        return service.findById(id);
-    }
-
     @PostMapping
     public void save(@RequestBody Product product) {
         service.save(product);

@@ -1,20 +1,19 @@
 package com.example.app.util;
 
-import java.util.List;
-import java.util.Date;
+import java.util.*;
 import java.math.BigDecimal;
 
 import org.testng.annotations.DataProvider;
 
 import com.example.app.entity.*;
 
-import static com.example.app.util.Utils.EMPTY_STRING;
-
 /**
  * Class that provides test data.
  */
 
 public final class TestData {
+
+    private static final String EMPTY = "";
 
     private TestData() {}
 
@@ -28,7 +27,7 @@ public final class TestData {
                     List.of(new User(), new User(), new User())
                 },
                 {
-                    List.of(new User(null, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null), new User(null, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null), new User(null, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null))
+                    List.of(new User(null, EMPTY, EMPTY, EMPTY, null, EMPTY, EMPTY, null, null), new User(null, EMPTY, EMPTY, EMPTY, null, EMPTY, EMPTY, null, null), new User(null, EMPTY, EMPTY, EMPTY, null, EMPTY, EMPTY, null, null))
                 },
         };
     }
@@ -43,7 +42,7 @@ public final class TestData {
                     List.of(new Role(), new Role(), new Role())
                 },
                 {
-                    List.of(new Role(null, EMPTY_STRING), new Role(null, EMPTY_STRING), new Role(null, EMPTY_STRING))
+                    List.of(new Role(null, EMPTY), new Role(null, EMPTY), new Role(null, EMPTY))
                 },
         };
     }
@@ -58,7 +57,7 @@ public final class TestData {
                     List.of(new Product(), new Product(), new Product())
                 },
                 {
-                    List.of(new Product(null, EMPTY_STRING, null, null, null, 0, 0, null, null), new Product(null, EMPTY_STRING, null, null, null, 0, 0, null, null), new Product(null, EMPTY_STRING, null, null, null, 0, 0, null, null))
+                    List.of(new Product(null, EMPTY, null, null, null, 0, 0, null, null), new Product(null, EMPTY, null, null, null, 0, 0, null, null), new Product(null, EMPTY, null, null, null, 0, 0, null, null))
                 },
         };
     }
@@ -73,7 +72,7 @@ public final class TestData {
                     List.of(new Category(), new Category(), new Category())
                 },
                 {
-                    List.of(new Category(null, EMPTY_STRING), new Category(null, EMPTY_STRING), new Category(null, EMPTY_STRING))
+                    List.of(new Category(null, EMPTY), new Category(null, EMPTY), new Category(null, EMPTY))
                 },
         };
     }
@@ -82,7 +81,7 @@ public final class TestData {
     public static Object[][] purchases() {
         return new Object[][] {
                 {
-                    List.of(new Purchase(1L, Status.REGISTERED, new User(), List.of()), new Purchase(2L, Status.REGISTERED, new User(), List.of()), new Purchase(3L, Status.REGISTERED, new User(), List.of()))
+                    List.of(new Purchase(1L, PurchaseStatus.REGISTERED, new User(), List.of()), new Purchase(2L, PurchaseStatus.REGISTERED, new User(), List.of()), new Purchase(3L, PurchaseStatus.REGISTERED, new User(), List.of()))
                 },
                 {
                     List.of(new Purchase(), new Purchase(), new Purchase())
@@ -103,7 +102,7 @@ public final class TestData {
                     new User()
                 },
                 {
-                    new User(null, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, null, EMPTY_STRING, EMPTY_STRING, null, null)
+                    new User(null, EMPTY, EMPTY, EMPTY, null, EMPTY, EMPTY, null, null)
                 },
         };
     }
@@ -118,7 +117,7 @@ public final class TestData {
                     new Role()
                 },
                 {
-                    new Role(null, EMPTY_STRING)
+                    new Role(null, EMPTY)
                 },
         };
     }
@@ -133,7 +132,7 @@ public final class TestData {
                     new Product()
                 },
                 {
-                    new Product(null, EMPTY_STRING, null, null, null, 0, 0, null, null)
+                    new Product(null, "", null, null, null, 0, 0, null, null)
                 },
         };
     }
@@ -148,7 +147,7 @@ public final class TestData {
                     new Category()
                 },
                 {
-                    new Category(null, EMPTY_STRING)
+                    new Category(null, EMPTY)
                 },
         };
     }
@@ -157,7 +156,7 @@ public final class TestData {
     public static Object[][] purchase() {
         return new Object[][] {
                 {
-                    new Purchase(0L, Status.REGISTERED, new User(), List.of())
+                    new Purchase(0L, PurchaseStatus.REGISTERED, new User(), List.of())
                 },
                 {
                     new Purchase()
