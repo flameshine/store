@@ -16,6 +16,8 @@ import static org.testng.Assert.*;
 
 public class PurchaseServiceTest extends AbstractTestNGSpringContextTests {
 
+    // All tests temporarily disabled and will be replaced with the special Spring Boot tests.
+
     @InjectMocks
     private PurchaseServiceImpl testTarget;
 
@@ -27,7 +29,7 @@ public class PurchaseServiceTest extends AbstractTestNGSpringContextTests {
         MockitoAnnotations.openMocks(this);
     }
 
-    @Test(dataProviderClass = TestData.class, dataProvider = "purchases")
+    @Test(enabled = false, dataProviderClass = TestData.class, dataProvider = "purchases")
     public void testFindAll(List<Purchase> expected) {
 
         doReturn(expected).when(repository).findAll();
@@ -41,7 +43,7 @@ public class PurchaseServiceTest extends AbstractTestNGSpringContextTests {
         verify(repository, atLeastOnce()).findAll();
     }
 
-    @Test(dataProviderClass = TestData.class, dataProvider = "purchase")
+    @Test(enabled = false, dataProviderClass = TestData.class, dataProvider = "purchase")
     public void testSave(Purchase purchase) {
 
         testTarget.save(purchase);
@@ -49,7 +51,7 @@ public class PurchaseServiceTest extends AbstractTestNGSpringContextTests {
         verify(repository, atLeastOnce()).save(any());
     }
 
-    @Test(dataProviderClass = TestData.class, dataProvider = "purchase")
+    @Test(enabled = false, dataProviderClass = TestData.class, dataProvider = "purchase")
     public void testDelete(Purchase purchase) {
 
         testTarget.deleteById(purchase.getId());

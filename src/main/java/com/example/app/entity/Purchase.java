@@ -8,7 +8,7 @@ import javax.persistence.*;
 import lombok.*;
 
 /**
- * Purchase entity.
+ * The purchase entity.
  */
 
 @Data

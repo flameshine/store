@@ -13,7 +13,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.Length;
 
 /**
- * Product entity.
+ * The product entity.
  */
 
 @Data

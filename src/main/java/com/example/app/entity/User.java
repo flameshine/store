@@ -10,7 +10,7 @@ import org.hibernate.validator.constraints.Length;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
- * User entity.
+ * The user entity.
  */
 
 @Data
