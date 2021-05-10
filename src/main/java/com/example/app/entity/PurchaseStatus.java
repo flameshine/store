@@ -1,7 +1,7 @@
 package com.example.app.entity;
 
 /**
- * Enum that represents various statuses of {@link Purchase}.
+ * Enum that represents statuses of {@link Purchase}.
  */
 
 public enum PurchaseStatus {

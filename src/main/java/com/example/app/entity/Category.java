@@ -9,7 +9,7 @@ import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 /**
- * Category entity.
+ * The category entity.
  */
 
 @Data

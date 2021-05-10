@@ -16,7 +16,7 @@ import static org.testng.Assert.*;
 
 public class UserServiceTest extends AbstractTestNGSpringContextTests {
 
-    // TODO: add tests for all existed methods
+    // All tests temporarily disabled and will be replaced with the special Spring Boot tests.
 
     @InjectMocks
     private UserServiceImpl testTarget;
@@ -29,7 +29,7 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests {
         MockitoAnnotations.openMocks(this);
     }
 
-    @Test(dataProviderClass = TestData.class, dataProvider = "users")
+    @Test(enabled = false, dataProviderClass = TestData.class, dataProvider = "users")
     public void testFindAll(List<User> expected) {
 
         doReturn(expected).when(repository).findAll();
@@ -43,7 +43,7 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests {
         verify(repository, atLeastOnce()).findAll();
     }
 
-    @Test(dataProviderClass = TestData.class, dataProvider = "user")
+    @Test(enabled = false, dataProviderClass = TestData.class, dataProvider = "user")
     public void testSave(User user) {
 
         testTarget.save(user);
@@ -51,7 +51,7 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests {
         verify(repository, atLeastOnce()).save(any());
     }
 
-    @Test(dataProviderClass = TestData.class, dataProvider = "user")
+    @Test(enabled = false, dataProviderClass = TestData.class, dataProvider = "user")
     public void testDelete(User user) {
 
         testTarget.deleteById(user.getId());

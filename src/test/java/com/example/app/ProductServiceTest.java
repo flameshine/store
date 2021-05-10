@@ -16,6 +16,8 @@ import static org.testng.Assert.*;
 
 public class ProductServiceTest extends AbstractTestNGSpringContextTests {
 
+    // All tests temporarily disabled and will be replaced with the special Spring Boot tests.
+
     @InjectMocks
     private ProductServiceImpl testTarget;
 
@@ -27,7 +29,7 @@ public class ProductServiceTest extends AbstractTestNGSpringContextTests {
         MockitoAnnotations.openMocks(this);
     }
 
-    @Test(dataProviderClass = TestData.class, dataProvider = "products")
+    @Test(enabled = false, dataProviderClass = TestData.class, dataProvider = "products")
     public void testFindAll(List<Product> expected) {
 
         doReturn(expected).when(repository).findAll();
@@ -41,7 +43,7 @@ public class ProductServiceTest extends AbstractTestNGSpringContextTests {
         verify(repository, atLeastOnce()).findAll();
     }
 
-    @Test(dataProviderClass = TestData.class, dataProvider = "product")
+    @Test(enabled = false, dataProviderClass = TestData.class, dataProvider = "product")
     public void testSave(Product product) {
 
         testTarget.save(product);
@@ -49,7 +51,7 @@ public class ProductServiceTest extends AbstractTestNGSpringContextTests {
         verify(repository, atLeastOnce()).save(any());
     }
 
-    @Test(dataProviderClass = TestData.class, dataProvider = "product")
+    @Test(enabled = false, dataProviderClass = TestData.class, dataProvider = "product")
     public void testDelete(Product product) {
 
         testTarget.deleteById(product.getId());

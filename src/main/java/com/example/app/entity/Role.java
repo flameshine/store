@@ -7,7 +7,7 @@ import javax.persistence.*;
 import lombok.*;
 
 /**
- * Role entity.
+ * The role entity.
  */
 
 @Data

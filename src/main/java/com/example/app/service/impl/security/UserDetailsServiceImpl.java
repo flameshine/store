@@ -1,4 +1,4 @@
-package com.example.app.service.security;
+package com.example.app.service.impl.security;
 
 import java.util.Set;
 
@@ -25,12 +25,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         final var optionalUser = userRepository.findByUsername(username);
 
         if (optionalUser.isEmpty()) {
-            final var message = String.format("User with username %s not found.", username);
+            final var message = String.format("User with the username %s not found.", username);
             throw new UsernameNotFoundException(message);
         }
 
         final var user = optionalUser.get();
 
-        return new User(user.getUsername(), user.getPassword(), Set.of(new SimpleGrantedAuthority(user.getRole().getRoleName())));
+        final var grantedAuthority = new SimpleGrantedAuthority(user.getRole().getRoleName());
+
+        return new User(user.getUsername(), user.getPassword(), Set.of(grantedAuthority));
     }
 }

@@ -16,6 +16,8 @@ import static org.testng.Assert.*;
 
 public class CategoryServiceTest extends AbstractTestNGSpringContextTests {
 
+    // All tests temporarily disabled and will be replaced with the special Spring Boot tests.
+
     @InjectMocks
     private CategoryServiceImpl testTarget;
 
@@ -27,7 +29,7 @@ public class CategoryServiceTest extends AbstractTestNGSpringContextTests {
         MockitoAnnotations.openMocks(this);
     }
 
-    @Test(dataProviderClass = TestData.class, dataProvider = "categories")
+    @Test(enabled = false, dataProviderClass = TestData.class, dataProvider = "categories")
     public void testFindAll(List<Category> expected) {
 
         doReturn(expected).when(repository).findAll();
@@ -41,7 +43,7 @@ public class CategoryServiceTest extends AbstractTestNGSpringContextTests {
         verify(repository, atLeastOnce()).findAll();
     }
 
-    @Test(dataProviderClass = TestData.class, dataProvider = "category")
+    @Test(enabled = false, dataProviderClass = TestData.class, dataProvider = "category")
     public void testSave(Category category) {
 
         testTarget.save(category);
@@ -49,7 +51,7 @@ public class CategoryServiceTest extends AbstractTestNGSpringContextTests {
         verify(repository, atLeastOnce()).save(any());
     }
 
-    @Test(dataProviderClass = TestData.class, dataProvider = "category")
+    @Test(enabled = false, dataProviderClass = TestData.class, dataProvider = "category")
     public void testDelete(Category category) {
 
         testTarget.deleteById(category.getId());

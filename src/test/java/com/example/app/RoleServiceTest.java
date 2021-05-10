@@ -16,6 +16,8 @@ import static org.testng.Assert.*;
 
 public class RoleServiceTest extends AbstractTestNGSpringContextTests {
 
+    // All tests temporarily disabled and will be replaced with the special Spring Boot tests.
+
     @InjectMocks
     private RoleServiceImpl testTarget;
 
@@ -27,7 +29,7 @@ public class RoleServiceTest extends AbstractTestNGSpringContextTests {
         MockitoAnnotations.openMocks(this);
     }
 
-    @Test(dataProviderClass = TestData.class, dataProvider = "roles")
+    @Test(enabled = false, dataProviderClass = TestData.class, dataProvider = "roles")
     public void testFindAll(List<Role> expected) {
 
         doReturn(expected).when(repository).findAll();
@@ -41,7 +43,7 @@ public class RoleServiceTest extends AbstractTestNGSpringContextTests {
         verify(repository, atLeastOnce()).findAll();
     }
 
-    @Test(dataProviderClass = TestData.class, dataProvider = "role")
+    @Test(enabled = false, dataProviderClass = TestData.class, dataProvider = "role")
     public void testSave(Role role) {
 
         testTarget.save(role);
@@ -49,7 +51,7 @@ public class RoleServiceTest extends AbstractTestNGSpringContextTests {
         verify(repository, atLeastOnce()).save(any());
     }
 
-    @Test(dataProviderClass = TestData.class, dataProvider = "role")
+    @Test(enabled = false, dataProviderClass = TestData.class, dataProvider = "role")
     public void testDelete(Role role) {
 
         testTarget.deleteById(role.getId());
