@@ -1,6 +1,7 @@
 package com.example.app.entity;
 
 import java.io.Serializable;
+import java.io.Serial;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -20,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @AllArgsConstructor
 public class User implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 4756172225734787914L;
 
     @Id

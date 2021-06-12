@@ -12,7 +12,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = Throwable.class)
     protected ResponseEntity<Object> handle(Throwable throwable) {
-        final var message = String.format("An unexpected error has occurred: %s", throwable.getMessage());
+        var message = String.format("An unexpected error has occurred: %s", throwable.getMessage());
         return new ResponseEntity<>(message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

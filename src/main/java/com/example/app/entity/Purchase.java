@@ -2,6 +2,7 @@ package com.example.app.entity;
 
 import java.util.Collection;
 import java.io.Serializable;
+import java.io.Serial;
 
 import javax.persistence.*;
 
@@ -18,6 +19,7 @@ import lombok.*;
 @AllArgsConstructor
 public class Purchase implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 8300097387796927801L;
 
     @Id

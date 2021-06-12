@@ -3,6 +3,7 @@ package com.example.app.entity;
 import java.util.*;
 import java.math.BigDecimal;
 import java.io.Serializable;
+import java.io.Serial;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -23,6 +24,7 @@ import org.hibernate.validator.constraints.Length;
 @AllArgsConstructor
 public class Product implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = -5240415785520578477L;
 
     @Id

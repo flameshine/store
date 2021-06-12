@@ -14,7 +14,7 @@ repositories {
 
 def springBootVersion = "2.4.3"
 def mysqlVersion = "8.0.23"
-def lombokVersion = "1.18.18"
+def lombokVersion = "1.18.20"
 def testngVersion = "7.4.0"
 
 dependencies {
@@ -27,7 +27,7 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
     implementation "mysql:mysql-connector-java:${mysqlVersion}"
 
-    compile "org.projectlombok:lombok:${lombokVersion}"
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
 
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 

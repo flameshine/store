@@ -1,6 +1,7 @@
 package com.example.app.entity;
 
 import java.io.Serializable;
+import java.io.Serial;
 
 import javax.persistence.*;
 
@@ -17,6 +18,7 @@ import lombok.*;
 @AllArgsConstructor
 public class Role implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 2431567030846691089L;
 
     @Id

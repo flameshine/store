@@ -26,7 +26,7 @@ public class RegistrationController {
     @GetMapping("/registration")
     public ModelAndView registration() {
 
-        final var modelAndView = new ModelAndView("/registration");
+        var modelAndView = new ModelAndView("/registration");
 
         modelAndView.addObject("user", new User());
 
@@ -36,7 +36,7 @@ public class RegistrationController {
     @PostMapping("/registration")
     public ModelAndView registration(@Valid User user, BindingResult bindingResult) {
 
-        final var modelAndView = new ModelAndView("/registration");
+        var modelAndView = new ModelAndView("/registration");
 
         if (userService.findByUsername(user.getUsername()).isPresent()) {
             bindingResult.rejectValue("username", "error.user", "This username is already taken.");

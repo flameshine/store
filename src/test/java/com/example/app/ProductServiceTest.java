@@ -34,7 +34,7 @@ public class ProductServiceTest extends AbstractTestNGSpringContextTests {
 
         doReturn(expected).when(repository).findAll();
 
-        final var actual = testTarget.findAll();
+        var actual = testTarget.findAll();
 
         assertNotNull(actual);
 

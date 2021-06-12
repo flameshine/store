@@ -1,6 +1,7 @@
 package com.example.app.entity;
 
 import java.io.Serializable;
+import java.io.Serial;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -19,6 +20,7 @@ import org.hibernate.validator.constraints.Length;
 @AllArgsConstructor
 public class Category implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = -4767042454855773193L;
 
     @Id
