@@ -6,13 +6,6 @@ plugins {
 group "com.example"
 version "1.0-SNAPSHOT"
 
-tasks {
-    compileJava {
-        sourceCompatibility = "16"
-        targetCompatibility = "16"
-    }
-}
-
 description = "Implementation of the great online marketplace."
 
 repositories {
@@ -43,4 +36,11 @@ dependencies {
 
 test {
     useTestNG()
+}
+
+tasks {
+    compileJava {
+        sourceCompatibility = "16"
+        targetCompatibility = "16"
+    }
 }
