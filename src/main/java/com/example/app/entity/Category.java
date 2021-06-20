@@ -13,9 +13,10 @@ import org.hibernate.validator.constraints.Length;
  * The category entity.
  */
 
-@Data
 @Entity
 @Table(name = "category")
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Category implements Serializable {
@@ -25,11 +26,11 @@ public class Category implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "category_id", unique = true, nullable = false)
+    @Column(name = "id", unique = true, nullable = false)
     protected Long id;
 
-    @Column(name = "category_name", unique = true, nullable = false)
+    @Column(name = "name", unique = true, nullable = false)
     @NotBlank(message = "Category name is required.")
     @Length(min = 5, max = 15, message = "Category name must be between 5 and 15 characters.")
-    private String categoryName;
+    private String name;
 }

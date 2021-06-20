@@ -11,9 +11,10 @@ import lombok.*;
  * The role entity.
  */
 
-@Data
 @Entity
 @Table(name = "role")
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Role implements Serializable {
@@ -23,9 +24,9 @@ public class Role implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "role_id", unique = true, nullable = false)
+    @Column(name = "id", unique = true, nullable = false)
     protected Long id;
 
-    @Column(name = "role_name", unique = true, nullable = false)
-    private String roleName;
+    @Column(name = "name", unique = true, nullable = false)
+    private String name;
 }

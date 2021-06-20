@@ -12,9 +12,10 @@ import lombok.*;
  * The purchase entity.
  */
 
-@Data
 @Entity
 @Table(name = "purchase")
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Purchase implements Serializable {
@@ -24,7 +25,7 @@ public class Purchase implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "purchase_id", unique = true, nullable = false)
+    @Column(name = "id", unique = true, nullable = false)
     protected Long id;
 
     @Enumerated(EnumType.STRING)
@@ -32,10 +33,10 @@ public class Purchase implements Serializable {
     private PurchaseStatus purchaseStatus;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
+    @JoinColumn(name = "user", referencedColumnName = "id", nullable = false)
     private User user;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "purchase_product", joinColumns = @JoinColumn(name = "purchase_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
+    @JoinTable(name = "purchase_product", joinColumns = @JoinColumn(name = "purchase", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "product", referencedColumnName = "id"))
     private Collection<Product> products;
 }

@@ -14,9 +14,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * The user entity.
  */
 
-@Data
 @Entity
 @Table(name = "user")
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class User implements Serializable {
@@ -26,7 +27,7 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id", unique = true, nullable = false)
+    @Column(name = "id", unique = true, nullable = false)
     protected Long id;
 
     @Column(name = "username", unique = true, nullable = false)
@@ -60,7 +61,8 @@ public class User implements Serializable {
     @Column(name = "is_active", nullable = false)
     private Boolean isActive;
 
+    // TODO: fix an error with a new user addition
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "role_id", referencedColumnName = "role_id", nullable = false)
+    @JoinColumn(name = "role", referencedColumnName = "id", nullable = false)
     private Role role;
 }

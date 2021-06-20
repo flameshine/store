@@ -17,9 +17,10 @@ import org.hibernate.validator.constraints.Length;
  * The product entity.
  */
 
-@Data
 @Entity
 @Table(name = "product")
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product implements Serializable {
@@ -29,13 +30,13 @@ public class Product implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id", unique = true, nullable = false)
+    @Column(name = "id", unique = true, nullable = false)
     protected Long id;
 
-    @Column(name = "product_name", unique = true, nullable = false)
+    @Column(name = "name", unique = true, nullable = false)
     @NotBlank(message = "Product name is required.")
     @Length(min = 5, max = 15, message = "Product name must be between 5 and 15 characters.")
-    private String productName;
+    private String name;
 
     @Column(name = "price", nullable = false)
     @NotBlank(message = "Price is required.")
@@ -60,7 +61,7 @@ public class Product implements Serializable {
     private Integer reserve;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id", referencedColumnName = "category_id", nullable = false)
+    @JoinColumn(name = "category", referencedColumnName = "id", nullable = false)
     private Category category;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "products")

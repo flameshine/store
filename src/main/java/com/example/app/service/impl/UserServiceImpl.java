@@ -43,7 +43,10 @@ public class UserServiceImpl implements UserService {
         user.setPassword(encodedPassword);
         user.setIsActive(true);
 
-        var role = new Role(1L, "ROLE_USER");
+        var role = Role.builder()
+                .id(1L)
+                .name("ROLE_USER")
+                .build();
 
         user.setRole(role);
 
