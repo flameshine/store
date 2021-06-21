@@ -61,7 +61,6 @@ public class User implements Serializable {
     @Column(name = "is_active", nullable = false)
     private Boolean isActive;
 
-    // TODO: fix an error with a new user addition
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "role", referencedColumnName = "id", nullable = false)
     private Role role;

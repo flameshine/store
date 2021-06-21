@@ -16,7 +16,7 @@ import static org.testng.Assert.*;
 
 public class CategoryServiceTest extends AbstractTestNGSpringContextTests {
 
-    // All tests temporarily disabled and will be replaced with the special Spring Boot tests.
+    // all tests temporarily disabled and will be replaced with the special Spring Boot tests.
 
     @InjectMocks
     private CategoryServiceImpl testTarget;
