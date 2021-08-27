@@ -30,11 +30,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
 
         var user = optionalUser.get();
-
         var roleName = user.getRole().getName();
-
         var grantedAuthority = new SimpleGrantedAuthority(roleName);
 
-        return new User(user.getUsername(), user.getPassword(), Set.of(grantedAuthority));
+        return new User(
+            user.getUsername(),
+            user.getPassword(),
+            Set.of(grantedAuthority)
+        );
     }
 }
