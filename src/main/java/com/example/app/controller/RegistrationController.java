@@ -11,7 +11,7 @@ import com.example.app.service.UserService;
 import com.example.app.entity.User;
 
 /**
- * Controller for the application registration page.
+ * Controller for the registration page.
  */
 
 @Controller
@@ -25,12 +25,8 @@ public class RegistrationController {
 
     @GetMapping("/registration")
     public ModelAndView registration() {
-
-        var modelAndView = new ModelAndView("/registration");
-
-        modelAndView.addObject("user", new User());
-
-        return modelAndView;
+        return new ModelAndView("/registration")
+            .addObject("user", new User());
     }
 
     @PostMapping("/registration")

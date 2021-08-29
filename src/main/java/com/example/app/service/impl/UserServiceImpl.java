@@ -41,12 +41,12 @@ public class UserServiceImpl implements UserService {
         var encodedPassword = passwordEncoder.encode(user.getPassword());
 
         user.setPassword(encodedPassword);
-        user.setIsActive(true);
+        user.setIsActive(Boolean.TRUE);
 
         var role = Role.builder()
-                .id(1L)
-                .name("ROLE_USER")
-                .build();
+            .id(1L)
+            .name("ROLE_USER")
+            .build();
 
         user.setRole(role);
 
