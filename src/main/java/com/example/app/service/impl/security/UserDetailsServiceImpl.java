@@ -22,17 +22,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        var optionalUser = userRepository.findByUsername(username);
-
-        if (optionalUser.isEmpty()) {
-            var message = String.format("User with the username %s not found.", username);
-            throw new UsernameNotFoundException(message);
-        }
-
-        var user = optionalUser.get();
+        var user = userRepository.findByUsername(username)
+            .orElseThrow(() -> new UsernameNotFoundException(
+                String.format(
+                    "User with username %s not found",
+                    username
+                ))
+            );
 
         var roleName = user.getRole().getName();
-
         var grantedAuthority = new SimpleGrantedAuthority(roleName);
 
         return new User(user.getUsername(), user.getPassword(), Set.of(grantedAuthority));
