@@ -5,6 +5,10 @@
   <title>Home</title>
 </head>
 <body>
-<h1>Welcome!</h1>
+<div th:if="${#authentication == null}">
+  <form name="logoutForm" th:action="@{/logout}" method="post">
+    <input type="submit" value="Logout" />
+  </form>
+</div>
 </body>
 </html>

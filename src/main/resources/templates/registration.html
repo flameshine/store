@@ -32,7 +32,10 @@
     <input type="text" th:field="*{lastname}" name="lastname" id="lastname" placeholder="Lastname" required="required"/>
   </div>
   <div class="form">
-    <input type="submit"/>
+    <input type="submit" th:value="Register"/>
+  </div>
+  <div class="form">
+    <a th:href="@{/login}">Login</a>
   </div>
 </form>
 </body>
