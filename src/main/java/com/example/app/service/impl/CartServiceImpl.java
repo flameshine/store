@@ -47,21 +47,22 @@ public class CartServiceImpl implements CartService {
     @Override
     public void remove(Product product) {
 
-        if (products.containsKey(product)) {
+        if (!products.containsKey(product)) {
+            return;
+        }
 
-            if (products.get(product) > 1) {
-                products.replace(product, products.get(product) - 1);
-            } else if (products.get(product) == 1) {
-                products.remove(product);
-            }
+        var quantity = products.get(product);
+
+        if (quantity > 1) {
+            products.replace(product, quantity - 1);
+        } else if (quantity == 1) {
+            products.remove(product);
         }
     }
 
     @Override
     @Transactional
     public void checkout() throws NotEnoughProductsInStockException {
-
-        // TODO: review this functionality
 
         for (var entry : products.entrySet()) {
 
@@ -71,7 +72,7 @@ public class CartServiceImpl implements CartService {
             var product = productRepository.findById(productId)
                 .orElseThrow(() -> new NoSuchElementException(
                     String.format(
-                        "Product with id %s not found",
+                        "Product with id %d not found",
                         productId
                     ))
                 );

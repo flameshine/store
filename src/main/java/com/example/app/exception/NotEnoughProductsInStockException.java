@@ -6,8 +6,6 @@ package com.example.app.exception;
 
 public class NotEnoughProductsInStockException extends Exception {
 
-    public NotEnoughProductsInStockException() {}
-
     public NotEnoughProductsInStockException(String message) {
         super(message);
     }

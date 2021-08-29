@@ -39,4 +39,10 @@ public class Purchase implements Serializable {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "purchase_product", joinColumns = @JoinColumn(name = "purchase", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "product", referencedColumnName = "id"))
     private Collection<Product> products;
+
+    public enum PurchaseStatus {
+        REGISTERED,
+        PAID,
+        CANCELLED
+    }
 }
