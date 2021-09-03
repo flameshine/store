@@ -17,6 +17,8 @@ import com.example.app.entity.User;
 @Controller
 public class RegistrationController {
 
+    // TODO: add logging
+
     private final UserService userService;
 
     public RegistrationController(UserService userService) {

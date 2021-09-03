@@ -1,9 +1,8 @@
 package com.example.app.controller;
 
-import java.util.List;
-
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.app.service.ProductService;
 import com.example.app.entity.Product;
@@ -16,6 +15,8 @@ import com.example.app.entity.Product;
 @RequestMapping("/products")
 public class ProductController {
 
+    // TODO: add logging
+
     private final ProductService service;
 
     @Autowired
@@ -24,11 +25,12 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<Product> findAll() {
-        return service.findAll();
+    public ModelAndView findAll() {
+        return new ModelAndView("/products")
+            .addObject(service.findAll());
     }
 
-    @PostMapping
+    @PostMapping("/save")
     public void save(@RequestBody Product product) {
         service.save(product);
     }

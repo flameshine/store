@@ -1,6 +1,7 @@
 package com.example.app.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +29,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> findAll() {
         return List.copyOf(repository.findAll());
+    }
+
+    @Override
+    public Optional<Product> findById(Long id) {
+        return repository.findById(id);
     }
 
     @Override
