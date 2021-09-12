@@ -10,6 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Application {
 
+    // TODO: review, refactor and optimize everything after the main functionality is implemented
+
     public static void main(String... args) {
         SpringApplication.run(Application.class, args);
     }
