@@ -1,9 +1,8 @@
 package com.example.app.controller;
 
-import java.util.List;
-
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.app.service.CategoryService;
 import com.example.app.entity.Category;
@@ -16,6 +15,8 @@ import com.example.app.entity.Category;
 @RequestMapping("/categories")
 public class CategoryController {
 
+    // TODO: add logging
+
     private final CategoryService service;
 
     @Autowired
@@ -24,8 +25,9 @@ public class CategoryController {
     }
 
     @GetMapping
-    public List<Category> findAll() {
-        return service.findAll();
+    public ModelAndView findAll() {
+        return new ModelAndView("/categories")
+            .addObject(service.findAll());
     }
 
     @PostMapping

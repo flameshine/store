@@ -1,9 +1,8 @@
 package com.example.app.controller;
 
-import java.util.List;
-
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.app.service.UserService;
 import com.example.app.entity.User;
@@ -16,6 +15,8 @@ import com.example.app.entity.User;
 @RequestMapping("/users")
 public class UserController {
 
+    // TODO: add logging
+
     private final UserService service;
 
     @Autowired
@@ -24,8 +25,9 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> findAll() {
-        return service.findAll();
+    public ModelAndView findAll() {
+        return new ModelAndView("/users")
+            .addObject(service.findAll());
     }
 
     @PostMapping
