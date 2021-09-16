@@ -14,8 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    // TODO: implement an admin functionality
-    // TODO: implement a CSRF protection
+    // TODO: implement the admin functionality
+    // TODO: implement the CSRF protection
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

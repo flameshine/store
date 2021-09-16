@@ -50,8 +50,6 @@ public class CartController {
     @GetMapping("/checkout")
     public ModelAndView checkout() {
 
-        // TODO: review this. Perhaps we can somehow re-design everything in order to replace this ugly exception handling with some functional programming solution
-
         try {
             cartService.checkout();
         } catch (NotEnoughProductsInStockException exception) {
