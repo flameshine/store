@@ -1,7 +1,7 @@
 group = "com.example"
 version = "1.0-SNAPSHOT"
 
-description = "Implementation of the great online marketplace."
+description = "Implementation of the fairly convenient online marketplace."
 
 plugins {
     java

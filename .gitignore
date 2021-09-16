@@ -1,4 +1,4 @@
-# Project exclude paths
+# project exclude paths
 .idea
 .gradle
 gradle
