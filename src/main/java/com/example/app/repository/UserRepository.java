@@ -3,7 +3,7 @@ package com.example.app.repository;
 import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.example.app.entity.User;
 
@@ -12,7 +12,9 @@ import com.example.app.entity.User;
  */
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends PagingAndSortingRepository<User, Long> {
+
+    // TODO: add sorting
 
     Optional<User> findByUsername(String username);
 

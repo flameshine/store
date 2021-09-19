@@ -2,6 +2,7 @@ package com.example.app.controller;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.app.service.UserService;
@@ -25,9 +26,12 @@ public class UserController {
     }
 
     @GetMapping
-    public ModelAndView findAll() {
+    public ModelAndView findAllPageable(
+        @RequestParam("0") int initialPageNumber,
+        @RequestParam("5") int size
+    ) {
         return new ModelAndView("/users")
-            .addObject(service.findAll());
+            .addObject(service.findAllPageable(PageRequest.of(initialPageNumber, size)));
     }
 
     @PostMapping

@@ -1,11 +1,12 @@
 package com.example.app.service.impl;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.example.app.service.ProductService;
 import com.example.app.repository.ProductRepository;
@@ -27,8 +28,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> findAll() {
-        return List.copyOf(repository.findAll());
+    public Page<Product> findAllPageable(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     @Override
