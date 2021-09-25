@@ -26,13 +26,13 @@ public class PurchaseServiceImpl implements PurchaseService {
     }
 
     @Override
-    public List<Purchase> findAll() {
-        return List.copyOf(repository.findAll());
+    public void save(Purchase category) {
+        repository.save(category);
     }
 
     @Override
-    public void save(Purchase category) {
-        repository.save(category);
+    public List<Purchase> findAll() {
+        return List.copyOf(repository.findAll());
     }
 
     @Override

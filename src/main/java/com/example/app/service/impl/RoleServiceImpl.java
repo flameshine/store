@@ -26,13 +26,13 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public List<Role> findAll() {
-        return List.copyOf(repository.findAll());
+    public void save(Role role) {
+        repository.save(role);
     }
 
     @Override
-    public void save(Role role) {
-        repository.save(role);
+    public List<Role> findAll() {
+        return List.copyOf(repository.findAll());
     }
 
     @Override

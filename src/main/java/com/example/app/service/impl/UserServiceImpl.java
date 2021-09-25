@@ -32,11 +32,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<User> findAllPageable(Pageable pageable) {
-        return userRepository.findAll(pageable);
-    }
-
-    @Override
     public void save(User user) {
 
         var encodedPassword = passwordEncoder.encode(user.getPassword());
@@ -55,8 +50,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteById(Long id) {
-        userRepository.deleteById(id);
+    public Page<User> findAllPageable(Pageable pageable) {
+        return userRepository.findAll(pageable);
+    }
+
+    @Override
+    public Optional<User> findById(Long id) {
+        return userRepository.findById(id);
     }
 
     @Override
@@ -67,5 +67,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> findByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        userRepository.deleteById(id);
     }
 }

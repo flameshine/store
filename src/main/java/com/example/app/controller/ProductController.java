@@ -17,6 +17,7 @@ import com.example.app.entity.Product;
 public class ProductController {
 
     // TODO: add logging
+    // TODO: cover cases when a product with received id not found
 
     private final ProductService service;
 
@@ -34,13 +35,29 @@ public class ProductController {
             .addObject(service.findAllPageable(PageRequest.of(initialPageNumber, size)));
     }
 
-    @PostMapping("/save")
-    public void save(@RequestBody Product product) {
+    @PostMapping
+    public String save(@RequestBody Product product) {
         service.save(product);
+        return "redirect:/products";
+    }
+
+    @PutMapping("/{id}")
+    public String update(
+        @RequestBody Product product,
+        @PathVariable("id") Long id
+    ) {
+        if (id.equals(product.getId())) {
+            // TODO: add corresponding logic
+        }
+
+        service.findById(id).ifPresent(service::save);
+
+        return "redirect:/products";
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable("id") Long id) {
+    public String delete(@PathVariable("id") Long id) {
         service.deleteById(id);
+        return "redirect:/products";
     }
 }

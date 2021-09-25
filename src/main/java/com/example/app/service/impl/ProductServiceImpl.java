@@ -28,6 +28,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public void save(Product product) {
+        repository.save(product);
+    }
+
+    @Override
     public Page<Product> findAllPageable(Pageable pageable) {
         return repository.findAll(pageable);
     }
@@ -35,11 +40,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Optional<Product> findById(Long id) {
         return repository.findById(id);
-    }
-
-    @Override
-    public void save(Product product) {
-        repository.save(product);
     }
 
     @Override

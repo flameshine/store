@@ -10,9 +10,9 @@ import com.example.app.entity.Purchase;
 
 public interface PurchaseService {
 
-    List<Purchase> findAll();
-
     void save(Purchase role);
+
+    List<Purchase> findAll();
 
     void deleteById(Long id);
 }

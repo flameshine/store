@@ -18,6 +18,7 @@ import com.example.app.exception.NotEnoughProductsInStockException;
 public class CartController {
 
     // TODO: add logging
+    // TODO: cover cases when a product with received id not found
 
     private final CartService cartService;
     private final ProductService productService;
