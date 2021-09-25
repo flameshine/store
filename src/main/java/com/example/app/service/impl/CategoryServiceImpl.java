@@ -26,13 +26,13 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<Category> findAll() {
-        return List.copyOf(repository.findAll());
+    public void save(Category category) {
+        repository.save(category);
     }
 
     @Override
-    public void save(Category category) {
-        repository.save(category);
+    public List<Category> findAll() {
+        return List.copyOf(repository.findAll());
     }
 
     @Override

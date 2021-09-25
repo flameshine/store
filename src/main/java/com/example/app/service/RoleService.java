@@ -10,9 +10,9 @@ import com.example.app.entity.Role;
 
 public interface RoleService {
 
-    List<Role> findAll();
-
     void save(Role role);
+
+    List<Role> findAll();
 
     void deleteById(Long id);
 }

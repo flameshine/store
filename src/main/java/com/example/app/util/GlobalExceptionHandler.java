@@ -10,6 +10,8 @@ import org.springframework.http.*;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    // TODO: add a corresponding error page
+
     @ExceptionHandler(Throwable.class)
     protected ResponseEntity<Object> handle(Throwable throwable) {
         var message = String.format("An unexpected error has occurred: %s", throwable.getMessage());

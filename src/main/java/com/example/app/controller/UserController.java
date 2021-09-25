@@ -17,6 +17,7 @@ import com.example.app.entity.User;
 public class UserController {
 
     // TODO: add logging
+    // TODO: cover cases when a user with received id not found
 
     private final UserService service;
 
@@ -35,12 +36,28 @@ public class UserController {
     }
 
     @PostMapping
-    public void save(@RequestBody User user) {
+    public String save(@RequestBody User user) {
         service.save(user);
+        return "redirect:/users";
+    }
+
+    @PutMapping("/{id}")
+    public String update(
+        @RequestBody User user,
+        @PathVariable("id") Long id
+    ) {
+        if (id.equals(user.getId())) {
+            // TODO: add corresponding logic
+        }
+
+        service.findById(id).ifPresent(service::save);
+
+        return "redirect:/users";
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable("id") Long id) {
+    public String deleteById(@PathVariable("id") Long id) {
         service.deleteById(id);
+        return "redirect:/users";
     }
 }

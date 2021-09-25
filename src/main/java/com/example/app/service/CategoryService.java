@@ -10,9 +10,9 @@ import com.example.app.entity.Category;
 
 public interface CategoryService {
 
-    List<Category> findAll();
-
     void save(Category role);
+
+    List<Category> findAll();
 
     void deleteById(Long id);
 }
