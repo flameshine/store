@@ -40,7 +40,7 @@ public class Purchase implements Serializable {
     @JoinTable(name = "purchase_product", joinColumns = @JoinColumn(name = "purchase", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "product", referencedColumnName = "id"))
     private Collection<Product> products;
 
-    public enum PurchaseStatus {
+    private enum PurchaseStatus {
         REGISTERED,
         PAID,
         CANCELLED
