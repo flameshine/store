@@ -34,8 +34,8 @@ public class Product implements Serializable {
     protected Long id;
 
     @Column(name = "name", unique = true, nullable = false)
-    @NotBlank(message = "Product name is required.")
-    @Length(min = 5, max = 15, message = "Product name must be between 5 and 15 characters.")
+    @NotBlank(message = "Product name is required")
+    @Length(min = 5, max = 15, message = "Product name must be between 5 and 15 characters")
     private String name;
 
     @Column(name = "price", nullable = false)
@@ -53,11 +53,11 @@ public class Product implements Serializable {
     private Date modifyDate;
 
     @Column(name = "quantity", nullable = false)
-    @NotBlank(message = "Quantity is required.")
+    @NotBlank(message = "Quantity is required")
     private Integer quantity;
 
     @Column(name = "reserve", nullable = false)
-    @NotBlank(message = "Reserve name is required.")
+    @NotBlank(message = "Reserve name is required")
     private Integer reserve;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

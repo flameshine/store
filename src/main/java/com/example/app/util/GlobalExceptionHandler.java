@@ -14,7 +14,9 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Throwable.class)
     protected ResponseEntity<Object> handle(Throwable throwable) {
-        var message = String.format("An unexpected error has occurred: %s", throwable.getMessage());
-        return new ResponseEntity<>(message, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(
+            String.format("An unexpected error has occurred: %s", throwable.getMessage()),
+            HttpStatus.INTERNAL_SERVER_ERROR
+        );
     }
 }

@@ -41,16 +41,14 @@ public class ProductController {
         return "redirect:/products";
     }
 
-    @PutMapping("/{id}")
-    public String update(
-        @RequestBody Product product,
-        @PathVariable("id") Long id
-    ) {
-        if (id.equals(product.getId())) {
+    @PutMapping
+    public String update(@RequestBody Product product) {
+
+        if (service.findById(product.getId()).isEmpty()) {
             // TODO: add corresponding logic
         }
 
-        service.findById(id).ifPresent(service::save);
+        service.save(product);
 
         return "redirect:/products";
     }

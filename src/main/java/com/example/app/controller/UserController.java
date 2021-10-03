@@ -41,16 +41,14 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @PutMapping("/{id}")
-    public String update(
-        @RequestBody User user,
-        @PathVariable("id") Long id
-    ) {
-        if (id.equals(user.getId())) {
+    @PutMapping
+    public String update(@RequestBody User user) {
+
+        if (service.findById(user.getId()).isEmpty()) {
             // TODO: add corresponding logic
         }
 
-        service.findById(id).ifPresent(service::save);
+        service.save(user);
 
         return "redirect:/users";
     }

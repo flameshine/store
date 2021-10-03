@@ -30,7 +30,7 @@ public class Category implements Serializable {
     protected Long id;
 
     @Column(name = "name", unique = true, nullable = false)
-    @NotBlank(message = "Category name is required.")
-    @Length(min = 5, max = 15, message = "Category name must be between 5 and 15 characters.")
+    @NotBlank(message = "Category name is required")
+    @Length(min = 5, max = 15, message = "Category name must be between 5 and 15 characters")
     private String name;
 }
