@@ -14,7 +14,8 @@ import com.example.app.entity.User;
  * Controller for the registration page.
  */
 
-@Controller("/registration")
+@Controller
+@RequestMapping("/registration")
 public class RegistrationController {
 
     // TODO: add logging

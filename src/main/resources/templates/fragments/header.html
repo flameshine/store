@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+  <meta charset="UTF-8">
+  <div th:fragment="header">
+    <title th:attr="data-custom=#{thymeleaf.app.title}">Store</title>
+  </div>
+</head>
+<body>
+<div th:fragment="navigation-bar">
+  <nav>
+    <div>
+      <a th:href="@{/home}">Store</a>
+    </div>
+    <div>
+      <ul sec:authorize="isAuthenticated()">
+        <li>
+          <a th:href="@{/cart}">Cart</a>
+        </li>
+        <li>
+          <a th:href="@{/login}">Login</a>
+        </li>
+      </ul>
+      <div>
+        <a th:href="@{/registration}" sec:authorize="!isAuthenticated()">Registration</a>
+      </div>
+    </div>
+  </nav>
+</div>
+</body>
+</html>
