@@ -6,8 +6,8 @@
 <body>
 <div th:replace="/fragments/header :: navigation-bar"/>
 <div>
-  <div th:replace="/fragments/products :: products"/>
-  <div th:replace="/fragments/pagination :: pagination(URLparameter = '/home')"/>
+  <h1 th:if="${error}" th:utext="${error}"/>
+  <h1 th:if="!${error}">404 - The page doesn't exist</h1>
 </div>
 <div th:replace="/fragments/footer :: footer"/>
 </body>

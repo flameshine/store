@@ -10,6 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Application {
 
+    // TODO: finalize front-end part -> add styles
+    // TODO: review database design
     // TODO: review, refactor and optimize everything after the main functionality is implemented
 
     public static void main(String... args) {

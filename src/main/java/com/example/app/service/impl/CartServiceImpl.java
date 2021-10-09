@@ -68,7 +68,7 @@ public class CartServiceImpl implements CartService {
 
             var productId = entry.getKey().getId();
 
-            // TODO: replace with custom exception
+            // TODO: replace with some custom exception
             var product = productRepository.findById(productId)
                 .orElseThrow(() -> new NoSuchElementException(
                     String.format(
