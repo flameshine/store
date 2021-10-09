@@ -17,7 +17,6 @@ import com.example.app.entity.User;
 public class UserController {
 
     // TODO: add logging
-    // TODO: cover cases when a user with received id not found
 
     private final UserService service;
 
