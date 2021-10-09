@@ -12,6 +12,7 @@ public class Application {
 
     // TODO: finalize front-end part -> add styles
     // TODO: review database design
+    // TODO: cover all the logic with corresponding unit-tests
     // TODO: review, refactor and optimize everything after the main functionality is implemented
 
     public static void main(String... args) {
