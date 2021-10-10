@@ -4,7 +4,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.data.domain.PageRequest;
 
@@ -18,19 +19,17 @@ import com.example.app.util.Pager;
 @Controller
 public class HomeController {
 
-    // TODO: add logging
-
-    private final ProductService productService;
+    private final ProductService service;
 
     @Autowired
     public HomeController(ProductService productService) {
-        this.productService = productService;
+        this.service = productService;
     }
 
     @GetMapping({ "/", "/home" })
     public ModelAndView home(@RequestParam("page") Optional<Integer> page) {
 
-        var products = productService.findAllPageable(
+        var products = service.findAllPageable(
             PageRequest.of(
                 page.orElse(0) < 1 ? 0 : page.get() - 1,
                 5

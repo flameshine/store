@@ -1,12 +1,16 @@
 package com.example.app.entity;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.io.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Min;
 
-import lombok.*;
+import lombok.Data;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 /**
@@ -18,7 +22,6 @@ import org.hibernate.validator.constraints.Length;
 @Data
 @Builder
 @NoArgsConstructor
-@AllArgsConstructor
 public class Product implements Serializable {
 
     @Serial

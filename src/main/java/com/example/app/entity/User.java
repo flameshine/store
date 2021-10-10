@@ -4,9 +4,12 @@ import java.io.Serializable;
 import java.io.Serial;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Email;
 
-import lombok.*;
+import lombok.Data;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -19,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Data
 @Builder
 @NoArgsConstructor
-@AllArgsConstructor
 public class User implements Serializable {
 
     @Serial

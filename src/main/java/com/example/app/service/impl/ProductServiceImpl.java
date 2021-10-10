@@ -5,8 +5,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 
 import com.example.app.service.ProductService;
 import com.example.app.repository.ProductRepository;
@@ -28,11 +27,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void save(Product product) {
-        repository.save(product);
-    }
-
-    @Override
     public Page<Product> findAllPageable(Pageable pageable) {
         return repository.findAll(pageable);
     }
@@ -40,10 +34,5 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Optional<Product> findById(Long id) {
         return repository.findById(id);
-    }
-
-    @Override
-    public void deleteById(Long id) {
-        repository.deleteById(id);
     }
 }

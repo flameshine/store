@@ -1,8 +1,6 @@
 package com.example.app.service.impl;
 
-import java.util.Map;
-import java.util.HashMap;
-import java.util.NoSuchElementException;
+import java.util.*;
 import java.math.BigDecimal;
 
 import javax.transaction.Transactional;
@@ -68,7 +66,6 @@ public class CartServiceImpl implements CartService {
 
             var productId = entry.getKey().getId();
 
-            // TODO: replace with some custom exception
             var product = productRepository.findById(productId)
                 .orElseThrow(() -> new NoSuchElementException(
                     String.format(

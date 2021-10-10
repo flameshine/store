@@ -17,8 +17,6 @@ public interface UserService {
 
     Page<User> findAllPageable(Pageable pageable);
 
-    Optional<User> findById(Long id);
-
     Optional<User> findByUsername(String username);
 
     Optional<User> findByEmail(String email);

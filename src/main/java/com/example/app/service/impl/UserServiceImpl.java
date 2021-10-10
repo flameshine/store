@@ -5,14 +5,12 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.example.app.service.UserService;
 import com.example.app.repository.UserRepository;
-import com.example.app.entity.User;
-import com.example.app.entity.Role;
+import com.example.app.entity.*;
 
 /**
  * Implementation of {@link UserService}.
@@ -34,9 +32,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void save(User user) {
 
-        var encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(
+            passwordEncoder.encode(user.getPassword())
+        );
 
-        user.setPassword(encodedPassword);
         user.setIsActive(Boolean.TRUE);
 
         var role = Role.builder()
@@ -52,11 +51,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public Page<User> findAllPageable(Pageable pageable) {
         return userRepository.findAll(pageable);
-    }
-
-    @Override
-    public Optional<User> findById(Long id) {
-        return userRepository.findById(id);
     }
 
     @Override
