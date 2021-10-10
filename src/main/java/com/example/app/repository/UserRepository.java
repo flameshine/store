@@ -14,8 +14,6 @@ import com.example.app.entity.User;
 @Repository
 public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
-    // TODO: add sorting
-
     Optional<User> findByUsername(String username);
 
     Optional<User> findByEmail(String email);

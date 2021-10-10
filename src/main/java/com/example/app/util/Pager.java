@@ -2,35 +2,33 @@ package com.example.app.util;
 
 import org.springframework.data.domain.Page;
 
-import com.example.app.entity.Product;
-
 /**
- * An auxiliary utility for working with pages.
+ * An auxiliary utility for items that need pagination.
  */
 
-public record Pager(Page<Product> products) {
+public record Pager(Page<?> items) {
 
     public int getPageIndex() {
-        return products.getNumber() + 1;
+        return items.getNumber() + 1;
     }
 
     public int getPageSize() {
-        return products.getSize();
+        return items.getSize();
     }
 
     public boolean hasNext() {
-        return products.hasNext();
+        return items.hasNext();
     }
 
     public boolean hasPrevious() {
-        return products.hasPrevious();
+        return items.hasPrevious();
     }
 
     public int getTotalPages() {
-        return products.getTotalPages();
+        return items.getTotalPages();
     }
 
     public boolean isIndexOutOfBounds() {
-        return getPageIndex() < 0 || getPageIndex() > products.getTotalElements();
+        return getPageIndex() < 0 || getPageIndex() > items.getTotalElements();
     }
 }

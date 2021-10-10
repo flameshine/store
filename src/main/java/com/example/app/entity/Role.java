@@ -5,7 +5,9 @@ import java.io.Serial;
 
 import javax.persistence.*;
 
-import lombok.*;
+import lombok.Data;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 /**
  * The role entity.
@@ -16,7 +18,6 @@ import lombok.*;
 @Data
 @Builder
 @NoArgsConstructor
-@AllArgsConstructor
 public class Role implements Serializable {
 
     @Serial

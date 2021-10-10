@@ -4,7 +4,10 @@ import java.util.Set;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.*;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import com.example.app.repository.UserRepository;
@@ -12,17 +15,17 @@ import com.example.app.repository.UserRepository;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private final UserRepository userRepository;
+    private final UserRepository repository;
 
     @Autowired
-    public UserDetailsServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserDetailsServiceImpl(UserRepository repository) {
+        this.repository = repository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        var user = userRepository.findByUsername(username)
+        var user = repository.findByUsername(username)
             .orElseThrow(() -> new UsernameNotFoundException(
                 String.format(
                     "User with username %s not found",
@@ -30,8 +33,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 ))
             );
 
-        var roleName = user.getRole().getName();
-        var grantedAuthority = new SimpleGrantedAuthority(roleName);
+        var grantedAuthority = new SimpleGrantedAuthority(
+            user.getRole().getName()
+        );
 
         return new User(
             user.getUsername(),
