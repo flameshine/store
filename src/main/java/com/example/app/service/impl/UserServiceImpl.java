@@ -5,12 +5,15 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.example.app.service.UserService;
 import com.example.app.repository.UserRepository;
-import com.example.app.entity.*;
+import com.example.app.entity.User;
+import com.example.app.entity.Role;
 
 /**
  * Implementation of {@link UserService}.
