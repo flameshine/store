@@ -1,2 +1,2 @@
 # UltimateStore
-<h3>Implementation of the fairly convenient online marketplace.</h3>
+<h3>Implementation of the fairly convenient online marketplace with shopping cart functionality.</h3>
