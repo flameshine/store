@@ -11,6 +11,7 @@ import javax.validation.constraints.Min;
 import lombok.Data;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 /**
@@ -22,6 +23,7 @@ import org.hibernate.validator.constraints.Length;
 @Data
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class Product implements Serializable {
 
     @Serial

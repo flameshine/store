@@ -7,7 +7,7 @@
 <div th:replace="/fragments/header :: navigation-bar"/>
 <div>
   <h1>
-    <span th:text="${#authentication.getName()}"></span>'s Cart
+    <span th:text="${#authentication.getName()}"></span>'s cart
   </h1>
   <div th:if="${notEnoughProductsInStockException}" th:utext="${notEnoughProductsInStockException}"></div>
   <div th:each="product : ${products.entrySet()}">

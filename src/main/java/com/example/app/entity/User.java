@@ -10,6 +10,7 @@ import javax.validation.constraints.Email;
 import lombok.Data;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Data
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class User implements Serializable {
 
     @Serial
