@@ -3,15 +3,15 @@
 <head/>
 <body>
 <div th:fragment="products">
-  <div th:each="product : ${products}">
-    <div>
+  <div class="card" th:each="product : ${products}">
+    <div class="card-header">
       <h1 th:text="${product.getName()}"></h1>
     </div>
-    <h3 th:text="${product.getDescription()}">Description</h3>
-    <div>
-      <div th:inline="text">Price: [[${product.getPrice()}]] $</div>
-      <div th:inline="text">In stock: [[${product.getQuantity()}]]</div>
-      <a th:href="@{'/cart/add/{id}'(id = ${product.getId()})}" sec:authorize="isAuthenticated()" th:if="${product.getQuantity()} > 0">
+    <h3 class="card-body" th:text="${product.getDescription()}">Description</h3>
+    <div class="row card-footer">
+      <div class="col-md-2" th:inline="text">Price: [[${product.getPrice()}]] $</div>
+      <div class="col-md-9" th:inline="text">In stock: [[${product.getQuantity()}]]</div>
+      <a class="col-md-1" th:href="@{'/cart/add/{id}'(id = ${product.getId()})}" sec:authorize="isAuthenticated()" th:if="${product.getQuantity()} > 0">
         <button type="button" th:text="Buy">Buy</button>
       </a>
     </div>
