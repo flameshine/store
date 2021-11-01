@@ -15,16 +15,24 @@
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/cart}" sec:authorize="isAuthenticated()">Cart</a>
+            <a class="nav-link" th:href="@{/cart}" sec:authorize="isAuthenticated()">
+              Cart
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/login}" sec:authorize="!isAuthenticated()">Login</a>
+            <a class="nav-link" th:href="@{/login}" sec:authorize="!isAuthenticated()">
+              Login
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/registration}" sec:authorize="!isAuthenticated()">Registration</a>
+            <a class="nav-link" th:href="@{/registration}" sec:authorize="!isAuthenticated()">
+              Registration
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/logout}" sec:authorize="isAuthenticated()">Logout</a>
+            <a class="nav-link" th:href="@{/logout}" sec:authorize="isAuthenticated()">
+              Logout
+            </a>
           </li>
         </ul>
       </div>

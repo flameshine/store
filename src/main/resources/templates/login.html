@@ -5,26 +5,36 @@
 </head>
 <body>
 <div th:replace="/fragments/header :: navigation-bar"/>
-<div>
-  <form th:action="@{/login}" method="post">
-    <fieldset>
-      <div th:if="${param.error}">
-        <div>Invalid username or password.</div>
-      </div>
-      <div th:if="${param.logout}">
-        <div>You have been logged out successfully.</div>
-      </div>
-      <div>
-        <input type="text" name="username" id="username" placeholder="Username" required autofocus/>
-      </div>
-      <div>
-        <input type="password" name="password" id="password" placeholder="Password" required/>
-      </div>
-      <div>
-        <input type="submit" value="Submit"/>
-      </div>
-    </fieldset>
-  </form>
+<div class="container">
+  <div class="row">
+    <div class="col col-sm-8 col-md-6">
+      <form th:action="@{/login}" method="post">
+        <fieldset>
+          <div th:if="${param.error}">
+            <div class="alert alert-danger">
+              Invalid username or password
+            </div>
+          </div>
+          <div th:if="${param.logout}">
+            <div class="alert alert-info">
+              You have been logged out successfully
+            </div>
+          </div>
+          <div class="form-label">
+            <input class="form-control" type="text" name="username" id="username" placeholder="Username" required autofocus/>
+          </div>
+          <div class="form-label">
+            <input class="form-control" type="password" name="password" id="password" placeholder="Password" required/>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <input class="btn btn-primary" type="submit" value="Submit"/>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
 </div>
 <div th:replace="/fragments/footer :: footer"/>
 </body>

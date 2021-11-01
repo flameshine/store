@@ -5,9 +5,14 @@
 </head>
 <body>
 <div th:replace="/fragments/header :: navigation-bar"/>
-<div>
+<div class="container">
   <h1 th:if="${error}" th:utext="${error}"/>
-  <h1 th:if="!${error}">404 - The page doesn't exist</h1>
+  <h1 th:if="!${error}">
+    404
+  </h1>
+  <a th:href="@{/home}">
+    Back
+  </a>
 </div>
 <div th:replace="/fragments/footer :: footer"/>
 </body>
