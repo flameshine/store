@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.app.service.UserService;
+import com.example.app.util.Constants;
 import com.example.app.util.Pager;
 import com.example.app.entity.User;
 
@@ -17,7 +18,7 @@ import com.example.app.entity.User;
  */
 
 @Controller
-@RequestMapping("/users")
+@RequestMapping(Constants.USERS_PATH)
 public class UserController {
 
     private final UserService service;
@@ -37,7 +38,7 @@ public class UserController {
             )
         );
 
-        return new ModelAndView("/users")
+        return new ModelAndView(Constants.USERS_PATH)
             .addObject("users", users)
             .addObject("pager", new Pager(users));
     }

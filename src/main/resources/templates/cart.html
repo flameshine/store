@@ -5,29 +5,45 @@
 </head>
 <body>
 <div th:replace="/fragments/header :: navigation-bar"/>
-<div>
+<div class="container">
   <h1>
-    <span th:text="${#authentication.getName()}"></span>'s cart
+    <span th:text="${#authentication.getName()}"/>'s cart
   </h1>
-  <div th:if="${notEnoughProductsInStockException}" th:utext="${notEnoughProductsInStockException}"></div>
-  <div th:each="product : ${products.entrySet()}">
-    <div>
-      <h1><a th:text="${product.getKey().getName()}" th:href="@{'/product/' + ${product.getKey().getId()}}">Title</a></h1>
-      <h3 th:text="${product.getKey().getDescription()}">Description</h3>
+  <div class="alert alert-info" th:if="${notEnoughProductsInStockException}" th:utext="${notEnoughProductsInStockException}"/>
+  <div class="card" th:each="product : ${products.entrySet()}">
+    <div class="card-header">
+      <h1>
+        <a th:text="${product.getKey().getName()}" th:href="@{'/product/' + ${product.getKey().getId()}}">
+          Title
+        </a>
+      </h1>
+      <h3 th:text="${product.getKey().getDescription()}">
+        Description
+      </h3>
     </div>
-    <div>
-      <div th:inline="text">Price: [[${product.getKey().getPrice()}]] $</div>
-      <div th:inline="text">Quantity: [[${product.getValue()}]]</div>
-      <a th:href="@{'/cart/remove/{id}'(id=${product.getKey().getId()})}">
-        <button type="button" th:text="Remove">Remove</button>
+    <div class="row card-body">
+      <div class="col-md-2" th:inline="text">
+        Price: [[${product.getKey().getPrice()}]] USD
+      </div>
+      <div class="col-md-9" th:inline="text">
+        Quantity: [[${product.getValue()}]]
+      </div>
+      <a class="col-md-1" th:href="@{'/cart/remove/{id}'(id=${product.getKey().getId()})}">
+        <button class="btn btn-primary" type="button">
+          Remove
+        </button>
       </a>
     </div>
     <br/>
   </div>
-  <div>
-    <h2 th:inline="text">Total: [[${totalAmount}]]</h2>
-    <a th:href="@{'/cart/checkout'}">
-      <button type="button" th:text="Checkout">Checkout</button>
+  <div class="row card-body">
+    <h2 class="col-md-11" th:inline="text">
+      Total: [[${totalAmount}]]
+    </h2>
+    <a class="col-md-1" th:href="@{'/cart/checkout'}">
+      <button class="btn btn-danger" type="button" th:text="Checkout">
+        Checkout
+      </button>
     </a>
   </div>
 </div>

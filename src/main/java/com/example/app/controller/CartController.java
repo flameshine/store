@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.app.service.CartService;
 import com.example.app.service.ProductService;
+import com.example.app.util.Constants;
 import com.example.app.exception.NotEnoughProductsInStockException;
 
 /**
@@ -16,7 +17,7 @@ import com.example.app.exception.NotEnoughProductsInStockException;
  */
 
 @Controller
-@RequestMapping(value = "/cart")
+@RequestMapping(value = Constants.CART_PATH)
 public class CartController {
 
     private final CartService cartService;
@@ -30,20 +31,26 @@ public class CartController {
 
     @GetMapping
     public ModelAndView cart() {
-        return new ModelAndView("/cart")
+        return new ModelAndView(Constants.CART_PATH)
             .addObject("products", cartService.getProducts())
             .addObject("totalAmount", cartService.getTotalAmount());
     }
 
     @GetMapping("/add/{id}")
     public ModelAndView add(@PathVariable("id") Long id) {
-        productService.findById(id).ifPresent(cartService::add);
+
+        productService.findById(id)
+            .ifPresent(cartService::add);
+
         return cart();
     }
 
     @GetMapping("/remove/{id}")
     public ModelAndView remove(@PathVariable("id") Long id) {
-        productService.findById(id).ifPresent(cartService::remove);
+
+        productService.findById(id)
+            .ifPresent(cartService::remove);
+
         return cart();
     }
 

@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.data.domain.PageRequest;
 
 import com.example.app.service.ProductService;
+import com.example.app.util.Constants;
 import com.example.app.util.Pager;
 
 /**
@@ -26,7 +27,7 @@ public class HomeController {
         this.service = productService;
     }
 
-    @GetMapping({ "/", "/home" })
+    @GetMapping({ "/", Constants.HOME_PATH })
     public ModelAndView home(@RequestParam("page") Optional<Integer> page) {
 
         var products = service.findAllPageable(
@@ -36,7 +37,7 @@ public class HomeController {
             )
         );
 
-        return new ModelAndView("/home")
+        return new ModelAndView(Constants.HOME_PATH)
             .addObject("products", products)
             .addObject("pager", new Pager(products));
     }

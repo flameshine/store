@@ -79,14 +79,13 @@ public class CartServiceImpl implements CartService {
             var quantity = product.getQuantity();
 
             if (quantity < entry.getValue()) {
-
-                var message = String.format(
-                    "Not enough '%s' products in the stock. Only %d left",
-                    product.getName(),
-                    quantity
+                throw new NotEnoughProductsInStockException(
+                    String.format(
+                        "Not enough '%s' products in the stock. Only %d left",
+                        product.getName(),
+                        quantity
+                    )
                 );
-
-                throw new NotEnoughProductsInStockException(message);
             }
 
             entry.getKey().setQuantity(quantity - entry.getValue());

@@ -5,37 +5,43 @@
 </head>
 <body>
 <div th:replace="/fragments/header :: navigation-bar"/>
-<div>
-  <div th:if="${message}" th:utext="${message}"></div>
-  <form autocomplete="off" action="#" th:action="@{/registration}" th:object="${user}" method="post">
-    <div>
-      <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></label>
-      <input type="text" th:field="*{username}" placeholder="Username"/>
+<div class="container">
+  <div class="alert-info" th:if="${message}" th:utext="${message}"/>
+  <div class="row">
+    <div class="col col-sm-8 col-md-6">
+      <form autocomplete="off" action="#" th:action="@{/registration}" th:object="${user}" method="post">
+        <div class="form-label">
+          <label class="alert alert-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"/>
+          <input class="form-control" type="text" th:field="*{username}" placeholder="Username"/>
+        </div>
+        <div class="form-label">
+          <label class="alert alert-danger" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"/>
+          <input class="form-control" type="text" th:field="*{firstname}" placeholder="Firstname"/>
+        </div>
+        <div class="form-label">
+          <label class="alert alert-danger" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"/>
+          <input class="form-control" type="text" th:field="*{lastname}" placeholder="Lastname"/>
+        </div>
+        <div class="form-label">
+          <label class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"/>
+          <input class="form-control" type="password" th:field="*{password}" placeholder="Password"/>
+        </div>
+        <div class="form-label">
+          <label class="alert alert-danger" th:if="${#fields.hasErrors('passwordConfirmation')}" th:errors="*{passwordConfirmation}"/>
+          <input class="form-control" type="password" th:field="*{passwordConfirmation}" placeholder="Password confirmation"/>
+        </div>
+        <div class="form-label">
+          <label class="alert alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"/>
+          <input class="form-control" type="text" th:field="*{email}" placeholder="Email"/>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <input class="btn btn-primary" type="submit" value="Submit"/>
+          </div>
+        </div>
+      </form>
     </div>
-    <div>
-      <label th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"></label>
-      <input type="text" th:field="*{firstname}" placeholder="Firstname"/>
-    </div>
-    <div>
-      <label th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></label>
-      <input type="text" th:field="*{lastname}" placeholder="Lastname"/>
-    </div>
-    <div>
-      <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></label>
-      <input type="password" th:field="*{password}" placeholder="Password"/>
-    </div>
-    <div>
-      <label th:if="${#fields.hasErrors('passwordConfirmation')}" th:errors="*{passwordConfirmation}"></label>
-      <input type="password" th:field="*{passwordConfirmation}" placeholder="Password confirmation"/>
-    </div>
-    <div>
-      <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></label>
-      <input type="text" th:field="*{email}" placeholder="Email"/>
-    </div>
-    <div>
-      <input type="submit" value="Submit"/>
-    </div>
-  </form>
+  </div>
 </div>
 <div th:replace="/fragments/footer :: footer"/>
 </body>
