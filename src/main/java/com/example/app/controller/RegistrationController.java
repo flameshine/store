@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.validation.BindingResult;
 
 import com.example.app.service.UserService;
+import com.example.app.util.Constants;
 import com.example.app.entity.User;
 
 /**
@@ -17,7 +18,7 @@ import com.example.app.entity.User;
  */
 
 @Controller
-@RequestMapping("/registration")
+@RequestMapping(Constants.REGISTRATION_PATH)
 public class RegistrationController {
 
     private final UserService service;
@@ -28,7 +29,7 @@ public class RegistrationController {
 
     @GetMapping
     public ModelAndView registration() {
-        return new ModelAndView("/registration")
+        return new ModelAndView(Constants.REGISTRATION_PATH)
             .addObject("user", new User());
     }
 
@@ -39,15 +40,15 @@ public class RegistrationController {
             bindingResult.rejectValue("username", "error.user", "This username is already taken");
         }
 
-        if (service.findByEmail(user.getEmail()).isPresent()) {
-            bindingResult.rejectValue("email", "error.user", "This email is already taken");
-        }
-
         if (!user.getPassword().equals(user.getPasswordConfirmation())) {
             bindingResult.rejectValue("passwordConfirmation", "error.user", "Password mismatch");
         }
 
-        var modelAndView = new ModelAndView("/registration");
+        if (service.findByEmail(user.getEmail()).isPresent()) {
+            bindingResult.rejectValue("email", "error.user", "This email is already taken");
+        }
+
+        var modelAndView = new ModelAndView(Constants.REGISTRATION_PATH);
 
         if (!bindingResult.hasErrors()) {
             service.save(user);
