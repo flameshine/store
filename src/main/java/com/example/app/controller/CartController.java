@@ -33,7 +33,7 @@ public class CartController {
     public ModelAndView cart() {
         return new ModelAndView(Constants.CART_PATH)
             .addObject("products", cartService.getProducts())
-            .addObject("totalAmount", cartService.getTotalAmount());
+            .addObject("total", cartService.getTotalAmount());
     }
 
     @GetMapping("/add/{id}")
@@ -61,7 +61,7 @@ public class CartController {
             cartService.checkout();
         } catch (NotEnoughProductsInStockException e) {
             return cart()
-                .addObject("notEnoughProductsInStockException", e.getMessage());
+                .addObject("message", e.getMessage());
         }
 
         return cart();

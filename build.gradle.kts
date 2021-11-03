@@ -28,8 +28,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}")
     implementation("org.springframework.boot:spring-boot-starter-validation:${springBootVersion}")
     implementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
-    implementation("mysql:mysql-connector-java:8.0.25")
     implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.0.4.RELEASE")
+    implementation("mysql:mysql-connector-java:8.0.25")
 
     compileOnly("org.projectlombok:lombok:${lombokVersion}")
 
