@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.http.HttpStatus;
 
 /**
- * Class that handles application unexpected errors.
+ * Controller that handles various unexpected errors.
  */
 
 @ControllerAdvice
@@ -15,8 +15,8 @@ public class ErrorController {
 
     @ExceptionHandler(Throwable.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    protected ModelAndView handle(Throwable throwable) {
+    protected ModelAndView handle(Exception e) {
         return new ModelAndView("/error")
-            .addObject("message", throwable.getMessage());
+            .addObject("message", e.getMessage());
     }
 }

@@ -1,16 +1,13 @@
 package com.example.app.entity;
 
-import java.io.Serializable;
 import java.io.Serial;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Email;
 
-import lombok.Data;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.validator.constraints.Length;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -20,19 +17,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "user")
-@Data
-@Builder
+@Getter
+@Setter
+@SuperBuilder
 @NoArgsConstructor
-@AllArgsConstructor
-public class User implements Serializable {
+@EqualsAndHashCode(callSuper = true)
+public class User extends Persistable {
 
     @Serial
     private static final long serialVersionUID = 4756172225734787914L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    protected Long id;
 
     @Column(name = "username", unique = true, nullable = false)
     @NotBlank(message = "Username is required")

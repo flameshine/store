@@ -9,7 +9,7 @@
   <h1>
     <span th:text="${#authentication.getName()}"/>'s cart
   </h1>
-  <div class="alert alert-info" th:if="${notEnoughProductsInStockException}" th:utext="${notEnoughProductsInStockException}"/>
+  <div class="alert alert-info" th:if="${message}" th:utext="${message}"/>
   <div class="card" th:each="product : ${products.entrySet()}">
     <div class="card-header">
       <h1>
@@ -28,7 +28,7 @@
       <div class="col-md-9" th:inline="text">
         Quantity: [[${product.getValue()}]]
       </div>
-      <a class="col-md-1" th:href="@{'/cart/remove/{id}'(id=${product.getKey().getId()})}">
+      <a class="col-md-1" th:href="@{'/cart/remove/{id}'(id = ${product.getKey().getId()})}">
         <button class="btn btn-primary" type="button">
           Remove
         </button>
@@ -38,10 +38,10 @@
   </div>
   <div class="row card-body">
     <h2 class="col-md-11" th:inline="text">
-      Total: [[${totalAmount}]]
+      Total: [[${total}]]
     </h2>
     <a class="col-md-1" th:href="@{'/cart/checkout'}">
-      <button class="btn btn-danger" type="button" th:text="Checkout">
+      <button class="btn btn-danger" type="button">
         Checkout
       </button>
     </a>

@@ -2,11 +2,13 @@ package com.example.app.util;
 
 import org.springframework.data.domain.Page;
 
+import com.example.app.entity.Persistable;
+
 /**
  * An auxiliary utility for items that need pagination.
  */
 
-public record Pager(Page<?> items) {
+public record Pager(Page<? extends Persistable> items) {
 
     public int getPageIndex() {
         return items.getNumber() + 1;

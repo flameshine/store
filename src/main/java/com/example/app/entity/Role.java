@@ -1,14 +1,11 @@
 package com.example.app.entity;
 
-import java.io.Serializable;
 import java.io.Serial;
 
 import javax.persistence.*;
 
-import lombok.Data;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 /**
  * The role entity.
@@ -16,19 +13,14 @@ import lombok.AllArgsConstructor;
 
 @Entity
 @Table(name = "role")
-@Data
-@Builder
+@Getter
+@SuperBuilder
 @NoArgsConstructor
-@AllArgsConstructor
-public class Role implements Serializable {
+@EqualsAndHashCode(callSuper = true)
+public class Role extends Persistable {
 
     @Serial
-    private static final long serialVersionUID = 2431567030846691089L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    protected Long id;
+    private static final long serialVersionUID = -9046155609265777496L;
 
     @Column(name = "name", unique = true, nullable = false)
     private String name;

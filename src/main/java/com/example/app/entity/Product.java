@@ -1,17 +1,14 @@
 package com.example.app.entity;
 
 import java.io.Serial;
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Min;
 
-import lombok.Data;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.validator.constraints.Length;
 
 /**
@@ -20,19 +17,15 @@ import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "product")
-@Data
-@Builder
+@Getter
+@Setter
+@SuperBuilder
 @NoArgsConstructor
-@AllArgsConstructor
-public class Product implements Serializable {
+@EqualsAndHashCode(callSuper = true)
+public class Product extends Persistable {
 
     @Serial
     private static final long serialVersionUID = -5240415785520578477L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    protected Long id;
 
     @Column(name = "name", unique = true, nullable = false)
     @NotBlank(message = "Product name is required")

@@ -33,7 +33,7 @@ public class UserController {
 
         var users = service.findAllPageable(
             PageRequest.of(
-                page.orElse(0) < 1 ? 0 : page.get() - 1,
+                page.orElse(0),
                 5
             )
         );
