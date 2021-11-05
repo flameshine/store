@@ -1,0 +1,63 @@
+package com.flameshine.app.controller;
+
+import java.util.Optional;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.flameshine.app.service.UserService;
+import com.flameshine.app.util.Constants;
+import com.flameshine.app.util.Pager;
+import com.flameshine.app.entity.User;
+
+/**
+ * Controller for the {@link com.flameshine.app.entity.User} entity.
+ */
+
+@Controller
+@RequestMapping(Constants.USERS_PATH)
+public class UserController {
+
+    private final UserService service;
+
+    @Autowired
+    public UserController(UserService service) {
+        this.service = service;
+    }
+
+    @GetMapping
+    public ModelAndView findAllPageable(@RequestParam("page") Optional<Integer> page) {
+
+        var users = service.findAllPageable(
+            PageRequest.of(
+                page.orElse(0),
+                5
+            )
+        );
+
+        return new ModelAndView(Constants.USERS_PATH)
+            .addObject("users", users)
+            .addObject("pager", new Pager(users));
+    }
+
+    @PostMapping
+    public String save(@RequestBody User user) {
+        service.save(user);
+        return "redirect:/users";
+    }
+
+    @PutMapping
+    public String update(@RequestBody User user) {
+        service.save(user);
+        return "redirect:/users";
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteById(@PathVariable("id") Long id) {
+        service.deleteById(id);
+        return "redirect:/users";
+    }
+}

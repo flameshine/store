@@ -1,11 +1,11 @@
-group = "com.example"
+group = "com.flameshine"
 version = "1.0-SNAPSHOT"
 
 description = "Implementation of the online marketplace with shopping cart functionality."
 
 plugins {
     java
-    id("org.springframework.boot") version "2.5.5"
+    id("org.springframework.boot") version "2.5.6"
 }
 
 java {
@@ -17,7 +17,7 @@ repositories {
     mavenCentral()
 }
 
-val springBootVersion = "2.5.5"
+val springBootVersion = "2.5.6"
 val lombokVersion = "1.18.22"
 
 dependencies {
