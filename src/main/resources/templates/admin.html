@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <div th:replace="/fragments/header :: header"/>
+</head>
+<body>
+<div class="container" th:switch="${users}">
+  <h2 th:case="null">
+    No users found
+  </h2>
+  <div th:case="*">
+    <table>
+      <thead>
+      <tr>
+        <th>Username</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>isEnabled</th>
+        <th>Role</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="user : ${users}">
+        <td th:text="${user.getUsername()}"/>
+        <td th:text="${user.getFirstname()}"/>
+        <td th:text="${user.getLastname()}"/>
+        <td th:text="${user.getEmail()}"/>
+        <td th:text="${user.getIsEnabled()}"/>
+        <td th:text="${user.getRole().getName()}"/>
+      </tr>
+      </tbody>
+    </table>
+    <br/>
+  </div>
+  <div th:replace="/fragments/pagination :: pagination(URLparameter = '/admin')"/>
+</div>
+</body>
+</html>

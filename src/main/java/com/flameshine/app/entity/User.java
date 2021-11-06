@@ -55,8 +55,8 @@ public class User extends Persistable {
     @NotBlank(message = "Last name is required")
     private String lastname;
 
-    @Column(name = "is_active", nullable = false)
-    private Boolean isActive;
+    @Column(name = "is_enabled", nullable = false)
+    private Boolean isEnabled;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "role", referencedColumnName = "id", nullable = false)
