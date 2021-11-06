@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
             passwordEncoder.encode(user.getPassword())
         );
 
-        user.setIsActive(Boolean.TRUE);
+        user.setIsEnabled(Boolean.TRUE);
 
         var role = Role.builder()
             .id(1L)

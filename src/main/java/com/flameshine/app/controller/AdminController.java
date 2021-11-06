@@ -14,17 +14,17 @@ import com.flameshine.app.util.Pager;
 import com.flameshine.app.entity.User;
 
 /**
- * Controller for the {@link com.flameshine.app.entity.User} entity.
+ * Controller for the application admin page.
  */
 
 @Controller
-@RequestMapping(Constants.USERS_PATH)
-public class UserController {
+@RequestMapping(Constants.ADMIN_PATH)
+public class AdminController {
 
     private final UserService service;
 
     @Autowired
-    public UserController(UserService service) {
+    public AdminController(UserService service) {
         this.service = service;
     }
 
@@ -38,7 +38,7 @@ public class UserController {
             )
         );
 
-        return new ModelAndView(Constants.USERS_PATH)
+        return new ModelAndView(Constants.ADMIN_PATH)
             .addObject("users", users)
             .addObject("pager", new Pager(users));
     }
@@ -46,18 +46,18 @@ public class UserController {
     @PostMapping
     public String save(@RequestBody User user) {
         service.save(user);
-        return "redirect:/users";
+        return "redirect:/admin";
     }
 
     @PutMapping
     public String update(@RequestBody User user) {
         service.save(user);
-        return "redirect:/users";
+        return "redirect:/admin";
     }
 
     @DeleteMapping("/{id}")
     public String deleteById(@PathVariable("id") Long id) {
         service.deleteById(id);
-        return "redirect:/users";
+        return "redirect:/admin";
     }
 }
