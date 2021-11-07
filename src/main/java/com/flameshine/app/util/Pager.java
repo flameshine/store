@@ -14,10 +14,6 @@ public record Pager(Page<? extends Persistable> items) {
         return items.getNumber() + 1;
     }
 
-    public int getPageSize() {
-        return items.getSize();
-    }
-
     public boolean hasNext() {
         return items.hasNext();
     }

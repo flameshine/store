@@ -81,7 +81,7 @@ public class CartServiceImpl implements CartService {
             if (quantity < entry.getValue()) {
                 throw new NotEnoughProductsInStockException(
                     String.format(
-                        "Not enough '%s' products in the stock. Only %d left",
+                        "Not enough '%s' products in the stock: only %d left",
                         product.getName(),
                         quantity
                     )
