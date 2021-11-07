@@ -11,6 +11,7 @@ public final class Constants {
     public static final String HOME_PATH = "/home";
     public static final String CART_PATH = "/cart";
     public static final String ADMIN_PATH = "/admin";
+    public static final String ERROR_PATH = "/error";
 
     private Constants() {}
 }

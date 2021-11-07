@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.flameshine.app.service.UserService;
 import com.flameshine.app.util.Constants;
 import com.flameshine.app.util.Pager;
-import com.flameshine.app.entity.User;
 
 /**
  * Controller for the application admin page.
@@ -41,23 +40,5 @@ public class AdminController {
         return new ModelAndView(Constants.ADMIN_PATH)
             .addObject("users", users)
             .addObject("pager", new Pager(users));
-    }
-
-    @PostMapping
-    public String save(@RequestBody User user) {
-        service.save(user);
-        return "redirect:/admin";
-    }
-
-    @PutMapping
-    public String update(@RequestBody User user) {
-        service.save(user);
-        return "redirect:/admin";
-    }
-
-    @DeleteMapping("/{id}")
-    public String deleteById(@PathVariable("id") Long id) {
-        service.deleteById(id);
-        return "redirect:/admin";
     }
 }

@@ -65,9 +65,4 @@ public class UserServiceImpl implements UserService {
     public Optional<User> findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
-
-    @Override
-    public void deleteById(Long id) {
-        userRepository.deleteById(id);
-    }
 }
