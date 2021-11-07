@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
 
 /**
@@ -17,6 +18,7 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @SuperBuilder
 @NoArgsConstructor
+@EqualsAndHashCode
 public abstract class Persistable implements Serializable {
 
     @Serial

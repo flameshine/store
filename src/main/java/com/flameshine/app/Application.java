@@ -14,6 +14,7 @@ public class Application {
     // TODO: add styles to admin page
     // TODO: extend admin functionality (add an ability to manipulate with product data directly from UI)
     // TODO: add currency conversion functionality
+    // TODO: add product images support
     // TODO: implement CSRF protection
     // TODO: prepare initial database popularization scripts
     // TODO: review database design

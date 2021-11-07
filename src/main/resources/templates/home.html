@@ -21,7 +21,7 @@
         In stock: [[${product.getQuantity()}]]
       </div>
       <a class="col-md-1" th:href="@{'/cart/add/{id}'(id = ${product.getId()})}" sec:authorize="isAuthenticated()" th:if="${product.getQuantity()} > 0">
-        <button type="button" th:text="Buy">
+        <button class="btn btn-primary" type="button" th:text="Buy">
           Buy
         </button>
       </a>
