@@ -5,30 +5,25 @@
 </head>
 <body>
 <div th:fragment="pagination">
-    <div class="pagination" th:with="baseUrl=${URLparameter}">
-        <span th:if="${pager.isIndexOutOfBounds()}">
-            Page is out of bounds. Go back to <a th:href="@{${baseUrl}(page = 1)}">Home</a>.
-        </span>
-        <span th:unless="${pager.isIndexOutOfBounds()}">
-            <span th:if="${pager.hasPrevious()}">
-                <a th:href="@{${baseUrl}(page = 1)}">
-                    first
-                </a>
-                <a th:href="@{${baseUrl}(page = ${pager.getPageIndex() - 1})}">
-                    previous
-                </a>
-            </span>
-            <span th:if="${pager.getTotalPages() != 1}" th:text="'Page ' + ${pager.getPageIndex()} + ' of ' + ${pager.getTotalPages()}"/>
-            <span th:if="${pager.hasNext()}">
-                <a th:href="@{${baseUrl}(page = ${pager.getPageIndex() + 1})}">
-                    next
-                </a>
-                <a th:href="@{${baseUrl}(page = ${pager.getTotalPages()})}">
-                    last
-                </a>
-            </span>
-        </span>
-    </div>
+    <ul class="pagination justify-content-center" th:with="baseUrl = ${URLparameter}">
+        <li class="page-item" th:if="${pager.hasPrevious()}">
+            <a class="page-link" th:href="@{${baseUrl}(page = 1)}">
+                <span aria-hidden="true">
+                    &laquo;
+                </span>
+            </a>
+        </li>
+        <li class="page-item" th:each="i : ${#numbers.sequence(1, pager.getTotalPages(), 1)}">
+            <a class="page-link" th:href="@{${baseUrl}(page = ${i})}" th:text="${i}"/>
+        </li>
+        <li class="page-item" th:if="${pager.hasNext()}">
+            <a class="page-link" th:href="@{${baseUrl}(page = ${pager.getTotalPages()})}">
+                <span aria-hidden="true">
+                    &raquo;
+                </span>
+            </a>
+        </li>
+    </ul>
 </div>
 </body>
 </html>

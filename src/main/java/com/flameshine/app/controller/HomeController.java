@@ -32,7 +32,7 @@ public class HomeController {
 
         var products = service.findAllPageable(
             PageRequest.of(
-                page.orElse(0),
+                page.map(i -> i - 1).orElse(0),
                 5
             )
         );
