@@ -32,7 +32,7 @@ public class AdminController {
 
         var users = service.findAllPageable(
             PageRequest.of(
-                page.orElse(0),
+                page.map(i -> i - 1).orElse(0),
                 5
             )
         );

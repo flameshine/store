@@ -10,10 +10,6 @@ import com.flameshine.app.entity.Persistable;
 
 public record Pager(Page<? extends Persistable> items) {
 
-    public int getPageIndex() {
-        return items.getNumber() + 1;
-    }
-
     public boolean hasNext() {
         return items.hasNext();
     }
@@ -24,9 +20,5 @@ public record Pager(Page<? extends Persistable> items) {
 
     public int getTotalPages() {
         return items.getTotalPages();
-    }
-
-    public boolean isIndexOutOfBounds() {
-        return getPageIndex() < 0 || getPageIndex() > items.getTotalElements();
     }
 }
