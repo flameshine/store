@@ -3,5 +3,5 @@
 
 FROM openjdk:17
 EXPOSE 8081
-COPY build/libs/UltimateStore-1.0-SNAPSHOT.jar ultimate-store.jar/
+COPY build/libs/UltimateStore-1.0-SNAPSHOT.jar ultimate-store/
 ENTRYPOINT [ "java", "-jar", "/ultimate-store.jar" ]
