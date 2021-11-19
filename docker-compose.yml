@@ -1,21 +1,25 @@
 services:
 
-  docker-mysql:
+  database:
     image: mysql:8.0.25
+    restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=UltimateStore
     ports:
       - 3307:3306
+    volumes:
+      - ./scripts/sql/initialize-database.sql:/docker-entrypoint-initdb.d/initialize-database.sql
 
   ultimate-store:
     image: ultimate-store
+    restart: on-failure
     depends_on:
-      - docker-mysql
+      - database
     ports:
       - 8081:8081
     environment:
-      - DATABASE_HOST=docker-mysql
+      - DATABASE_HOST=database
       - DATABASE_USER=root
       - DATABASE_PASSWORD=root
       - DATABASE_NAME=UltimateStore
