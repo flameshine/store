@@ -35,3 +35,7 @@ dependencies {
 
     annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
 }
+
+tasks.test {
+    useJUnitPlatform()
+}
