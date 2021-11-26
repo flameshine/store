@@ -11,10 +11,9 @@ import org.springframework.boot.SpringApplication;
 public class Application {
 
     // TODO: deploy to Kubernetes
-    // TODO: extend admin functionality (add an ability to manipulate with product data directly from UI)
+    // TODO: extend admin functionality (add an ability to manipulate with product & user data directly from UI)
     // TODO: add currency conversion functionality
     // TODO: consider adding product images support
-    // TODO: review database design
     // TODO: cover all the logic with corresponding unit-tests
     // TODO: review, refactor and optimize everything after the main functionality is implemented
     // TODO: consider migrating the codebase to Kotlin
