@@ -10,7 +10,6 @@ import org.springframework.boot.SpringApplication;
 @SpringBootApplication
 public class Application {
 
-    // TODO: deploy to Kubernetes
     // TODO: extend admin functionality (add an ability to manipulate with product & user data directly from UI)
     // TODO: add currency conversion functionality
     // TODO: consider adding product images support
