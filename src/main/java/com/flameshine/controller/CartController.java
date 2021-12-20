@@ -10,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.flameshine.service.CartService;
 import com.flameshine.service.ProductService;
 import com.flameshine.util.Constants;
-import com.flameshine.exception.NotEnoughProductsInStockException;
 
 /**
  * Controller for the user shopping cart page.
@@ -57,12 +56,7 @@ public class CartController {
     @GetMapping("/checkout")
     public ModelAndView checkout() {
 
-        try {
-            cartService.checkout();
-        } catch (NotEnoughProductsInStockException e) {
-            return cart()
-                .addObject("message", e.getMessage());
-        }
+        cartService.checkout();
 
         return cart();
     }

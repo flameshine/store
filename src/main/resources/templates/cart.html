@@ -9,7 +9,6 @@
   <h1>
     <span th:text="${#authentication.getName()}"/>'s cart
   </h1>
-  <div class="alert alert-info" th:if="${message}" th:utext="${message}"/>
   <div class="card" th:each="product : ${products.entrySet()}">
     <div class="card-header">
       <h1>

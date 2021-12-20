@@ -2,7 +2,6 @@ package com.flameshine.service.impl;
 
 import java.util.Map;
 import java.util.HashMap;
-import java.util.NoSuchElementException;
 import java.math.BigDecimal;
 
 import javax.transaction.Transactional;
@@ -14,7 +13,6 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.flameshine.service.CartService;
 import com.flameshine.repository.ProductRepository;
-import com.flameshine.exception.NotEnoughProductsInStockException;
 import com.flameshine.entity.Product;
 
 /**
@@ -25,12 +23,12 @@ import com.flameshine.entity.Product;
 @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class CartServiceImpl implements CartService {
 
-    private final ProductRepository productRepository;
+    private final ProductRepository repository;
     private final Map<Product, Integer> products;
 
     @Autowired
-    public CartServiceImpl(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public CartServiceImpl(ProductRepository repository) {
+        this.repository = repository;
         this.products = new HashMap<>();
     }
 
@@ -47,10 +45,6 @@ public class CartServiceImpl implements CartService {
     @Override
     public void remove(Product product) {
 
-        if (!products.containsKey(product)) {
-            return;
-        }
-
         var quantity = products.get(product);
 
         if (quantity > 1) {
@@ -62,36 +56,13 @@ public class CartServiceImpl implements CartService {
 
     @Override
     @Transactional
-    public void checkout() throws NotEnoughProductsInStockException {
+    public void checkout() {
 
-        for (var entry : products.entrySet()) {
+        products.forEach((product, cartQuantity) -> repository.findById(product.getId())
+            .map(Product::getQuantity)
+            .ifPresent(quantity -> product.setQuantity(quantity - cartQuantity)));
 
-            var productId = entry.getKey().getId();
-
-            var product = productRepository.findById(productId)
-                .orElseThrow(() -> new NoSuchElementException(
-                    String.format(
-                        "Product with id %d not found",
-                        productId
-                    ))
-                );
-
-            var quantity = product.getQuantity();
-
-            if (quantity < entry.getValue()) {
-                throw new NotEnoughProductsInStockException(
-                    String.format(
-                        "Not enough '%s' products in the stock: only %d left",
-                        product.getName(),
-                        quantity
-                    )
-                );
-            }
-
-            entry.getKey().setQuantity(quantity - entry.getValue());
-        }
-
-        productRepository.saveAll(products.keySet());
+        repository.saveAll(products.keySet());
 
         products.clear();
     }

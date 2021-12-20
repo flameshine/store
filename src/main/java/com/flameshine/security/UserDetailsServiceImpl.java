@@ -15,7 +15,12 @@ import com.flameshine.repository.UserRepository;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private UserRepository repository;
+    private final UserRepository repository;
+
+    @Autowired
+    public UserDetailsServiceImpl(UserRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -28,10 +33,5 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                     ))
                 )
         );
-    }
-
-    @Autowired
-    public void setRepository(UserRepository repository) {
-        this.repository = repository;
     }
 }

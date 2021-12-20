@@ -11,6 +11,7 @@ import org.springframework.boot.SpringApplication;
 public class Application {
 
     // TODO: extend admin functionality (add an ability to manipulate with product & user data directly from UI)
+    // TODO: add logging
     // TODO: add currency conversion functionality
     // TODO: consider adding product images support
     // TODO: cover all the logic with corresponding unit-tests

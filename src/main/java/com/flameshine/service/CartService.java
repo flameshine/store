@@ -3,7 +3,6 @@ package com.flameshine.service;
 import java.util.Map;
 import java.math.BigDecimal;
 
-import com.flameshine.exception.NotEnoughProductsInStockException;
 import com.flameshine.entity.Product;
 
 /**
@@ -16,7 +15,7 @@ public interface CartService {
 
     void remove(Product product);
 
-    void checkout() throws NotEnoughProductsInStockException;
+    void checkout();
 
     BigDecimal getTotalAmount();
 
