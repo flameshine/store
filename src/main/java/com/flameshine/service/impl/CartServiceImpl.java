@@ -60,7 +60,10 @@ public class CartServiceImpl implements CartService {
 
         products.forEach((product, cartQuantity) -> repository.findById(product.getId())
             .map(Product::getQuantity)
-            .ifPresent(quantity -> product.setQuantity(quantity - cartQuantity)));
+            .ifPresent(
+                quantity -> product.setQuantity(quantity - cartQuantity)
+            )
+        );
 
         repository.saveAll(products.keySet());
 
