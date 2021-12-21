@@ -58,12 +58,9 @@ public class CartServiceImpl implements CartService {
     @Transactional
     public void checkout() {
 
-        // TODO: fix the exception thrown here
         products.forEach((product, cartQuantity) -> repository.findById(product.getId())
             .map(Product::getQuantity)
-            .ifPresent(
-                quantity -> product.setQuantity(quantity - cartQuantity)
-            )
+            .ifPresent(quantity -> product.setQuantity(quantity - cartQuantity))
         );
 
         repository.saveAll(products.keySet());
