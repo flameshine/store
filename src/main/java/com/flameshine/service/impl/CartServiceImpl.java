@@ -63,7 +63,9 @@ public class CartServiceImpl implements CartService {
             .ifPresent(quantity -> product.setQuantity(quantity - cartQuantity))
         );
 
-        repository.saveAll(products.keySet());
+        repository.saveAll(
+            products.keySet()
+        );
 
         products.clear();
     }
