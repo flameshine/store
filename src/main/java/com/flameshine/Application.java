@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 @SpringBootApplication
 public class Application {
 
+    // TODO: untangle lombok annotations mess
     // TODO: extend admin functionality (add an ability to manipulate with product & user data directly from UI)
     // TODO: add logging
     // TODO: add currency conversion functionality
