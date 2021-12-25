@@ -32,10 +32,6 @@ public class User extends Persistable {
     @Length(min = 5, max = 15, message = "Username must be between 5 and 15 characters")
     private String username;
 
-    @Column(name = "email", unique = true, nullable = false)
-    @Email(message = "Provide a valid email")
-    private String email;
-
     @JsonIgnore
     @Column(name = "password", nullable = false)
     @NotBlank(message = "Password is required")
@@ -54,6 +50,10 @@ public class User extends Persistable {
     @Column(name = "lastname", nullable = false)
     @NotBlank(message = "Last name is required")
     private String lastname;
+
+    @Column(name = "email", unique = true, nullable = false)
+    @Email(message = "Provide a valid email")
+    private String email;
 
     @Column(name = "is_enabled", nullable = false)
     private Boolean isEnabled;

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.flameshine.service.UserService;
@@ -28,12 +29,18 @@ public class AdminController {
     }
 
     @GetMapping
-    public ModelAndView findAllPageable(@RequestParam("page") Optional<Integer> page) {
+    public ModelAndView findAllPageable(
+        @RequestParam("page") Optional<Integer> page,
+        @RequestParam("criterion") Optional<String> criterion
+    ) {
 
         var users = service.findAllPageable(
             PageRequest.of(
                 page.map(i -> i - 1).orElse(0),
-                5
+                5,
+                Sort.by(
+                    criterion.orElse("username")
+                )
             )
         );
 
