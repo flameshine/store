@@ -4,6 +4,7 @@
   <div th:replace="/fragments/header :: header"/>
 </head>
 <body>
+<div th:replace="/fragments/header :: navigation-bar"/>
 <div class="container" th:switch="${users}">
   <h2 th:case="null">
     No users found
@@ -13,22 +14,34 @@
       <thead class="table-dark">
       <tr>
         <th scope="col">
-          Username
+          <a th:href="@{${baseUrl}(criterion = 'username')}">
+            Username
+          </a>
         </th>
         <th scope="col">
-          Firstname
+          <a th:href="@{${baseUrl}(criterion = 'firstname')}">
+            Firstname
+          </a>
         </th>
         <th scope="col">
-          Lastname
+          <a th:href="@{${baseUrl}(criterion = 'lastname')}">
+            Lastname
+          </a>
         </th>
         <th scope="col">
-          Email
+          <a th:href="@{${baseUrl}(criterion = 'email')}">
+            Email
+          </a>
         </th>
         <th scope="col">
-          isEnabled
+          <a th:href="@{${baseUrl}(criterion = 'isEnabled')}">
+            isEnabled
+          </a>
         </th>
         <th scope="col">
-          Role
+          <a th:href="@{${baseUrl}(criterion = 'Role')}">
+            Role
+          </a>
         </th>
       </tr>
       </thead>
@@ -47,5 +60,6 @@
   </div>
   <div th:replace="/fragments/pagination :: pagination(URLparameter = '/admin')"/>
 </div>
+<div th:replace="/fragments/footer :: footer"/>
 </body>
 </html>

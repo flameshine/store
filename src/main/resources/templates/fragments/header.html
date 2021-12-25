@@ -30,6 +30,11 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">
+              Admin
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" th:href="@{/logout}" sec:authorize="isAuthenticated()">
               Logout
             </a>

@@ -48,13 +48,14 @@ public class RegistrationController {
             bindingResult.rejectValue("email", "error.user", "This email is already taken");
         }
 
-        var modelAndView = new ModelAndView(Constants.REGISTRATION_PATH);
-
         if (!bindingResult.hasErrors()) {
+
             service.save(user);
-            modelAndView.addObject("message", "User has been registered successfully");
+
+            return new ModelAndView(Constants.LOGIN_PATH)
+                .addObject("message", "User has been registered successfully");
         }
 
-        return modelAndView;
+        return new ModelAndView(Constants.REGISTRATION_PATH);
     }
 }
