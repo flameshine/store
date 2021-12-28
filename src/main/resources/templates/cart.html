@@ -11,14 +11,8 @@
   </h1>
   <div class="card" th:each="product : ${products.entrySet()}">
     <div class="card-header">
-      <h1>
-        <a th:text="${product.getKey().getName()}" th:href="@{'/product/' + ${product.getKey().getId()}}">
-          Title
-        </a>
-      </h1>
-      <h3 th:text="${product.getKey().getDescription()}">
-        Description
-      </h3>
+      <h1 th:text="${product.getKey().getName()}"/>
+      <h3 th:text="${product.getKey().getDescription()}"/>
     </div>
     <div class="row card-body">
       <div class="col-md-2" th:inline="text">
@@ -28,7 +22,7 @@
         Quantity: [[${product.getValue()}]]
       </div>
       <a class="col-md-1" th:href="@{'/cart/remove/{id}'(id = ${product.getKey().getId()})}">
-        <button class="btn btn-primary" type="button">
+        <button class="btn btn-dark" type="button">
           Remove
         </button>
       </a>

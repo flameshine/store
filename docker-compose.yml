@@ -6,7 +6,7 @@ services:
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=UltimateStore
+      - MYSQL_DATABASE=ultimate-store
     ports:
       - "3307:3306"
     volumes:
@@ -23,5 +23,5 @@ services:
       - DATABASE_HOST=database
       - DATABASE_USER=root
       - DATABASE_PASSWORD=root
-      - DATABASE_NAME=UltimateStore
+      - DATABASE_NAME=ultimate-store
       - DATABASE_PORT=3306

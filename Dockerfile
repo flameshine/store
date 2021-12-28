@@ -7,4 +7,4 @@ EXPOSE 8081
 COPY ./build/libs/*.jar /
 COPY ./scripts/wait-for-it.sh /
 
-ENTRYPOINT [ "./wait-for-it.sh", "database:3306", "--", "java", "-jar", "/UltimateStore-1.0-SNAPSHOT.jar" ]
+ENTRYPOINT [ "./wait-for-it.sh", "database:3306", "--", "java", "-jar", "/ultimate-store-1.0-SNAPSHOT.jar" ]
