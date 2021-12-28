@@ -14,32 +14,32 @@
       <thead class="table-dark">
       <tr>
         <th scope="col">
-          <a th:href="@{${baseUrl}(criterion = 'username')}">
+          <a class="link-light" th:href="@{${baseUrl}(criterion = 'username')}">
             Username
           </a>
         </th>
         <th scope="col">
-          <a th:href="@{${baseUrl}(criterion = 'firstname')}">
+          <a class="link-light" th:href="@{${baseUrl}(criterion = 'firstname')}">
             Firstname
           </a>
         </th>
         <th scope="col">
-          <a th:href="@{${baseUrl}(criterion = 'lastname')}">
+          <a class="link-light" th:href="@{${baseUrl}(criterion = 'lastname')}">
             Lastname
           </a>
         </th>
         <th scope="col">
-          <a th:href="@{${baseUrl}(criterion = 'email')}">
+          <a class="link-light" th:href="@{${baseUrl}(criterion = 'email')}">
             Email
           </a>
         </th>
         <th scope="col">
-          <a th:href="@{${baseUrl}(criterion = 'isEnabled')}">
+          <a class="link-light" th:href="@{${baseUrl}(criterion = 'isEnabled')}">
             isEnabled
           </a>
         </th>
         <th scope="col">
-          <a th:href="@{${baseUrl}(criterion = 'Role')}">
+          <a class="link-light" th:href="@{${baseUrl}(criterion = 'Role')}">
             Role
           </a>
         </th>
@@ -58,7 +58,7 @@
     </table>
     <br/>
   </div>
-  <div th:replace="/fragments/pagination :: pagination(URLparameter = '/admin')"/>
+  <div th:replace="/fragments/pagination :: pagination(URLparameter = '/users')"/>
 </div>
 <div th:replace="/fragments/footer :: footer"/>
 </body>

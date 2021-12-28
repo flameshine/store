@@ -14,17 +14,17 @@ import com.flameshine.util.Constants;
 import com.flameshine.util.Pager;
 
 /**
- * Controller for the application admin page.
+ * Controller for the application users page.
  */
 
 @Controller
-@RequestMapping(Constants.ADMIN_PATH)
-public class AdminController {
+@RequestMapping(Constants.USERS_PATH)
+public class UserController {
 
     private final UserService service;
 
     @Autowired
-    public AdminController(UserService service) {
+    public UserController(UserService service) {
         this.service = service;
     }
 
@@ -44,7 +44,7 @@ public class AdminController {
             )
         );
 
-        return new ModelAndView(Constants.ADMIN_PATH)
+        return new ModelAndView(Constants.USERS_PATH)
             .addObject("users", users)
             .addObject("pager", new Pager(users));
     }
