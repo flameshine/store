@@ -1,16 +1,6 @@
 # cleanup everything before creation
-DROP TABLE IF EXISTS role;
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS product;
-
-# create roles table
-CREATE TABLE role(
-    id BIGINT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
-    PRIMARY KEY (id),
-    UNIQUE (id),
-    UNIQUE (name)
-);
 
 # create users table
 CREATE TABLE user(
@@ -21,12 +11,11 @@ CREATE TABLE user(
     is_enabled BIT NOT NULL,
     firstname VARCHAR(255) NOT NULL,
     lastname VARCHAR(255) NOT NULL,
-    role BIGINT NOT NULL,
+    role VARCHAR(255) NOT NULL,
     PRIMARY KEY (id),
     UNIQUE (id),
     UNIQUE (username),
-    UNIQUE (email),
-    FOREIGN KEY (role) REFERENCES role (id)
+    UNIQUE (email)
 );
 
 # create products table
@@ -42,12 +31,8 @@ CREATE TABLE product(
     UNIQUE (description)
 );
 
-# insert roles
-INSERT INTO role VALUES(1, 'ROLE_USER');
-INSERT INTO role VALUES(2, 'ROLE_ADMIN');
-
 # insert users
-INSERT INTO user VALUES(1, 'admin', 'admin@admin.com', '$2a$10$IPb.s4dQc.Y34X/L0gf2jeZCn3WLvXguBNIhK8LJM6IaFiiAyHjcm', true, 'admin', 'admin', 2);
+INSERT INTO user VALUES(1, 'admin', 'admin@admin.com', '$2a$10$IPb.s4dQc.Y34X/L0gf2jeZCn3WLvXguBNIhK8LJM6IaFiiAyHjcm', true, 'admin', 'admin', 'ROLE_ADMIN');
 
 # insert products
 INSERT INTO product VALUES(1, 'Modern smartphone', 'Phone', 1500, 5);

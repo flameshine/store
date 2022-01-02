@@ -4,7 +4,7 @@
   <div th:replace="/fragments/header :: header"/>
 </head>
 <body>
-<div th:replace="/fragments/header :: navigation-bar"/>
+<div th:replace="/fragments/navigation-bar :: navigation-bar"/>
 <div class="container" th:switch="${users}">
   <h2 th:case="null">
     No users found
@@ -52,7 +52,7 @@
         <td th:text="${user.getLastname()}"/>
         <td th:text="${user.getEmail()}"/>
         <td th:text="${user.getIsEnabled()}"/>
-        <td th:text="${user.getRole().getName()}"/>
+        <td th:text="${user.getRole()}"/>
       </tr>
       </tbody>
     </table>

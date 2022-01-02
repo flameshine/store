@@ -5,7 +5,7 @@ description = "Implementation of the online marketplace with the shopping cart f
 
 plugins {
     java
-    id("org.springframework.boot") version "2.6.1"
+    id("org.springframework.boot") version "2.6.2"
 }
 
 java {
@@ -17,7 +17,7 @@ repositories {
     mavenCentral()
 }
 
-val springBootVersion = "2.6.1"
+val springBootVersion = "2.6.2"
 val lombokVersion = "1.18.22"
 
 dependencies {

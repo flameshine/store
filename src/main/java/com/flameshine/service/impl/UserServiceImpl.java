@@ -13,7 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.flameshine.service.UserService;
 import com.flameshine.repository.UserRepository;
 import com.flameshine.entity.User;
-import com.flameshine.entity.Role;
 
 /**
  * Implementation of {@link UserService}.
@@ -23,46 +22,37 @@ import com.flameshine.entity.Role;
 @Transactional
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final UserRepository repository;
+    private final PasswordEncoder encoder;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
+    public UserServiceImpl(UserRepository repository, PasswordEncoder encoder) {
+        this.repository = repository;
+        this.encoder = encoder;
     }
 
     @Override
     public void save(User user) {
 
         user.setPassword(
-            passwordEncoder.encode(user.getPassword())
+            encoder.encode(user.getPassword())
         );
 
-        user.setIsEnabled(Boolean.TRUE);
-
-        var role = Role.builder()
-            .id(1L)
-            .name("ROLE_USER")
-            .build();
-
-        user.setRole(role);
-
-        userRepository.save(user);
+        repository.save(user);
     }
 
     @Override
     public Page<User> findAllPageable(Pageable pageable) {
-        return userRepository.findAll(pageable);
+        return repository.findAll(pageable);
     }
 
     @Override
     public Optional<User> findByUsername(String username) {
-        return userRepository.findByUsername(username);
+        return repository.findByUsername(username);
     }
 
     @Override
     public Optional<User> findByEmail(String email) {
-        return userRepository.findByEmail(email);
+        return repository.findByEmail(email);
     }
 }
