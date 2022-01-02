@@ -1,7 +1,7 @@
 package com.flameshine.util;
 
 /**
- * A utility class that stores all application constants.
+ * Utility class that stores all constants.
  */
 
 public final class Constants {

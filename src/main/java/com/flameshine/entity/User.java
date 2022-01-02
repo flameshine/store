@@ -1,31 +1,41 @@
 package com.flameshine.entity;
 
 import java.io.Serial;
+import java.io.Serializable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Email;
 
-import lombok.*;
-import lombok.experimental.SuperBuilder;
+import lombok.Data;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.flameshine.util.RoleConverter;
+import com.flameshine.model.Role;
+
 /**
- * The user entity.
+ * User entity.
  */
 
 @Entity
 @Table(name = "user")
-@Getter
-@Setter
-@SuperBuilder
+@Data
+@Builder
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
-public class User extends Persistable {
+@AllArgsConstructor
+public class User implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 4756172225734787914L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
+    private Long id;
 
     @Column(name = "username", unique = true, nullable = false)
     @NotBlank(message = "Username is required")
@@ -56,9 +66,9 @@ public class User extends Persistable {
     private String email;
 
     @Column(name = "is_enabled", nullable = false)
-    private Boolean isEnabled;
+    private Boolean isEnabled = true;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "role", referencedColumnName = "id", nullable = false)
-    private Role role;
+    @Column(name = "role", nullable = false)
+    @Convert(converter = RoleConverter.class)
+    private Role role = Role.USER;
 }

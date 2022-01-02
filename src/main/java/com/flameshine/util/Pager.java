@@ -2,13 +2,11 @@ package com.flameshine.util;
 
 import org.springframework.data.domain.Page;
 
-import com.flameshine.entity.Persistable;
-
 /**
- * An auxiliary utility for items that need pagination.
+ * Auxiliary utility for items that need pagination.
  */
 
-public record Pager(Page<? extends Persistable> items) {
+public record Pager(Page<?> items) {
 
     public boolean hasNext() {
         return items.hasNext();

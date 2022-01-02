@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.flameshine.util.Constants;
+import com.flameshine.model.Role;
 
 /**
  * Configuration class for the application security.
@@ -36,7 +37,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .disable()
             .authorizeRequests()
             .antMatchers(Constants.USERS_PATH)
-            .hasRole("ADMIN")
+            .hasAuthority(Role.ADMIN.name())
             .antMatchers(Constants.REGISTRATION_PATH, Constants.ERROR_PATH)
             .permitAll()
             .anyRequest()
