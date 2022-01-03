@@ -14,8 +14,7 @@ import lombok.AllArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import com.flameshine.util.RoleConverter;
-import com.flameshine.model.Role;
+import com.flameshine.security.Role;
 
 /**
  * User entity.
@@ -69,6 +68,6 @@ public class User implements Serializable {
     private Boolean isEnabled = true;
 
     @Column(name = "role", nullable = false)
-    @Convert(converter = RoleConverter.class)
+    @Enumerated(EnumType.STRING)
     private Role role = Role.USER;
 }
