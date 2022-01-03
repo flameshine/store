@@ -32,7 +32,7 @@ CREATE TABLE product(
 );
 
 # insert users
-INSERT INTO user VALUES(1, 'admin', 'admin@admin.com', '$2a$10$IPb.s4dQc.Y34X/L0gf2jeZCn3WLvXguBNIhK8LJM6IaFiiAyHjcm', true, 'admin', 'admin', 'ROLE_ADMIN');
+INSERT INTO user VALUES(1, 'admin', 'admin@admin.com', '$2a$10$IPb.s4dQc.Y34X/L0gf2jeZCn3WLvXguBNIhK8LJM6IaFiiAyHjcm', true, 'admin', 'admin', 'ADMIN');
 
 # insert products
 INSERT INTO product VALUES(1, 'Modern smartphone', 'Phone', 1500, 5);
