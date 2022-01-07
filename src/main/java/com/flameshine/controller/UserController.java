@@ -37,7 +37,7 @@ public class UserController {
         var users = service.findAllPageable(
             PageRequest.of(
                 page.map(i -> i - 1).orElse(0),
-                5,
+                10,
                 Sort.by(
                     criterion.orElse("username")
                 )

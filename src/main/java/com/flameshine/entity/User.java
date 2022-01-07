@@ -65,7 +65,7 @@ public class User implements Serializable {
     private String email;
 
     @Column(name = "is_enabled", nullable = false)
-    private Boolean isEnabled = true;
+    private Boolean isEnabled = Boolean.TRUE;
 
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
