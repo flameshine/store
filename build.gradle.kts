@@ -30,13 +30,7 @@ dependencies {
     implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.0.4.RELEASE")
     implementation("mysql:mysql-connector-java:8.0.25")
 
-    testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
-
     compileOnly("org.projectlombok:lombok:${lombokVersion}")
 
     annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
-}
-
-tasks.test {
-    useJUnitPlatform()
 }
