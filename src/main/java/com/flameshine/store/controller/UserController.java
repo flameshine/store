@@ -4,7 +4,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,7 +19,6 @@ import com.flameshine.store.util.Pager;
  */
 
 @Controller
-@RequestMapping(Constants.USERS_PATH)
 public class UserController {
 
     private final UserService service;
@@ -28,7 +28,7 @@ public class UserController {
         this.service = service;
     }
 
-    @GetMapping
+    @GetMapping(Constants.USERS_PATH)
     public ModelAndView findAllPageable(
         @RequestParam("page") Optional<Integer> page,
         @RequestParam("criterion") Optional<String> criterion
