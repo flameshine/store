@@ -36,6 +36,8 @@ public class RegistrationController {
     @PostMapping
     public ModelAndView registration(@Valid User user, BindingResult bindingResult) {
 
+        // TODO: consider moving this logic to a separate validator class
+
         if (service.findByUsername(user.getUsername()).isPresent()) {
             bindingResult.rejectValue("username", "error.user", "This username is already taken");
         }
