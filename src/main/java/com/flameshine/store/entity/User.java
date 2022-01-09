@@ -7,14 +7,14 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Email;
 
+import org.hibernate.validator.constraints.Length;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
-import org.hibernate.validator.constraints.Length;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import com.flameshine.store.security.Role;
+import com.flameshine.store.model.Role;
 
 /**
  * User entity.

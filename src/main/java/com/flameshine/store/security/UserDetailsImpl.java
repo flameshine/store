@@ -11,7 +11,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import com.flameshine.store.entity.User;
 
 /**
- * Implementation of {@link UserDetails}.
+ * Implementation of {@link org.springframework.security.core.userdetails.UserDetails}.
  */
 
 public record UserDetailsImpl(User user) implements UserDetails {
@@ -23,7 +23,7 @@ public record UserDetailsImpl(User user) implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(
             new SimpleGrantedAuthority(
-                user.getRole().getAuthority()
+                user.getRole().getCode()
             )
         );
     }

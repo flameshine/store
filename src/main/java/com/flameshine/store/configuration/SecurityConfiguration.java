@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.flameshine.store.util.Constants;
-import com.flameshine.store.security.Role;
+import com.flameshine.store.model.Role;
 
 /**
  * Configuration class for the application security.
@@ -23,11 +23,11 @@ import com.flameshine.store.security.Role;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private final UserDetailsService userDetailsService;
+    private final UserDetailsService service;
 
     @Autowired
-    public SecurityConfiguration(UserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
+    public SecurityConfiguration(UserDetailsService service) {
+        this.service = service;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         var authenticationProvider = new DaoAuthenticationProvider();
 
-        authenticationProvider.setUserDetailsService(userDetailsService);
+        authenticationProvider.setUserDetailsService(service);
         authenticationProvider.setPasswordEncoder(passwordEncoderBean());
 
         return authenticationProvider;

@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.flameshine.store.repository.UserRepository;
 
 /**
- * Implementation of {@link UserDetailsService}.
+ * Implementation of {@link org.springframework.security.core.userdetails.UserDetailsService}.
  */
 
 @Service

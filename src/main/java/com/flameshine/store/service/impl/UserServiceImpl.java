@@ -15,7 +15,7 @@ import com.flameshine.store.repository.UserRepository;
 import com.flameshine.store.entity.User;
 
 /**
- * Implementation of {@link UserService}.
+ * Implementation of {@link com.flameshine.store.service.UserService}.
  */
 
 @Service
