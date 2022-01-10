@@ -36,12 +36,12 @@ public class UserValidator implements Validator {
             errors.rejectValue("username", "error.user", "This username is already taken");
         }
 
-        if (!user.getPassword().equals(user.getPasswordConfirmation())) {
-            errors.rejectValue("passwordConfirmation", "error.user", "Password mismatch");
-        }
-
         if (service.findByEmail(user.getEmail()).isPresent()) {
             errors.rejectValue("email", "error.user", "This email is already taken");
+        }
+
+        if (!user.getPassword().equals(user.getPasswordConfirmation())) {
+            errors.rejectValue("passwordConfirmation", "error.user", "Password mismatch");
         }
     }
 }

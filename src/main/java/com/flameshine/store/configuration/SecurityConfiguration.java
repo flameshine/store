@@ -54,8 +54,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) {
-        auth.authenticationProvider(authenticationProviderBean());
+    protected void configure(AuthenticationManagerBuilder managerBuilder) {
+        managerBuilder.authenticationProvider(authenticationProviderBean());
     }
 
     @Bean
