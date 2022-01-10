@@ -15,7 +15,7 @@ import com.flameshine.store.util.Constants;
 @ControllerAdvice
 public class ErrorController {
 
-    @ExceptionHandler(Throwable.class)
+    @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     protected ModelAndView handle(Exception e) {
         return new ModelAndView(Constants.ERROR_PATH)
