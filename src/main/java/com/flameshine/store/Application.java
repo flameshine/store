@@ -15,6 +15,7 @@ public class Application {
     // TODO: add currency conversion functionality
     // TODO: add multiple languages support
     // TODO: consider adding product images support
+    // TODO: consider adding user activation/deactivation and all corresponding mechanisms
     // TODO: consider migrating the codebase to Kotlin
 
     public static void main(String... args) {
