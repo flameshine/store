@@ -54,7 +54,7 @@ public class RegistrationController {
     }
 
     @InitBinder
-    private void setValidator(WebDataBinder binder) {
+    private void bindValidator(WebDataBinder binder) {
         binder.setValidator(validator);
     }
 }
