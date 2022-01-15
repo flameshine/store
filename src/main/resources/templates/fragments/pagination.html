@@ -5,19 +5,19 @@
 </head>
 <body>
 <div th:fragment="pagination">
-    <ul class="pagination justify-content-center" th:with="baseUrl = ${URLparameter}">
+    <ul class="pagination justify-content-center">
         <li class="page-item" th:if="${pager.hasPrevious()}">
-            <a class="page-link link-dark" th:href="@{${baseUrl}(page = 1)}">
+            <a class="page-link link-dark" th:href="@{${#httpServletRequest.requestURI}(page = 1)}">
                 <span aria-hidden="true">
                     &laquo;
                 </span>
             </a>
         </li>
         <li class="page-item" th:each="i : ${#numbers.sequence(1, pager.getTotalPages(), 1)}">
-            <a class="page-link link-dark" th:href="@{${baseUrl}(page = ${i})}" th:text="${i}"/>
+            <a class="page-link link-dark" th:href="@{${#httpServletRequest.requestURI}(page = ${i})}" th:text="${i}"/>
         </li>
         <li class="page-item" th:if="${pager.hasNext()}">
-            <a class="page-link link-dark" th:href="@{${baseUrl}(page = ${pager.getTotalPages()})}">
+            <a class="page-link link-dark" th:href="@{${#httpServletRequest.requestURI}(page = ${pager.getTotalPages()})}">
                 <span aria-hidden="true">
                     &raquo;
                 </span>

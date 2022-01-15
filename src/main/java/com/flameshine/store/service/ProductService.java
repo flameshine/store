@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.flameshine.store.entity.Product;
+import com.flameshine.store.model.Currency;
 
 /**
  * Service for the basic interactions with {@link com.flameshine.store.entity.Product} entity.
@@ -13,7 +14,7 @@ import com.flameshine.store.entity.Product;
 
 public interface ProductService {
 
-    Page<Product> findAllPageable(Pageable pageable);
+    Page<Product> findAllPageable(Pageable pageable, Currency currency);
 
     Optional<Product> findById(Long id);
 }

@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import com.flameshine.store.service.ProductService;
 import com.flameshine.store.util.Constants;
 import com.flameshine.store.util.Pager;
+import com.flameshine.store.model.Currency;
 
 /**
  * Controller for the application products page.
@@ -28,13 +29,17 @@ public class ProductController {
     }
 
     @GetMapping(Constants.PRODUCTS_PATH)
-    public ModelAndView home(@RequestParam("page") Optional<Integer> page) {
+    public ModelAndView home(
+        @RequestParam("page") Optional<Integer> page,
+        @RequestParam("currency") Optional<Currency> currency
+    ) {
 
         var products = service.findAllPageable(
             PageRequest.of(
                 page.map(i -> i - 1).orElse(0),
                 5
-            )
+            ),
+            currency.orElse(Constants.DEFAULT_CURRENCY)
         );
 
         return new ModelAndView(Constants.PRODUCTS_PATH)
