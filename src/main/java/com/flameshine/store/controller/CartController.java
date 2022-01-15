@@ -38,7 +38,7 @@ public class CartController {
     @GetMapping
     public ModelAndView cart(@RequestParam("currency") Optional<Currency> currency) {
 
-        // TODO: fix multiplicator issue
+        // TODO: fix multiplication issue
 
         var products = cartService.getProducts();
 
