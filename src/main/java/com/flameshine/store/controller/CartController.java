@@ -38,6 +38,8 @@ public class CartController {
     @GetMapping
     public ModelAndView cart(@RequestParam("currency") Optional<Currency> currency) {
 
+        // TODO: fix multiplicator issue
+
         var products = cartService.getProducts();
 
         products.forEach((product, quantity) -> product.setPrice(
@@ -52,34 +54,28 @@ public class CartController {
     }
 
     @GetMapping("/add/{id}")
-    public ModelAndView add(@PathVariable("id") Long id) {
+    public String add(@PathVariable("id") Long id) {
 
         productService.findById(id)
             .ifPresent(cartService::add);
 
-        return cart(
-            Optional.empty()
-        );
+        return "redirect:/cart";
     }
 
     @GetMapping("/remove/{id}")
-    public ModelAndView remove(@PathVariable("id") Long id) {
+    public String remove(@PathVariable("id") Long id) {
 
         productService.findById(id)
             .ifPresent(cartService::remove);
 
-        return cart(
-            Optional.empty()
-        );
+        return "redirect:/cart";
     }
 
     @GetMapping("/checkout")
-    public ModelAndView checkout() {
+    public String checkout() {
 
         cartService.checkout();
 
-        return cart(
-            Optional.empty()
-        );
+        return "redirect:/cart";
     }
 }

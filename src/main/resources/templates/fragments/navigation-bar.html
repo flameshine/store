@@ -41,10 +41,10 @@
                             Logout
                         </a>
                     </li>
-                    <li class="nav-item" th:if="${#request.requestURI.contains('products')} or ${#request.requestURI == '/cart'}" sec:authorize="isAuthenticated()">
+                    <li class="nav-item" th:if="${#request.requestURI.contains('products')} or ${#request.requestURI.contains('cart')}" sec:authorize="isAuthenticated()">
                         <select class="form-select" onchange="location = this.value">
                             <option value="">
-                                Choose currency
+                                Currency
                             </option>
                             <option th:each="currency : ${T(com.flameshine.store.model.Currency).values()}" th:value="${#request.requestURI} + '?currency=' + ${currency}" th:text="${currency}"/>
                         </select>
