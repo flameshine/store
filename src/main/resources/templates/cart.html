@@ -5,7 +5,7 @@
 </head>
 <body>
 <div th:replace="/fragments/navigation-bar :: navigation-bar"/>
-<div class="container">
+<div class="container" th:with="currency = ${#request.getParameter('currency') != null ? #request.getParameter('currency') : 'USD'}">
   <h1>
     <span th:text="${#authentication.getName()}"/>'s cart
   </h1>
@@ -16,7 +16,7 @@
     </div>
     <div class="row card-body">
       <div class="col-md-2" th:inline="text">
-        Price: [[${product.getKey().getPrice()}]] USD
+        Price: [[${product.getKey().getPrice()}]] [[${currency}]]
       </div>
       <div class="col-md-9" th:inline="text">
         Quantity: [[${product.getValue()}]]
@@ -31,7 +31,7 @@
   </div>
   <div class="row card-body">
     <h2 class="col-md-11" th:inline="text">
-      Total: [[${total}]] USD
+      Total: [[${total}]] [[${currency}]]
     </h2>
     <a class="col-md-1" th:href="@{'/cart/checkout'}">
       <button class="btn btn-danger" type="button">

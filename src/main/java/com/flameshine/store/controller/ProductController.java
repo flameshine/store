@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.data.domain.PageRequest;
 
 import com.flameshine.store.service.ProductService;
+import com.flameshine.store.util.CurrencyConverter;
 import com.flameshine.store.util.Constants;
 import com.flameshine.store.util.Pager;
 import com.flameshine.store.model.Currency;
@@ -22,10 +23,12 @@ import com.flameshine.store.model.Currency;
 public class ProductController {
 
     private final ProductService service;
+    private final CurrencyConverter converter;
 
     @Autowired
-    public ProductController(ProductService service) {
+    public ProductController(ProductService service, CurrencyConverter converter) {
         this.service = service;
+        this.converter = converter;
     }
 
     @GetMapping(Constants.PRODUCTS_PATH)
@@ -38,8 +41,13 @@ public class ProductController {
             PageRequest.of(
                 page.map(i -> i - 1).orElse(0),
                 5
-            ),
-            currency.orElse(Constants.DEFAULT_CURRENCY)
+            )
+        );
+
+        products.forEach(product -> product.setPrice(
+            converter.convert(
+                product.getPrice(), Constants.DEFAULT_CURRENCY, currency.orElse(Constants.DEFAULT_CURRENCY)
+            ))
         );
 
         return new ModelAndView(Constants.PRODUCTS_PATH)

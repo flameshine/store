@@ -30,6 +30,11 @@ public record CurrencyConverter(HttpCaller caller, JsonExtractor extractor, Stri
     }
 
     public BigDecimal convert(BigDecimal amount, Currency from, Currency to) {
+
+        if (from == to) {
+            return amount;
+        }
+
         return amount.multiply(
             getRate(from, to)
         );
