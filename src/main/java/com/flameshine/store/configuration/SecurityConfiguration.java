@@ -16,7 +16,7 @@ import com.flameshine.store.util.Constants;
 import com.flameshine.store.model.Role;
 
 /**
- * Configuration class for the application security.
+ * Security configuration of the application.
  */
 
 @Configuration

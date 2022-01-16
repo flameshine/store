@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import com.flameshine.store.model.Currency;
 
 /**
- * Class that provides the actual currency exchange rate.
+ * Class responsible for providing the actual currency exchange rate.
  */
 
 public interface ExchangeRateProvider {

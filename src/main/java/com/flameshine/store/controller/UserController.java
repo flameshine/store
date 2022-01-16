@@ -15,7 +15,7 @@ import com.flameshine.store.util.Pager;
 import com.flameshine.store.util.Constants;
 
 /**
- * Controller for the application users page.
+ * Users page controller.
  */
 
 @Controller

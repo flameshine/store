@@ -12,7 +12,7 @@ import com.flameshine.store.service.ProductOperator;
 import com.flameshine.store.util.Constants;
 
 /**
- * Controller for the user shopping cart page.
+ * Shopping cart page controller.
  */
 
 @Controller

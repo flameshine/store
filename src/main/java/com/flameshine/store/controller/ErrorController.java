@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import com.flameshine.store.util.Constants;
 
 /**
- * Controller that handles various unexpected errors.
+ * Controller responsible for handling various unexpected errors.
  */
 
 @ControllerAdvice

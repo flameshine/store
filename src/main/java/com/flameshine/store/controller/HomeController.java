@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.flameshine.store.util.Constants;
 
 /**
- * Controller for the application home page.
+ * Home page controller.
  */
 
 @Controller

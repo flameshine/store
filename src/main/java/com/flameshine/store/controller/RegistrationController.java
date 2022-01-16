@@ -18,7 +18,7 @@ import com.flameshine.store.util.Constants;
 import com.flameshine.store.entity.User;
 
 /**
- * Controller for the registration page.
+ * Registration page controller.
  */
 
 @Controller

@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @SpringBootApplication
 public class Application {
 
-    // TODO: consider converting possible interfaces into functional ones
+    // TODO: consider converting possible interfaces into functional analogues
     // TODO: extend admin functionality (add an ability to manipulate with product & user data directly from UI)
     // TODO: add multiple languages support
     // TODO: consider adding user activation/deactivation and all corresponding mechanisms

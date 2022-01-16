@@ -4,7 +4,7 @@ import com.flameshine.store.entity.Product;
 import com.flameshine.store.model.Currency;
 
 /**
- * Class that exchanges product price by the given currency.
+ * Class responsible for exchanging product price for a given currency.
  */
 
 public interface CurrencyExchanger {

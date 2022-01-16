@@ -16,7 +16,7 @@ import com.flameshine.store.util.Constants;
 import com.flameshine.store.model.Currency;
 
 /**
- * Controller for the application products page.
+ * Products page controller.
  */
 
 @Controller

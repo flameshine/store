@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.flameshine.store.util.Constants;
 
 /**
- * Controller for the login page.
+ * Login page controller.
  */
 
 @Controller

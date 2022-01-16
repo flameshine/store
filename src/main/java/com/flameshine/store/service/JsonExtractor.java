@@ -1,7 +1,7 @@
 package com.flameshine.store.service;
 
 /**
- * Class that extracts value by key from the JSON string.
+ * Class responsible for extracting a value by key from the JSON string.
  */
 
 public interface JsonExtractor {

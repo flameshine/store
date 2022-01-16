@@ -3,7 +3,7 @@ package com.flameshine.store.service;
 import java.net.URI;
 
 /**
- * Class that calls the given URL via HTTP.
+ * Class responsible for HTTP calls.
  */
 
 public interface HttpCaller {
