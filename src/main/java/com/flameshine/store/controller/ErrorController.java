@@ -18,6 +18,9 @@ public class ErrorController {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     protected ModelAndView handle(Exception e) {
+
+        e.printStackTrace();
+
         return new ModelAndView(Constants.ERROR_PATH)
             .addObject("message", e.getMessage());
     }

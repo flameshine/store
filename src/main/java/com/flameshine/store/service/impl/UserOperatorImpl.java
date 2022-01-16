@@ -10,23 +10,23 @@ import org.springframework.data.domain.Pageable;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.flameshine.store.service.UserService;
+import com.flameshine.store.service.UserOperator;
 import com.flameshine.store.repository.UserRepository;
 import com.flameshine.store.entity.User;
 
 /**
- * Implementation of {@link com.flameshine.store.service.UserService}.
+ * Implementation of {@link com.flameshine.store.service.UserOperator}.
  */
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService {
+public class UserOperatorImpl implements UserOperator {
 
     private final UserRepository repository;
     private final PasswordEncoder encoder;
 
     @Autowired
-    public UserServiceImpl(UserRepository repository, PasswordEncoder encoder) {
+    public UserOperatorImpl(UserRepository repository, PasswordEncoder encoder) {
         this.repository = repository;
         this.encoder = encoder;
     }

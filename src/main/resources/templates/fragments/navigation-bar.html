@@ -41,7 +41,7 @@
                             Logout
                         </a>
                     </li>
-                    <li class="nav-item" th:if="${#request.requestURI.contains('products')} or ${#request.requestURI.contains('cart')}" sec:authorize="isAuthenticated()">
+                    <li class="nav-item" th:if="${#request.requestURI.contains('products')}" sec:authorize="isAuthenticated()">
                         <select class="form-select" onchange="location = this.value">
                             <option value="">
                                 Currency

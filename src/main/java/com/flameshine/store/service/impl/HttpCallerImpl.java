@@ -1,4 +1,4 @@
-package com.flameshine.store.util;
+package com.flameshine.store.service.impl;
 
 import java.io.IOException;
 import java.net.URI;
@@ -6,17 +6,27 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import com.flameshine.store.service.HttpCaller;
 import com.flameshine.store.exception.ApplicationException;
 
 /**
- * Utility for HTTP calls.
+ * Implementation of {@link com.flameshine.store.service.HttpCaller}.
  */
 
-@Component
-public record HttpCaller(HttpClient client) {
+@Service
+public class HttpCallerImpl implements HttpCaller {
 
+    private final HttpClient client;
+
+    @Autowired
+    public HttpCallerImpl(HttpClient client) {
+        this.client = client;
+    }
+
+    @Override
     public String call(URI uri) {
 
         var request = HttpRequest.newBuilder()
@@ -38,9 +48,7 @@ public record HttpCaller(HttpClient client) {
         if (200 != statusCode) {
             throw new ApplicationException(
                 String.format(
-                    "An unexpected error has occurred during the HTTP call (status code: '%s', body: '%s')",
-                    statusCode,
-                    body
+                    "An unexpected error has occurred during the HTTP call (status code: '%s', body: '%s')", statusCode, body
                 )
             );
         }

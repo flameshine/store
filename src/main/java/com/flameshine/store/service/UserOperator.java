@@ -8,10 +8,10 @@ import org.springframework.data.domain.Pageable;
 import com.flameshine.store.entity.User;
 
 /**
- * Service for the basic interactions with {@link com.flameshine.store.entity.User} entity.
+ * Responsible for operating with the {@link com.flameshine.store.entity.User} entity.
  */
 
-public interface UserService {
+public interface UserOperator {
 
     void save(User user);
 

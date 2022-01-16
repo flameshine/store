@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.data.domain.PageRequest;
 
-import com.flameshine.store.service.ProductService;
-import com.flameshine.store.util.CurrencyConverter;
-import com.flameshine.store.util.Constants;
+import com.flameshine.store.service.ProductOperator;
+import com.flameshine.store.service.CurrencyExchanger;
 import com.flameshine.store.util.Pager;
+import com.flameshine.store.util.Constants;
 import com.flameshine.store.model.Currency;
 
 /**
@@ -22,13 +22,13 @@ import com.flameshine.store.model.Currency;
 @Controller
 public class ProductController {
 
-    private final ProductService service;
-    private final CurrencyConverter converter;
+    private final ProductOperator operator;
+    private final CurrencyExchanger exchanger;
 
     @Autowired
-    public ProductController(ProductService service, CurrencyConverter converter) {
-        this.service = service;
-        this.converter = converter;
+    public ProductController(ProductOperator operator, CurrencyExchanger exchanger) {
+        this.operator = operator;
+        this.exchanger = exchanger;
     }
 
     @GetMapping(Constants.PRODUCTS_PATH)
@@ -37,17 +37,15 @@ public class ProductController {
         @RequestParam("currency") Optional<Currency> currency
     ) {
 
-        var products = service.findAllPageable(
+        var products = operator.findAllPageable(
             PageRequest.of(
                 page.map(i -> i - 1).orElse(0),
                 5
             )
         );
 
-        products.forEach(product -> product.setPrice(
-            converter.convert(
-                product.getPrice(), Constants.DEFAULT_CURRENCY, currency.orElse(Constants.DEFAULT_CURRENCY)
-            ))
+        products.forEach(product -> exchanger.exchange(
+            product, currency.orElse(product.getCurrency()))
         );
 
         return new ModelAndView(Constants.PRODUCTS_PATH)

@@ -1,20 +1,15 @@
 package com.flameshine.store.controller;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.flameshine.store.service.CartService;
-import com.flameshine.store.service.ProductService;
-import com.flameshine.store.util.CurrencyConverter;
+import com.flameshine.store.service.CartOperator;
+import com.flameshine.store.service.ProductOperator;
 import com.flameshine.store.util.Constants;
-import com.flameshine.store.model.Currency;
 
 /**
  * Controller for the user shopping cart page.
@@ -24,40 +19,27 @@ import com.flameshine.store.model.Currency;
 @RequestMapping(value = Constants.CART_PATH)
 public class CartController {
 
-    private final CartService cartService;
-    private final ProductService productService;
-    private final CurrencyConverter converter;
+    private final CartOperator cartOperator;
+    private final ProductOperator productOperator;
 
     @Autowired
-    public CartController(CartService cartService, ProductService productService, CurrencyConverter converter) {
-        this.cartService = cartService;
-        this.productService = productService;
-        this.converter = converter;
+    public CartController(CartOperator cartOperator, ProductOperator productOperator) {
+        this.cartOperator = cartOperator;
+        this.productOperator = productOperator;
     }
 
     @GetMapping
-    public ModelAndView cart(@RequestParam("currency") Optional<Currency> currency) {
-
-        // TODO: fix multiplication issue
-
-        var products = cartService.getProducts();
-
-        products.forEach((product, quantity) -> product.setPrice(
-            converter.convert(
-                product.getPrice(), Constants.DEFAULT_CURRENCY, currency.orElse(Constants.DEFAULT_CURRENCY)
-            ))
-        );
-
+    public ModelAndView cart() {
         return new ModelAndView(Constants.CART_PATH)
-            .addObject("products", products)
-            .addObject("total", cartService.getTotalAmount());
+            .addObject("products", cartOperator.getProducts())
+            .addObject("total", cartOperator.getTotalAmount());
     }
 
     @GetMapping("/add/{id}")
     public String add(@PathVariable("id") Long id) {
 
-        productService.findById(id)
-            .ifPresent(cartService::add);
+        productOperator.findById(id)
+            .ifPresent(cartOperator::add);
 
         return "redirect:/cart";
     }
@@ -65,8 +47,8 @@ public class CartController {
     @GetMapping("/remove/{id}")
     public String remove(@PathVariable("id") Long id) {
 
-        productService.findById(id)
-            .ifPresent(cartService::remove);
+        productOperator.findById(id)
+            .ifPresent(cartOperator::remove);
 
         return "redirect:/cart";
     }
@@ -74,7 +56,7 @@ public class CartController {
     @GetMapping("/checkout")
     public String checkout() {
 
-        cartService.checkout();
+        cartOperator.checkout();
 
         return "redirect:/cart";
     }

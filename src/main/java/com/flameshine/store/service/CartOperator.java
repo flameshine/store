@@ -6,10 +6,10 @@ import java.math.BigDecimal;
 import com.flameshine.store.entity.Product;
 
 /**
- * Service for interacting with the shopping cart.
+ * Class responsible for operating with the shopping cart.
  */
 
-public interface CartService {
+public interface CartOperator {
 
     void add(Product product);
 

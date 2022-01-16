@@ -8,8 +8,6 @@ import java.io.Serial;
 
 public class ApplicationException extends RuntimeException {
 
-    // TODO: review its usage
-
     @Serial
     private static final long serialVersionUID = -4916980636567123662L;
 
