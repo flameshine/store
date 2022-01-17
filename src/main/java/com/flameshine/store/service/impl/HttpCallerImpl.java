@@ -8,6 +8,7 @@ import java.net.http.HttpResponse;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 
 import com.flameshine.store.service.HttpCaller;
 import com.flameshine.store.exception.ApplicationException;
@@ -45,7 +46,7 @@ public class HttpCallerImpl implements HttpCaller {
         var statusCode = response.statusCode();
         var body = response.body();
 
-        if (200 != statusCode) {
+        if (HttpStatus.OK.value() != statusCode) {
             throw new ApplicationException(
                 String.format(
                     "An unexpected error has occurred during the HTTP call (status code: '%s', body: '%s')", statusCode, body

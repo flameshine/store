@@ -26,7 +26,7 @@ public class JsonExtractorImpl implements JsonExtractor {
     public String extractValue(String json, String key) {
 
         try {
-            return mapper.readTree(json).get(key).toString();
+            return mapper.readTree(json).get(key).asText();
         } catch (JsonProcessingException e) {
             throw new ApplicationException(
                 String.format("Couldn't extract value from the JSON string ('%s')", json), e

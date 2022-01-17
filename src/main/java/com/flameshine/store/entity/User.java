@@ -47,8 +47,8 @@ public class User implements Serializable {
     @Length(min = 5, message = "Password must be greater than 5 characters")
     private String password;
 
-    @JsonIgnore
     @Transient
+    @JsonIgnore
     @NotBlank(message = "Password confirmation is required")
     private String passwordConfirmation;
 

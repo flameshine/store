@@ -39,14 +39,13 @@ public class ProductController {
 
         var products = operator.findAllPageable(
             PageRequest.of(
-                page.map(i -> i - 1).orElse(0),
-                5
+                page.map(i -> i - 1).orElse(0), 5
             )
         );
 
         products.forEach(product -> exchanger.exchange(
-            product, product.getCurrency(), currency.orElseGet(product::getCurrency))
-        );
+            product, product.getCurrency(), currency.orElseGet(product::getCurrency)
+        ));
 
         return new ModelAndView(Constants.PRODUCTS_PATH)
             .addObject("products", products)
