@@ -45,7 +45,7 @@ public class ProductController {
         );
 
         products.forEach(product -> exchanger.exchange(
-            product, currency.orElse(product.getCurrency()))
+            product, product.getCurrency(), currency.orElseGet(product::getCurrency))
         );
 
         return new ModelAndView(Constants.PRODUCTS_PATH)

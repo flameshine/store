@@ -25,17 +25,15 @@ public class CurrencyExchangerImpl implements CurrencyExchanger {
     }
 
     @Override
-    public void exchange(Product product, Currency currency) {
+    public void exchange(Product product, Currency from, Currency to) {
 
         product.setPrice(
             convert(
-                product.getPrice(), product.getCurrency(), currency
+                product.getPrice(), from, to
             )
         );
 
-        product.setCurrency(
-            currency
-        );
+        product.setCurrency(to);
     }
 
     private BigDecimal convert(BigDecimal amount, Currency from, Currency to) {
