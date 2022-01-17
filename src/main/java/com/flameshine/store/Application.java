@@ -14,11 +14,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @SpringBootApplication
 public class Application {
 
-    // TODO: consider converting possible interfaces into functional analogues
-    // TODO: extend admin functionality (add an ability to manipulate with product & user data directly from UI)
+    // TODO: extend admin functionality with the ability to manipulate with product & user data via UI
     // TODO: add multiple languages support
-    // TODO: consider adding user activation/deactivation and all corresponding mechanisms
-    // TODO: consider migrating the codebase to Kotlin
+    // TODO: consider adding user activation/deactivation functionality
 
     public static void main(String... args) {
         SpringApplication.run(Application.class, args);
