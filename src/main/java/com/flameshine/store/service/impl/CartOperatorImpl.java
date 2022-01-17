@@ -7,28 +7,28 @@ import java.math.BigDecimal;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.flameshine.store.service.CartService;
+import com.flameshine.store.service.CartOperator;
 import com.flameshine.store.repository.ProductRepository;
 import com.flameshine.store.entity.Product;
 
 /**
- * Implementation of {@link com.flameshine.store.service.CartService}.
+ * Implementation of {@link com.flameshine.store.service.CartOperator}.
  */
 
 @Service
 @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class CartServiceImpl implements CartService {
+public class CartOperatorImpl implements CartOperator {
 
     private final ProductRepository repository;
     private final Map<Product, Integer> products;
 
     @Autowired
-    public CartServiceImpl(ProductRepository repository) {
+    public CartOperatorImpl(ProductRepository repository) {
         this.repository = repository;
         this.products = new HashMap<>();
     }

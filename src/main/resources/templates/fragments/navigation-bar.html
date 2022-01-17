@@ -41,6 +41,14 @@
                             Logout
                         </a>
                     </li>
+                    <li class="nav-item" th:if="${#request.requestURI.contains('products')}" sec:authorize="isAuthenticated()">
+                        <select class="form-select" onchange="location = this.value">
+                            <option value="">
+                                Currency
+                            </option>
+                            <option th:each="currency : ${T(com.flameshine.store.model.Currency).values()}" th:value="${#request.requestURI} + '?currency=' + ${currency}" th:text="${currency}"/>
+                        </select>
+                    </li>
                 </ul>
             </div>
         </div>

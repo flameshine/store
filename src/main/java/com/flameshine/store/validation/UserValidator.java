@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Validator;
 import org.springframework.validation.Errors;
 
-import com.flameshine.store.service.UserService;
+import com.flameshine.store.service.UserOperator;
 import com.flameshine.store.entity.User;
 
 /**
@@ -15,10 +15,10 @@ import com.flameshine.store.entity.User;
 @Component
 public class UserValidator implements Validator {
 
-    private final UserService service;
+    private final UserOperator service;
 
     @Autowired
-    public UserValidator(UserService service) {
+    public UserValidator(UserOperator service) {
         this.service = service;
     }
 

@@ -8,22 +8,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.flameshine.store.service.ProductService;
+import com.flameshine.store.service.ProductOperator;
 import com.flameshine.store.repository.ProductRepository;
 import com.flameshine.store.entity.Product;
 
 /**
- * Implementation of {@link com.flameshine.store.service.ProductService}.
+ * Implementation of {@link com.flameshine.store.service.ProductOperator}.
  */
 
 @Service
 @Transactional
-public class ProductServiceImpl implements ProductService {
+public class ProductOperatorImpl implements ProductOperator {
 
     private final ProductRepository repository;
 
     @Autowired
-    public ProductServiceImpl(ProductRepository repository) {
+    public ProductOperatorImpl(ProductRepository repository) {
         this.repository = repository;
     }
 

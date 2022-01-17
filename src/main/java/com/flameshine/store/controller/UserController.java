@@ -10,22 +10,22 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.flameshine.store.service.UserService;
-import com.flameshine.store.util.Constants;
+import com.flameshine.store.service.UserOperator;
 import com.flameshine.store.util.Pager;
+import com.flameshine.store.util.Constants;
 
 /**
- * Controller for the application users page.
+ * Users page controller.
  */
 
 @Controller
 public class UserController {
 
-    private final UserService service;
+    private final UserOperator operator;
 
     @Autowired
-    public UserController(UserService service) {
-        this.service = service;
+    public UserController(UserOperator operator) {
+        this.operator = operator;
     }
 
     @GetMapping(Constants.USERS_PATH)
@@ -34,7 +34,7 @@ public class UserController {
         @RequestParam("criterion") Optional<String> criterion
     ) {
 
-        var users = service.findAllPageable(
+        var users = operator.findAllPageable(
             PageRequest.of(
                 page.map(i -> i - 1).orElse(0),
                 10,

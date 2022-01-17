@@ -8,10 +8,10 @@ import org.springframework.data.domain.Pageable;
 import com.flameshine.store.entity.Product;
 
 /**
- * Service for the basic interactions with {@link com.flameshine.store.entity.Product} entity.
+ * Class responsible for operating with the {@link com.flameshine.store.entity.Product} entity.
  */
 
-public interface ProductService {
+public interface ProductOperator {
 
     Page<Product> findAllPageable(Pageable pageable);
 

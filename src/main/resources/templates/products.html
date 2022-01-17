@@ -14,8 +14,8 @@
       Description
     </h3>
     <div class="row card-footer">
-      <div class="col-md-2" th:inline="text">
-        Price: [[${product.getPrice()}]] USD
+      <div class="col-md-2" th:inline="text" th:with="currency = ${#request.getParameter('currency') != null ? #request.getParameter('currency') : 'USD'}">
+        Price: [[${product.getPrice()}]] [[${currency}]]
       </div>
       <div class="col-md-9" th:inline="text">
         Available: [[${product.getQuantity()}]]

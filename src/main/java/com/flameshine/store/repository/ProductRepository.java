@@ -10,4 +10,4 @@ import com.flameshine.store.entity.Product;
  */
 
 @Repository
-public interface ProductRepository extends PagingAndSortingRepository<Product, Long> {}
+public interface ProductRepository extends PagingAndSortingRepository<Product, Long> { }

@@ -9,33 +9,43 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.data.domain.PageRequest;
 
-import com.flameshine.store.service.ProductService;
-import com.flameshine.store.util.Constants;
+import com.flameshine.store.service.ProductOperator;
+import com.flameshine.store.service.CurrencyExchanger;
 import com.flameshine.store.util.Pager;
+import com.flameshine.store.util.Constants;
+import com.flameshine.store.model.Currency;
 
 /**
- * Controller for the application products page.
+ * Products page controller.
  */
 
 @Controller
 public class ProductController {
 
-    private final ProductService service;
+    private final ProductOperator operator;
+    private final CurrencyExchanger exchanger;
 
     @Autowired
-    public ProductController(ProductService service) {
-        this.service = service;
+    public ProductController(ProductOperator operator, CurrencyExchanger exchanger) {
+        this.operator = operator;
+        this.exchanger = exchanger;
     }
 
     @GetMapping(Constants.PRODUCTS_PATH)
-    public ModelAndView home(@RequestParam("page") Optional<Integer> page) {
+    public ModelAndView home(
+        @RequestParam("page") Optional<Integer> page,
+        @RequestParam("currency") Optional<Currency> currency
+    ) {
 
-        var products = service.findAllPageable(
+        var products = operator.findAllPageable(
             PageRequest.of(
-                page.map(i -> i - 1).orElse(0),
-                5
+                page.map(i -> i - 1).orElse(0), 5
             )
         );
+
+        products.forEach(product -> exchanger.exchange(
+            product, product.getCurrency(), currency.orElseGet(product::getCurrency)
+        ));
 
         return new ModelAndView(Constants.PRODUCTS_PATH)
             .addObject("products", products)

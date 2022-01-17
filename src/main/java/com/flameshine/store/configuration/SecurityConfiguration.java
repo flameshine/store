@@ -16,7 +16,7 @@ import com.flameshine.store.util.Constants;
 import com.flameshine.store.model.Role;
 
 /**
- * Configuration class for the application security.
+ * Security configuration of the application.
  */
 
 @Configuration
@@ -54,8 +54,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder managerBuilder) {
-        managerBuilder.authenticationProvider(authenticationProviderBean());
+    protected void configure(AuthenticationManagerBuilder builder) {
+        builder.authenticationProvider(authenticationProviderBean());
     }
 
     @Bean

@@ -7,57 +7,57 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.flameshine.store.service.CartService;
-import com.flameshine.store.service.ProductService;
+import com.flameshine.store.service.CartOperator;
+import com.flameshine.store.service.ProductOperator;
 import com.flameshine.store.util.Constants;
 
 /**
- * Controller for the user shopping cart page.
+ * Shopping cart page controller.
  */
 
 @Controller
 @RequestMapping(value = Constants.CART_PATH)
 public class CartController {
 
-    private final CartService cartService;
-    private final ProductService productService;
+    private final CartOperator cartOperator;
+    private final ProductOperator productOperator;
 
     @Autowired
-    public CartController(CartService cartService, ProductService productService) {
-        this.cartService = cartService;
-        this.productService = productService;
+    public CartController(CartOperator cartOperator, ProductOperator productOperator) {
+        this.cartOperator = cartOperator;
+        this.productOperator = productOperator;
     }
 
     @GetMapping
     public ModelAndView cart() {
         return new ModelAndView(Constants.CART_PATH)
-            .addObject("products", cartService.getProducts())
-            .addObject("total", cartService.getTotalAmount());
+            .addObject("products", cartOperator.getProducts())
+            .addObject("total", cartOperator.getTotalAmount());
     }
 
     @GetMapping("/add/{id}")
-    public ModelAndView add(@PathVariable("id") Long id) {
+    public String add(@PathVariable("id") Long id) {
 
-        productService.findById(id)
-            .ifPresent(cartService::add);
+        productOperator.findById(id)
+            .ifPresent(cartOperator::add);
 
-        return cart();
+        return "redirect:/cart";
     }
 
     @GetMapping("/remove/{id}")
-    public ModelAndView remove(@PathVariable("id") Long id) {
+    public String remove(@PathVariable("id") Long id) {
 
-        productService.findById(id)
-            .ifPresent(cartService::remove);
+        productOperator.findById(id)
+            .ifPresent(cartOperator::remove);
 
-        return cart();
+        return "redirect:/cart";
     }
 
     @GetMapping("/checkout")
-    public ModelAndView checkout() {
+    public String checkout() {
 
-        cartService.checkout();
+        cartOperator.checkout();
 
-        return cart();
+        return "redirect:/cart";
     }
 }

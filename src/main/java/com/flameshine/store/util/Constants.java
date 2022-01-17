@@ -4,7 +4,7 @@ import lombok.NoArgsConstructor;
 import lombok.AccessLevel;
 
 /**
- * Utility class that stores all constants.
+ * Auxiliary utility that stores all constants.
  */
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

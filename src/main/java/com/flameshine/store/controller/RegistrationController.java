@@ -12,25 +12,25 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.validation.BindingResult;
 
-import com.flameshine.store.service.UserService;
+import com.flameshine.store.service.UserOperator;
 import com.flameshine.store.validation.UserValidator;
 import com.flameshine.store.util.Constants;
 import com.flameshine.store.entity.User;
 
 /**
- * Controller for the registration page.
+ * Registration page controller.
  */
 
 @Controller
 @RequestMapping(Constants.REGISTRATION_PATH)
 public class RegistrationController {
 
-    private final UserService service;
+    private final UserOperator operator;
     private final UserValidator validator;
 
     @Autowired
-    public RegistrationController(UserService service, UserValidator validator) {
-        this.service = service;
+    public RegistrationController(UserOperator operator, UserValidator validator) {
+        this.operator = operator;
         this.validator = validator;
     }
 
@@ -41,13 +41,13 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public ModelAndView registration(@Valid User user, BindingResult bindingResult) {
+    public ModelAndView registration(@Valid User user, BindingResult result) {
 
-        if (bindingResult.hasErrors()) {
+        if (result.hasErrors()) {
             return new ModelAndView(Constants.REGISTRATION_PATH);
         }
 
-        service.save(user);
+        operator.save(user);
 
         return new ModelAndView(Constants.LOGIN_PATH)
             .addObject("message", "User has been registered successfully");
