@@ -28,7 +28,7 @@ public class ExchangeRateProviderImpl implements ExchangeRateProvider {
     @Autowired
     public ExchangeRateProviderImpl(
         HttpCaller caller,
-        JsonExtractorImpl extractor,
+        JsonExtractor extractor,
         @Value("${exchange-rate-provider.access-key}") String accessKey
     ) {
         this.caller = caller;
