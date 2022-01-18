@@ -1,12 +1,13 @@
 package com.flameshine.store.service.impl;
 
+import java.io.UncheckedIOException;
+
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import com.flameshine.store.service.JsonExtractor;
-import com.flameshine.store.exception.ApplicationException;
 
 /**
  * Implementation of {@link com.flameshine.store.service.JsonExtractor}.
@@ -28,7 +29,7 @@ public class JsonExtractorImpl implements JsonExtractor {
         try {
             return mapper.readTree(json).get(key).asText();
         } catch (JsonProcessingException e) {
-            throw new ApplicationException(
+            throw new UncheckedIOException(
                 String.format("Couldn't extract value from the JSON string ('%s')", json), e
             );
         }

@@ -2,6 +2,7 @@ package com.flameshine.store.service.impl;
 
 import java.math.BigDecimal;
 import java.net.URI;
+import java.net.http.HttpRequest;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +44,13 @@ public class ExchangeRateProviderImpl implements ExchangeRateProvider {
             String.format(URL_FORMAT, accessKey, from.name(), to.name())
         );
 
+        var request = HttpRequest.newBuilder()
+            .GET()
+            .uri(uri)
+            .build();
+
         return new BigDecimal(
-            extractor.extractValue(caller.call(uri), "conversion_rate")
+            extractor.extractValue(caller.call(request), "conversion_rate")
         );
     }
 }
