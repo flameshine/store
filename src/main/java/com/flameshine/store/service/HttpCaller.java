@@ -1,11 +1,11 @@
 package com.flameshine.store.service;
 
-import java.net.URI;
+import java.net.http.HttpRequest;
 
-/**
+/**x
  * Class responsible for HTTP calls.
  */
 
 public interface HttpCaller {
-    String call(URI uri);
+    String call(HttpRequest request);
 }
