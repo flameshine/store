@@ -39,7 +39,7 @@ public class HttpCallerImpl implements HttpCaller {
         if (HttpStatus.OK.value() != statusCode) {
             throw new IllegalStateException(
                 String.format(
-                    "An unexpected error has occurred during the HTTP call (status code: '%s', body: '%s')", statusCode, response.body()
+                    "An unexpected error has occurred during the HTTP call (status code: '%d', body: '%s')", statusCode, response.body()
                 )
             );
         }
