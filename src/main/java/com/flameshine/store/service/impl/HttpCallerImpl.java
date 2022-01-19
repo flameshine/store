@@ -28,22 +28,22 @@ public class HttpCallerImpl implements HttpCaller {
     public String call(HttpRequest request) {
         return client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
             .thenApply(this::handle)
-            .thenApply(HttpResponse::body)
             .join();
     }
 
-    private HttpResponse<String> handle(HttpResponse<String> response) {
+    private String handle(HttpResponse<String> response) {
 
         var statusCode = response.statusCode();
+        var body = response.body();
 
         if (HttpStatus.OK.value() != statusCode) {
             throw new IllegalStateException(
                 String.format(
-                    "An unexpected error has occurred during the HTTP call (status code: '%d', body: '%s')", statusCode, response.body()
+                    "An unexpected error has occurred during the HTTP call (status code: '%d', body: '%s')", statusCode, body
                 )
             );
         }
 
-        return response;
+        return body;
     }
 }

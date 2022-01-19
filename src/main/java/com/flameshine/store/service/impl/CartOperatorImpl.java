@@ -36,11 +36,11 @@ public class CartOperatorImpl implements CartOperator {
     @Override
     public void add(Product product) {
 
-        if (products.containsKey(product)) {
-            products.replace(product, products.get(product) + 1);
-        } else {
-            products.put(product, 1);
-        }
+        products.computeIfPresent(
+            product, (key, value) -> value + 1
+        );
+
+        products.putIfAbsent(product, 1);
     }
 
     @Override

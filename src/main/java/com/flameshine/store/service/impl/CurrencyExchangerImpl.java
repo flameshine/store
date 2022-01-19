@@ -28,9 +28,7 @@ public class CurrencyExchangerImpl implements CurrencyExchanger {
     public void exchange(Product product, Currency from, Currency to) {
 
         product.setPrice(
-            convert(
-                product.getPrice(), from, to
-            )
+            convert(product.getPrice(), from, to)
         );
 
         product.setCurrency(to);
