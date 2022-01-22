@@ -1,7 +1,7 @@
 group = "com.flameshine"
 version = "1.0-SNAPSHOT"
 
-description = "Implementation of a great online marketplace with the shopping cart functionality."
+description = "Implementation of a great online marketplace with shopping cart functionality."
 
 plugins {
     java
