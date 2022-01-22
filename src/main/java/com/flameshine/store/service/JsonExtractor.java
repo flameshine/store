@@ -5,5 +5,5 @@ package com.flameshine.store.service;
  */
 
 public interface JsonExtractor {
-    String extractValue(String json, String key);
+    String extract(String json, String key);
 }

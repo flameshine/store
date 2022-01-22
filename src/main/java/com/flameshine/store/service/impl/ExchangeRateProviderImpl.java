@@ -50,7 +50,7 @@ public class ExchangeRateProviderImpl implements ExchangeRateProvider {
             .build();
 
         return new BigDecimal(
-            extractor.extractValue(caller.call(request), "conversion_rate")
+            extractor.extract(caller.call(request), "conversion_rate")
         );
     }
 }

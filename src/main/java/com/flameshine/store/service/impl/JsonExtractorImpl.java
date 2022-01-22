@@ -24,7 +24,7 @@ public class JsonExtractorImpl implements JsonExtractor {
     }
 
     @Override
-    public String extractValue(String json, String key) {
+    public String extract(String json, String key) {
 
         try {
             return mapper.readTree(json).get(key).asText();
