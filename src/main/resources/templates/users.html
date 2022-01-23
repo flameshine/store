@@ -1,63 +1,63 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <div th:replace="/fragments/header :: header"/>
+    <div th:replace="/fragments/header :: header"/>
 </head>
 <body>
 <div th:replace="/fragments/navigation-bar :: navigation-bar"/>
 <div class="container" th:switch="${users}">
-  <h2 th:case="null">
-    No users found
-  </h2>
-  <div th:case="*">
-    <table class="table table-hover table-bordered">
-      <thead class="table-dark">
-      <tr>
-        <th scope="col">
-          <a class="link-light" th:href="@{${baseUrl}(criterion = 'username')}">
-            Username
-          </a>
-        </th>
-        <th scope="col">
-          <a class="link-light" th:href="@{${baseUrl}(criterion = 'firstname')}">
-            Firstname
-          </a>
-        </th>
-        <th scope="col">
-          <a class="link-light" th:href="@{${baseUrl}(criterion = 'lastname')}">
-            Lastname
-          </a>
-        </th>
-        <th scope="col">
-          <a class="link-light" th:href="@{${baseUrl}(criterion = 'email')}">
-            Email
-          </a>
-        </th>
-        <th scope="col">
-          <a class="link-light" th:href="@{${baseUrl}(criterion = 'isEnabled')}">
-            isEnabled
-          </a>
-        </th>
-        <th scope="col">
-          <a class="link-light" th:href="@{${baseUrl}(criterion = 'Role')}">
-            Role
-          </a>
-        </th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr th:each="user : ${users}">
-        <td th:text="${user.getUsername()}"/>
-        <td th:text="${user.getFirstname()}"/>
-        <td th:text="${user.getLastname()}"/>
-        <td th:text="${user.getEmail()}"/>
-        <td th:text="${user.getIsEnabled()}"/>
-        <td th:text="${user.getRole()}"/>
-      </tr>
-      </tbody>
-    </table>
-    <br/>
-  </div>
+    <h2 th:case="null">
+        No users found
+    </h2>
+    <div th:case="*">
+        <table class="table table-hover table-bordered">
+            <thead class="table-dark">
+            <tr>
+                <th scope="col">
+                    <a class="link-light" th:href="@{${baseUrl}(criterion = 'username')}">
+                        Username
+                    </a>
+                </th>
+                <th scope="col">
+                    <a class="link-light" th:href="@{${baseUrl}(criterion = 'firstname')}">
+                        Firstname
+                    </a>
+                </th>
+                <th scope="col">
+                    <a class="link-light" th:href="@{${baseUrl}(criterion = 'lastname')}">
+                        Lastname
+                    </a>
+                </th>
+                <th scope="col">
+                    <a class="link-light" th:href="@{${baseUrl}(criterion = 'email')}">
+                        Email
+                    </a>
+                </th>
+                <th scope="col">
+                    <a class="link-light" th:href="@{${baseUrl}(criterion = 'isEnabled')}">
+                        isEnabled
+                    </a>
+                </th>
+                <th scope="col">
+                    <a class="link-light" th:href="@{${baseUrl}(criterion = 'Role')}">
+                        Role
+                    </a>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.getUsername()}"/>
+                <td th:text="${user.getFirstname()}"/>
+                <td th:text="${user.getLastname()}"/>
+                <td th:text="${user.getEmail()}"/>
+                <td th:text="${user.getIsEnabled()}"/>
+                <td th:text="${user.getRole()}"/>
+            </tr>
+            </tbody>
+        </table>
+        <br/>
+    </div>
 </div>
 <div th:replace="/fragments/footer :: footer"/>
 </body>
