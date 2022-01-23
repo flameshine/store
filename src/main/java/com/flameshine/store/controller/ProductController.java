@@ -11,9 +11,9 @@ import org.springframework.data.domain.PageRequest;
 
 import com.flameshine.store.service.ProductOperator;
 import com.flameshine.store.service.CurrencyExchanger;
-import com.flameshine.store.storage.CurrencyStorage;
-import com.flameshine.store.util.Pager;
+import com.flameshine.store.util.ResourceUtils;
 import com.flameshine.store.util.Constants;
+import com.flameshine.store.entity.Product;
 
 /**
  * Products page controller.
@@ -24,13 +24,11 @@ public class ProductController {
 
     private final ProductOperator operator;
     private final CurrencyExchanger exchanger;
-    private final CurrencyStorage storage;
 
     @Autowired
-    public ProductController(ProductOperator operator, CurrencyExchanger exchanger, CurrencyStorage storage) {
+    public ProductController(ProductOperator operator, CurrencyExchanger exchanger) {
         this.operator = operator;
         this.exchanger = exchanger;
-        this.storage = storage;
     }
 
     @GetMapping(Constants.PRODUCTS_PATH)
@@ -45,13 +43,23 @@ public class ProductController {
             )
         );
 
-        products.forEach(product -> exchanger.exchange(
-            product, product.getCurrency(), currency.orElseGet(product::getCurrency)
-        ));
+        products.forEach(
+            product -> exchange(product, currency.orElseGet(product::getCurrency))
+        );
 
         return new ModelAndView(Constants.PRODUCTS_PATH)
             .addObject("products", products)
-            .addObject("currencies", storage.getCurrencies())
-            .addObject("pager", new Pager(products));
+            .addObject("currencies", ResourceUtils.readCurrencies());
+    }
+
+    private void exchange(Product product, String currency) {
+
+        product.setPrice(
+            exchanger.exchange(
+                product.getPrice(), product.getCurrency(), currency
+            )
+        );
+
+        product.setCurrency(currency);
     }
 }
