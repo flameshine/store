@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.AccessLevel;
 
 /**
- * Utility responsible for extracting a value by key from the JSON string.
+ * Utility responsible for various interactions with JSON.
  */
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
