@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.flameshine.store.service.CurrencyExchanger;
 import com.flameshine.store.service.ExchangeRateProvider;
 import com.flameshine.store.entity.Product;
-import com.flameshine.store.model.Currency;
 
 /**
  * Implementation of {@link com.flameshine.store.service.CurrencyExchanger}.
@@ -25,23 +24,23 @@ public class CurrencyExchangerImpl implements CurrencyExchanger {
     }
 
     @Override
-    public void exchange(Product product, Currency from, Currency to) {
+    public void exchange(Product product, String currentCurrency, String targetCurrency) {
 
         product.setPrice(
-            convert(product.getPrice(), from, to)
+            convert(product.getPrice(), currentCurrency, targetCurrency)
         );
 
-        product.setCurrency(to);
+        product.setCurrency(targetCurrency);
     }
 
-    private BigDecimal convert(BigDecimal amount, Currency from, Currency to) {
+    private BigDecimal convert(BigDecimal amount, String currentCurrency, String targetCurrency) {
 
-        if (from == to) {
+        if (currentCurrency.equals(targetCurrency)) {
             return amount;
         }
 
         return amount.multiply(
-            provider.provide(from, to)
+            provider.provide(currentCurrency, targetCurrency)
         );
     }
 }

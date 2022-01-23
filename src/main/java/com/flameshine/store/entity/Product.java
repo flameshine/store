@@ -10,8 +10,6 @@ import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
-import com.flameshine.store.model.Currency;
-
 /**
  * Product entity.
  */
@@ -42,8 +40,7 @@ public class Product implements Serializable {
     private BigDecimal price;
 
     @Column(name = "currency", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Currency currency = Currency.USD;
+    private String currency;
 
     @Column(name = "quantity", nullable = false)
     @NotNull(message = "Quantity is required")

@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Value;
 import com.flameshine.store.service.ExchangeRateProvider;
 import com.flameshine.store.service.HttpCaller;
 import com.flameshine.store.service.JsonExtractor;
-import com.flameshine.store.model.Currency;
 
 /**
  * Implementation of {@link com.flameshine.store.service.ExchangeRateProvider}.
@@ -38,10 +37,10 @@ public class ExchangeRateProviderImpl implements ExchangeRateProvider {
     }
 
     @Override
-    public BigDecimal provide(Currency from, Currency to) {
+    public BigDecimal provide(String currentCurrency, String targetCurrency) {
 
         var uri = URI.create(
-            String.format(URL_FORMAT, accessKey, from.name(), to.name())
+            String.format(URL_FORMAT, accessKey, currentCurrency, targetCurrency)
         );
 
         var request = HttpRequest.newBuilder()

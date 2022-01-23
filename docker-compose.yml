@@ -10,7 +10,7 @@ services:
     ports:
       - "3307:3306"
     volumes:
-      - ./scripts/sql/initialize-database.sql:/docker-entrypoint-initdb.d/initialize-database.sql
+      - ./scripts/sql/initialize.sql:/docker-entrypoint-initdb.d/initialize.sql
 
   ultimate-store:
     image: ultimate-store
