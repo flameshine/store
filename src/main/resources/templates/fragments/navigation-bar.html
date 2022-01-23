@@ -46,7 +46,7 @@
                             <option value="">
                                 Currency
                             </option>
-                            <option th:each="currency : ${T(com.flameshine.store.model.Currency).values()}" th:value="${#request.requestURI} + '?currency=' + ${currency}" th:text="${currency}"/>
+                            <option th:each="currency : ${currencies}" th:value="${#request.requestURI} + '?currency=' + ${currency}" th:text="${currency}"/>
                         </select>
                     </li>
                 </ul>

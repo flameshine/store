@@ -11,9 +11,9 @@ import org.springframework.data.domain.PageRequest;
 
 import com.flameshine.store.service.ProductOperator;
 import com.flameshine.store.service.CurrencyExchanger;
-import com.flameshine.store.util.Pager;
+import com.flameshine.store.util.ResourceUtils;
 import com.flameshine.store.util.Constants;
-import com.flameshine.store.model.Currency;
+import com.flameshine.store.entity.Product;
 
 /**
  * Products page controller.
@@ -34,7 +34,7 @@ public class ProductController {
     @GetMapping(Constants.PRODUCTS_PATH)
     public ModelAndView home(
         @RequestParam("page") Optional<Integer> page,
-        @RequestParam("currency") Optional<Currency> currency
+        @RequestParam("currency") Optional<String> currency
     ) {
 
         var products = operator.findAllPageable(
@@ -43,12 +43,23 @@ public class ProductController {
             )
         );
 
-        products.forEach(product -> exchanger.exchange(
-            product, product.getCurrency(), currency.orElseGet(product::getCurrency)
-        ));
+        products.forEach(
+            product -> exchange(product, currency.orElseGet(product::getCurrency))
+        );
 
         return new ModelAndView(Constants.PRODUCTS_PATH)
             .addObject("products", products)
-            .addObject("pager", new Pager(products));
+            .addObject("currencies", ResourceUtils.readCurrencies());
+    }
+
+    private void exchange(Product product, String currency) {
+
+        product.setPrice(
+            exchanger.exchange(
+                product.getPrice(), product.getCurrency(), currency
+            )
+        );
+
+        product.setCurrency(currency);
     }
 }

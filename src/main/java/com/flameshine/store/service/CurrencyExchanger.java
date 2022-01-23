@@ -1,12 +1,11 @@
 package com.flameshine.store.service;
 
-import com.flameshine.store.entity.Product;
-import com.flameshine.store.model.Currency;
+import java.math.BigDecimal;
 
 /**
- * Class responsible for exchanging product prices from one currency to another.
+ * Class responsible for exchanging a given amount from one currency to another.
  */
 
 public interface CurrencyExchanger {
-    void exchange(Product product, Currency from, Currency to);
+    BigDecimal exchange(BigDecimal amount, String currentCurrency, String targetCurrency);
 }

@@ -11,7 +11,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.flameshine.store.service.UserOperator;
-import com.flameshine.store.util.Pager;
 import com.flameshine.store.util.Constants;
 
 /**
@@ -45,7 +44,6 @@ public class UserController {
         );
 
         return new ModelAndView(Constants.USERS_PATH)
-            .addObject("users", users)
-            .addObject("pager", new Pager(users));
+            .addObject("users", users);
     }
 }

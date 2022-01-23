@@ -1,11 +1,7 @@
 package com.flameshine.store;
 
-import java.net.http.HttpClient;
-
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.boot.SpringApplication;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Main class that launches the application.
@@ -21,15 +17,5 @@ public class Application {
 
     public static void main(String... args) {
         SpringApplication.run(Application.class, args);
-    }
-
-    @Bean
-    public HttpClient httpClient() {
-        return HttpClient.newHttpClient();
-    }
-
-    @Bean
-    public ObjectMapper objectMapper() {
-        return new ObjectMapper();
     }
 }
