@@ -11,13 +11,13 @@ import lombok.NoArgsConstructor;
 import lombok.AccessLevel;
 
 /**
- * Utility responsible for storing currencies list read from the static resource.
+ * Utility responsible for loading data from static resources.
  */
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class ResourceUtils {
 
-    public static List<String> readCurrencies() {
+    public static List<String> loadCurrencies() {
 
         var path = Paths.get("src/main/resources/static/currencies.txt");
 

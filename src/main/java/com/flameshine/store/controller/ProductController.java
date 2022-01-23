@@ -49,7 +49,7 @@ public class ProductController {
 
         return new ModelAndView(Constants.PRODUCTS_PATH)
             .addObject("products", products)
-            .addObject("currencies", ResourceUtils.readCurrencies());
+            .addObject("currencies", ResourceUtils.loadCurrencies());
     }
 
     private void exchange(Product product, String currency) {
