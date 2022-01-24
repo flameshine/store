@@ -1,4 +1,4 @@
-package com.flameshine.store.validation;
+package com.flameshine.store.validator;
 
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +14,8 @@ import com.flameshine.store.entity.User;
 
 @Component
 public class UserValidator implements Validator {
+
+    private static final String ERROR_CODE = "error.user";
 
     private final UserOperator service;
 
@@ -33,15 +35,15 @@ public class UserValidator implements Validator {
         var user = (User) target;
 
         if (service.findByUsername(user.getUsername()).isPresent()) {
-            errors.rejectValue("username", "error.user", "This username is already taken");
+            errors.rejectValue("username", ERROR_CODE, "This username is already taken");
         }
 
         if (service.findByEmail(user.getEmail()).isPresent()) {
-            errors.rejectValue("email", "error.user", "This email is already taken");
+            errors.rejectValue("email", ERROR_CODE, "This email is already taken");
         }
 
         if (!user.getPassword().equals(user.getPasswordConfirmation())) {
-            errors.rejectValue("passwordConfirmation", "error.user", "Password mismatch");
+            errors.rejectValue("passwordConfirmation", ERROR_CODE, "Password mismatch");
         }
     }
 }

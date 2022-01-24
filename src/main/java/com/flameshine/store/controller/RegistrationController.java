@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.validation.BindingResult;
 
 import com.flameshine.store.service.UserOperator;
-import com.flameshine.store.validation.UserValidator;
+import com.flameshine.store.validator.UserValidator;
 import com.flameshine.store.util.Constants;
 import com.flameshine.store.entity.User;
 

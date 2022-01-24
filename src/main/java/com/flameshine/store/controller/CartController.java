@@ -41,7 +41,7 @@ public class CartController {
         productOperator.findById(id)
             .ifPresent(cartOperator::add);
 
-        return "redirect:/cart";
+        return Constants.CART_PATH;
     }
 
     @GetMapping("/remove/{id}")
@@ -50,7 +50,7 @@ public class CartController {
         productOperator.findById(id)
             .ifPresent(cartOperator::remove);
 
-        return "redirect:/cart";
+        return Constants.CART_PATH;
     }
 
     @GetMapping("/checkout")
@@ -58,6 +58,6 @@ public class CartController {
 
         cartOperator.checkout();
 
-        return "redirect:/cart";
+        return Constants.CART_PATH;
     }
 }
