@@ -19,6 +19,8 @@ public final class ResourceUtils {
 
     public static List<String> loadCurrencies() {
 
+        // TODO: fix resource loading if running in the docker container
+
         var path = Paths.get("src/main/resources/static/currencies.txt");
 
         try {
