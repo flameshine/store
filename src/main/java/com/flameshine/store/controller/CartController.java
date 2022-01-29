@@ -1,11 +1,11 @@
 package com.flameshine.store.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
+import lombok.RequiredArgsConstructor;
 
 import com.flameshine.store.service.CartOperator;
 import com.flameshine.store.service.ProductOperator;
@@ -17,16 +17,11 @@ import com.flameshine.store.util.Constants;
 
 @Controller
 @RequestMapping(value = Constants.CART_PATH)
+@RequiredArgsConstructor
 public class CartController {
 
     private final CartOperator cartOperator;
     private final ProductOperator productOperator;
-
-    @Autowired
-    public CartController(CartOperator cartOperator, ProductOperator productOperator) {
-        this.cartOperator = cartOperator;
-        this.productOperator = productOperator;
-    }
 
     @GetMapping
     public ModelAndView cart() {

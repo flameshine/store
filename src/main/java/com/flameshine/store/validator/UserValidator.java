@@ -1,9 +1,9 @@
 package com.flameshine.store.validator;
 
 import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Validator;
 import org.springframework.validation.Errors;
+import lombok.RequiredArgsConstructor;
 
 import com.flameshine.store.service.UserOperator;
 import com.flameshine.store.entity.User;
@@ -13,16 +13,12 @@ import com.flameshine.store.entity.User;
  */
 
 @Component
+@RequiredArgsConstructor
 public class UserValidator implements Validator {
 
     private static final String ERROR_CODE = "error.user";
 
     private final UserOperator service;
-
-    @Autowired
-    public UserValidator(UserOperator service) {
-        this.service = service;
-    }
 
     @Override
     public boolean supports(Class<?> type) {

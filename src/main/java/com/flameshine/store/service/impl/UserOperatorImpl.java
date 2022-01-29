@@ -4,10 +4,10 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import lombok.RequiredArgsConstructor;
 
 import com.flameshine.store.service.UserOperator;
 import com.flameshine.store.repository.UserRepository;
@@ -19,16 +19,11 @@ import com.flameshine.store.entity.User;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class UserOperatorImpl implements UserOperator {
 
     private final UserRepository repository;
     private final PasswordEncoder encoder;
-
-    @Autowired
-    public UserOperatorImpl(UserRepository repository, PasswordEncoder encoder) {
-        this.repository = repository;
-        this.encoder = encoder;
-    }
 
     @Override
     public void save(User user) {

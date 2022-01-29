@@ -1,13 +1,13 @@
 package com.flameshine.store.model;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Getter;
 
 /**
  * Enumeration that represents user roles.
  */
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Getter
 public enum Role {
 

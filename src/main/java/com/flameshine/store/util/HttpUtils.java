@@ -18,7 +18,7 @@ public final class HttpUtils {
 
     private static final HttpClient CLIENT = HttpClient.newHttpClient();
 
-    public static CompletionStage<HttpResponse<String>> call(HttpRequest request) {
+    public static CompletionStage<HttpResponse<String>> send(HttpRequest request) {
         return CLIENT.sendAsync(request, HttpResponse.BodyHandlers.ofString())
             .thenApply(response -> {
 

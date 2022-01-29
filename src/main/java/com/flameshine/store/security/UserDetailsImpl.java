@@ -17,7 +17,7 @@ import com.flameshine.store.entity.User;
 public record UserDetailsImpl(User user) implements UserDetails {
 
     @Serial
-    private static final long serialVersionUID = -5188993240437093408L;
+    private static final long serialVersionUID = 1L;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
