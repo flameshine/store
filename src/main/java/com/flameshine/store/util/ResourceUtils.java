@@ -20,7 +20,7 @@ public final class ResourceUtils {
         List<String> result = new ArrayList<>();
 
         var path = String.join(
-            File.separator, "/static", "currencies.txt"
+            File.separator, File.separator + "static", "currencies.txt"
         );
 
         try (
