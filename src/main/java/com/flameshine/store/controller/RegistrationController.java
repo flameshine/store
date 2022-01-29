@@ -36,7 +36,10 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public ModelAndView registration(@Valid User user, BindingResult result) {
+    public ModelAndView registration(
+        @Valid User user,
+        BindingResult result
+    ) {
 
         if (result.hasErrors()) {
             return new ModelAndView(Constants.REGISTRATION_PATH);

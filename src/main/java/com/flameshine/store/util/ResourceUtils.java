@@ -1,11 +1,9 @@
 package com.flameshine.store.util;
 
 import java.util.List;
-import java.io.IOException;
-import java.io.UncheckedIOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Objects;
+import java.io.*;
 
 import lombok.NoArgsConstructor;
 import lombok.AccessLevel;
@@ -19,18 +17,31 @@ public final class ResourceUtils {
 
     public static List<String> loadCurrencies() {
 
-        // TODO: fix resource loading if running in the docker container
+        List<String> result = new ArrayList<>();
 
-        var path = Paths.get("src/main/resources/static/currencies.txt");
+        var path = String.join(
+            File.separator, "/static", "currencies.txt"
+        );
 
-        try {
-            return List.copyOf(
-                Files.readAllLines(path, StandardCharsets.UTF_8)
-            );
+        try (
+            var reader = new BufferedReader(
+                new InputStreamReader(
+                    Objects.requireNonNull(ResourceUtils.class.getResourceAsStream(path))
+                )
+            )
+        ) {
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                result.add(line);
+            }
+
         } catch (IOException e) {
             throw new UncheckedIOException(
-                String.format("Couldn't read currencies from resource ('%s')", path), e
+                String.format("Couldn't read currencies from the resource ('%s')", path), e
             );
         }
+
+        return List.copyOf(result);
     }
 }
