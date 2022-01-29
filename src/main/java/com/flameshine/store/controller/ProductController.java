@@ -3,11 +3,11 @@ package com.flameshine.store.controller;
 import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.data.domain.PageRequest;
+import lombok.RequiredArgsConstructor;
 
 import com.flameshine.store.service.ProductOperator;
 import com.flameshine.store.service.CurrencyExchanger;
@@ -20,16 +20,11 @@ import com.flameshine.store.entity.Product;
  */
 
 @Controller
+@RequiredArgsConstructor
 public class ProductController {
 
     private final ProductOperator operator;
     private final CurrencyExchanger exchanger;
-
-    @Autowired
-    public ProductController(ProductOperator operator, CurrencyExchanger exchanger) {
-        this.operator = operator;
-        this.exchanger = exchanger;
-    }
 
     @GetMapping(Constants.PRODUCTS_PATH)
     public ModelAndView home(

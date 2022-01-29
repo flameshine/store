@@ -3,7 +3,6 @@ package com.flameshine.store.controller;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.validation.BindingResult;
+import lombok.RequiredArgsConstructor;
 
 import com.flameshine.store.service.UserOperator;
 import com.flameshine.store.validator.UserValidator;
@@ -23,16 +23,11 @@ import com.flameshine.store.entity.User;
 
 @Controller
 @RequestMapping(Constants.REGISTRATION_PATH)
+@RequiredArgsConstructor
 public class RegistrationController {
 
     private final UserOperator operator;
     private final UserValidator validator;
-
-    @Autowired
-    public RegistrationController(UserOperator operator, UserValidator validator) {
-        this.operator = operator;
-        this.validator = validator;
-    }
 
     @GetMapping
     public ModelAndView registration() {

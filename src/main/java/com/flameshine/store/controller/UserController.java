@@ -3,12 +3,12 @@ package com.flameshine.store.controller;
 import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.servlet.ModelAndView;
+import lombok.RequiredArgsConstructor;
 
 import com.flameshine.store.service.UserOperator;
 import com.flameshine.store.util.Constants;
@@ -18,14 +18,10 @@ import com.flameshine.store.util.Constants;
  */
 
 @Controller
+@RequiredArgsConstructor
 public class UserController {
 
     private final UserOperator operator;
-
-    @Autowired
-    public UserController(UserOperator operator) {
-        this.operator = operator;
-    }
 
     @GetMapping(Constants.USERS_PATH)
     public ModelAndView findAllPageable(

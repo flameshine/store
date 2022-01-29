@@ -6,14 +6,14 @@ services:
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=ultimate-store
+      - MYSQL_DATABASE=store
     ports:
       - "3307:3306"
     volumes:
-      - ./scripts/sql/initialize.sql:/docker-entrypoint-initdb.d/initialize.sql
+      - ./sql/initialize.sql:/docker-entrypoint-initdb.d/initialize.sql
 
-  ultimate-store:
-    image: ultimate-store
+  store:
+    image: store
     restart: on-failure
     depends_on:
       - database
@@ -23,5 +23,5 @@ services:
       - DATABASE_HOST=database
       - DATABASE_USER=root
       - DATABASE_PASSWORD=root
-      - DATABASE_NAME=ultimate-store
+      - DATABASE_NAME=store
       - DATABASE_PORT=3306

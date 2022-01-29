@@ -29,7 +29,7 @@ import com.flameshine.store.model.Role;
 public class User implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 4756172225734787914L;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
