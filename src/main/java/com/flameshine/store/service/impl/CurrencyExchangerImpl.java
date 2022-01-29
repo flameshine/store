@@ -5,6 +5,7 @@ import java.net.URI;
 import java.net.http.HttpRequest;
 
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.flameshine.store.service.CurrencyExchanger;
@@ -18,8 +19,14 @@ import com.flameshine.store.util.JsonUtils;
 @Service
 public class CurrencyExchangerImpl implements CurrencyExchanger {
 
-    @Value("${currency-exchanger.access-key}")
-    private String accessKey;
+    private final String accessKey;
+
+    @Autowired
+    public CurrencyExchangerImpl(
+        @Value("${currency-exchanger.access-key}") String accessKey
+    ) {
+        this.accessKey = accessKey;
+    }
 
     @Override
     public BigDecimal exchange(BigDecimal amount, String currentCurrency, String targetCurrency) {
