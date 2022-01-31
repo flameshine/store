@@ -2,8 +2,7 @@ package com.flameshine.store.service;
 
 import java.util.Optional;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import com.flameshine.store.entity.User;
 
@@ -15,7 +14,7 @@ public interface UserOperator {
 
     void save(User user);
 
-    Page<User> findAllPageable(Pageable pageable);
+    Iterable<User> findAll(Sort criterion);
 
     Optional<User> findByUsername(String username);
 

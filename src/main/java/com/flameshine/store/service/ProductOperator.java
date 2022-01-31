@@ -13,7 +13,7 @@ import com.flameshine.store.entity.Product;
 
 public interface ProductOperator {
 
-    Page<Product> findAllPageable(Pageable pageable);
+    Page<Product> findAllPageable(Pageable pageable, String currency);
 
     Optional<Product> findById(Long id);
 }
