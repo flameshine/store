@@ -24,7 +24,7 @@ public class ProductController {
     @GetMapping(Constants.PRODUCTS_PATH)
     public ModelAndView home(
         @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
-        @RequestParam(value = "currency", required = false) String currency
+        @RequestParam(value = "currency", required = false, defaultValue = "USD") String currency
     ) {
 
         var products = operator.findAllPageable(
