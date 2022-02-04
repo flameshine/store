@@ -36,10 +36,11 @@ public class Product implements Serializable {
     private String description;
 
     @Column(name = "price", nullable = false)
-    @NotNull(message = "Price is required.")
+    @NotNull(message = "Price is required")
     private BigDecimal price;
 
     @Column(name = "currency", nullable = false)
+    @NotNull(message = "Currency is required")
     private String currency;
 
     @Column(name = "quantity", nullable = false)

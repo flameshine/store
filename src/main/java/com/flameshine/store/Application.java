@@ -11,7 +11,7 @@ import org.springframework.boot.SpringApplication;
 public class Application {
 
     // TODO: consider migrating to Kubernetes
-    // TODO: cover key login with corresponding unit tests
+    // TODO: cover key logic with corresponding unit tests
     // TODO: extend admin functionality with the ability to manipulate with product & user data via UI
     // TODO: add multiple languages support
     // TODO: consider adding user activation/deactivation functionality
