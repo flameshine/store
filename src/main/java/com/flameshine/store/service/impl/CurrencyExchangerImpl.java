@@ -43,7 +43,9 @@ public class CurrencyExchangerImpl implements CurrencyExchanger {
     private BigDecimal getExchangeRate(String currentCurrency, String targetCurrency) {
 
         var uri = URI.create(
-            String.format("https://v6.exchangerate-api.com/v6/%s/pair/%s/%s", accessKey, currentCurrency, targetCurrency)
+            String.format(
+                "https://v6.exchangerate-api.com/v6/%s/pair/%s/%s", accessKey, currentCurrency, targetCurrency
+            )
         );
 
         var request = HttpRequest.newBuilder()

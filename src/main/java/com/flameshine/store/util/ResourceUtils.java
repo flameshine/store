@@ -26,7 +26,9 @@ public final class ResourceUtils {
         try (
             var reader = new BufferedReader(
                 new InputStreamReader(
-                    Objects.requireNonNull(ResourceUtils.class.getResourceAsStream(path))
+                    Objects.requireNonNull(
+                        ResourceUtils.class.getResourceAsStream(path)
+                    )
                 )
             )
         ) {
