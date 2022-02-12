@@ -1,7 +1,6 @@
 package com.flameshine.store.util;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Objects;
 import java.io.*;
 
@@ -17,8 +16,6 @@ public final class ResourceUtils {
 
     public static List<String> loadCurrencies() {
 
-        List<String> result = new ArrayList<>();
-
         var path = String.join(
             File.separator, File.separator + "static", "currencies.txt"
         );
@@ -32,18 +29,11 @@ public final class ResourceUtils {
                 )
             )
         ) {
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                result.add(line);
-            }
-
+            return reader.lines().toList();
         } catch (IOException e) {
             throw new UncheckedIOException(
                 String.format("Couldn't read currencies from the resource ('%s')", path), e
             );
         }
-
-        return List.copyOf(result);
     }
 }

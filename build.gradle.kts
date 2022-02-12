@@ -5,7 +5,7 @@ description = "Implementation of a great online marketplace with shopping cart f
 
 plugins {
     java
-    id("org.springframework.boot") version "2.6.3" apply false
+    id("org.springframework.boot") version "2.6.3"
 }
 
 java {
