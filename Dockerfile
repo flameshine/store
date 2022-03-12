@@ -8,6 +8,9 @@ ARG USERNAME=store
 # create a base directory
 RUN mkdir -p $HOME
 
+# set timezone to the known value for clarity
+RUN ln -sf /usr/share/zoneinfo/UTC /etc/localtime
+
 # create an unprivileged user for the application
 RUN groupadd -r $USERNAME
 RUN useradd -l -r -g $USERNAME $USERNAME
