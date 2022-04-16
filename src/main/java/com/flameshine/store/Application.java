@@ -10,10 +10,6 @@ import org.springframework.boot.SpringApplication;
 @SpringBootApplication
 public class Application {
 
-    // TODO: extend admin functionality with the ability to manipulate with product & user data via UI
-    // TODO: add multiple languages support
-    // TODO: consider adding user activation/deactivation functionality
-
     public static void main(String... args) {
         SpringApplication.run(Application.class, args);
     }
