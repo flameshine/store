@@ -5,7 +5,7 @@ description = "Implementation of a great online marketplace with shopping cart f
 
 plugins {
     java
-    id("org.springframework.boot") version "2.6.4"
+    id("org.springframework.boot") version "2.6.6"
 }
 
 java {
@@ -17,7 +17,7 @@ repositories {
     mavenCentral()
 }
 
-val springBootVersion = "2.6.4"
+val springBootVersion = "2.6.6"
 val lombokVersion = "1.18.22"
 
 dependencies {
@@ -28,8 +28,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf:$springBootVersion")
     implementation("org.springframework.boot:spring-boot-starter-validation:$springBootVersion")
     implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.0.4.RELEASE")
-    implementation("mysql:mysql-connector-java:8.0.25")
-    implementation("javax.xml.bind:jaxb-api:2.4.0-b180830.0359")
+    implementation("mysql:mysql-connector-java:8.0.28")
 
     compileOnly("org.projectlombok:lombok:$lombokVersion")
 
