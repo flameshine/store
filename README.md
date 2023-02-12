@@ -1,3 +1,3 @@
 # store
 
-<h3>Implementation of a great online marketplace with shopping cart functionality</h3>
+<h3>Implementation of a great online marketplace with the shopping cart functionality</h3>
