@@ -17,7 +17,6 @@ public final class JsonUtils {
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     public static String extract(String json, String key) {
-
         try {
             return MAPPER.readTree(json).get(key).asText();
         } catch (JsonProcessingException e) {

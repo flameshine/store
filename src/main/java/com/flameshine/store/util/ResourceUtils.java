@@ -2,6 +2,7 @@ package com.flameshine.store.util;
 
 import java.util.List;
 import java.util.Objects;
+import java.nio.file.Paths;
 import java.io.*;
 
 import lombok.NoArgsConstructor;
@@ -16,15 +17,15 @@ public final class ResourceUtils {
 
     public static List<String> loadCurrencies() {
 
-        var path = String.join(
-            File.separator, File.separator + "static", "currencies.txt"
+        var path = Paths.get(
+            File.separator, "static", "currencies.txt"
         );
 
         try (
             var reader = new BufferedReader(
                 new InputStreamReader(
                     Objects.requireNonNull(
-                        ResourceUtils.class.getResourceAsStream(path)
+                        ResourceUtils.class.getResourceAsStream(path.toString())
                     )
                 )
             )

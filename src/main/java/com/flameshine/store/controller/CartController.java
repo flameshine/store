@@ -31,28 +31,28 @@ public class CartController {
     }
 
     @GetMapping("/add/{id}")
-    public String add(@PathVariable("id") Long id) {
+    public ModelAndView add(@PathVariable("id") Long id) {
 
         productOperator.findById(id)
             .ifPresent(cartOperator::add);
 
-        return Constants.CART_PATH;
+        return cart();
     }
 
     @GetMapping("/remove/{id}")
-    public String remove(@PathVariable("id") Long id) {
+    public ModelAndView remove(@PathVariable("id") Long id) {
 
         productOperator.findById(id)
             .ifPresent(cartOperator::remove);
 
-        return Constants.CART_PATH;
+        return cart();
     }
 
     @GetMapping("/checkout")
-    public String checkout() {
+    public ModelAndView checkout() {
 
         cartOperator.checkout();
 
-        return Constants.CART_PATH;
+        return cart();
     }
 }

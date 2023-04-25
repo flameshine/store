@@ -2,6 +2,7 @@ package com.flameshine.store.service.impl;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Collections;
 import java.math.BigDecimal;
 
 import javax.transaction.Transactional;
@@ -81,6 +82,6 @@ public class CartOperatorImpl implements CartOperator {
 
     @Override
     public Map<Product, Integer> getProducts() {
-        return Map.copyOf(products);
+        return Collections.unmodifiableMap(products);
     }
 }
