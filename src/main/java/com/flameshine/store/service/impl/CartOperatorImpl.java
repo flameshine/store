@@ -36,12 +36,7 @@ public class CartOperatorImpl implements CartOperator {
 
     @Override
     public void add(Product product) {
-
-        products.computeIfPresent(
-            product, (key, value) -> value + 1
-        );
-
-        products.putIfAbsent(product, 1);
+        products.merge(product, 1, Integer::sum);
     }
 
     @Override
