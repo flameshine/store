@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.flameshine.store.entity.Product;
+import com.flameshine.store.model.Currency;
 
 /**
  * Class responsible for operating with the {@link com.flameshine.store.entity.Product} entity.
@@ -13,7 +14,7 @@ import com.flameshine.store.entity.Product;
 
 public interface ProductOperator {
 
-    Page<Product> findAllPageable(Pageable pageable, String currency);
+    Page<Product> findAllPageable(Pageable pageable, Currency currency);
 
     Optional<Product> findById(Long id);
 }

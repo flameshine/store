@@ -14,8 +14,6 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
-import com.flameshine.store.model.Role;
-
 /**
  * User entity.
  */

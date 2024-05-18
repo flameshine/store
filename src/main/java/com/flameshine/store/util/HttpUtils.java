@@ -18,21 +18,24 @@ public final class HttpUtils {
 
     private static final HttpClient CLIENT = HttpClient.newHttpClient();
 
-    public static CompletionStage<HttpResponse<String>> send(HttpRequest request) {
+    public static CompletionStage<String> send(HttpRequest request) {
         return CLIENT.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-            .thenApply(response -> {
+            .thenApply(HttpUtils::handleHttpResponse);
+    }
 
-                var statusCode = response.statusCode();
+    private static String handleHttpResponse(HttpResponse<String> httpResponse) {
 
-                if (HttpStatus.OK.value() != statusCode) {
-                    throw new IllegalStateException(
-                        String.format(
-                            "An unexpected error has occurred during the HTTP call (status code: '%d', body: '%s')", statusCode, response.body()
-                        )
-                    );
-                }
+        var statusCode = httpResponse.statusCode();
+        var body = httpResponse.body();
 
-                return response;
-            });
+        if (HttpStatus.OK.value() != statusCode) {
+            throw new IllegalStateException(
+                String.format(
+                    "An unexpected error has occurred during the HTTP call (status code: '%d', body: '%s')", statusCode, body
+                )
+            );
+        }
+
+        return body;
     }
 }

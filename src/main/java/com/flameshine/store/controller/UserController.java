@@ -24,12 +24,12 @@ public class UserController {
     public ModelAndView findAll(
         @RequestParam(value = "criterion", required = false, defaultValue = "username") String criterion
     ) {
+
+        var users = operator.findAll(
+            Sort.by(criterion)
+        );
+
         return new ModelAndView(Constants.USERS_PATH)
-            .addObject(
-                "users",
-                operator.findAll(
-                    Sort.by(criterion)
-                )
-            );
+            .addObject("users", users);
     }
 }

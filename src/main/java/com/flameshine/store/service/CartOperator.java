@@ -17,7 +17,7 @@ public interface CartOperator {
 
     void checkout();
 
-    BigDecimal getTotalAmount();
+    BigDecimal totalAmount();
 
-    Map<Product, Integer> getProducts();
+    Map<Product, Integer> products();
 }

@@ -7,8 +7,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.data.domain.PageRequest;
 import lombok.RequiredArgsConstructor;
 
+import com.flameshine.store.model.Currency;
 import com.flameshine.store.service.ProductOperator;
-import com.flameshine.store.util.ResourceUtils;
 import com.flameshine.store.util.Constants;
 
 /**
@@ -24,18 +24,18 @@ public class ProductController {
     @GetMapping(Constants.PRODUCTS_PATH)
     public ModelAndView home(
         @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
-        @RequestParam(value = "currency", required = false, defaultValue = "USD") String currency
+        @RequestParam(value = "currency", required = false, defaultValue = "USD") Currency currency
     ) {
 
-        var products = operator.findAllPageable(
-            PageRequest.of(
-                page == 0 ? 0 : page - 1, 5
-            ),
-            currency
+        var pageRequest = PageRequest.of(
+            page == 0 ? 0 : page - 1,
+            Constants.DEFAULT_PAGE_SIZE
         );
+
+        var products = operator.findAllPageable(pageRequest, currency);
 
         return new ModelAndView(Constants.PRODUCTS_PATH)
             .addObject("products", products)
-            .addObject("currencies", ResourceUtils.loadCurrencies());
+            .addObject("currencies", Currency.values());
     }
 }

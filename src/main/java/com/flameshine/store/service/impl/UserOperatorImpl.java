@@ -26,11 +26,8 @@ public class UserOperatorImpl implements UserOperator {
 
     @Override
     public void save(User user) {
-
-        user.setPassword(
-            encoder.encode(user.getPassword())
-        );
-
+        var encodedPassword = encoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
         repository.save(user);
     }
 

@@ -21,10 +21,9 @@ public record UserDetailsImpl(User user) implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        var code = user.getRole().getCode();
         return List.of(
-            new SimpleGrantedAuthority(
-                user.getRole().getCode()
-            )
+            new SimpleGrantedAuthority(code)
         );
     }
 

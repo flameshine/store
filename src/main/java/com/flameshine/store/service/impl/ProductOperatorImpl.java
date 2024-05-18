@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import lombok.RequiredArgsConstructor;
 
+import com.flameshine.store.model.Currency;
 import com.flameshine.store.service.ProductOperator;
 import com.flameshine.store.service.CurrencyExchanger;
 import com.flameshine.store.repository.ProductRepository;
@@ -27,7 +28,7 @@ public class ProductOperatorImpl implements ProductOperator {
     private final CurrencyExchanger exchanger;
 
     @Override
-    public Page<Product> findAllPageable(Pageable pageable, String currency) {
+    public Page<Product> findAllPageable(Pageable pageable, Currency currency) {
 
         var products = repository.findAll(pageable);
 
@@ -45,14 +46,13 @@ public class ProductOperatorImpl implements ProductOperator {
         return repository.findById(id);
     }
 
-    private void exchange(Product product, String currency) {
+    private void exchange(Product product, Currency target) {
 
-        product.setPrice(
-            exchanger.exchange(
-                product.getPrice(), product.getCurrency(), currency
-            )
+        var price = exchanger.exchange(
+            product.getPrice(), product.getCurrency(), target
         );
 
-        product.setCurrency(currency);
+        product.setPrice(price);
+        product.setCurrency(target);
     }
 }

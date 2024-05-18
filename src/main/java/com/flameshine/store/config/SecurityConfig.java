@@ -1,4 +1,4 @@
-package com.flameshine.store.configuration;
+package com.flameshine.store.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Bean;
@@ -13,7 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import lombok.RequiredArgsConstructor;
 
 import com.flameshine.store.util.Constants;
-import com.flameshine.store.model.Role;
+import com.flameshine.store.entity.Role;
 
 /**
  * Security configuration of the application.
@@ -22,13 +22,12 @@ import com.flameshine.store.model.Role;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService service;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
         http.csrf()
             .disable()
             .authorizeRequests()
@@ -56,12 +55,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Bean
     public DaoAuthenticationProvider authenticationProviderBean() {
-
         var authenticationProvider = new DaoAuthenticationProvider();
-
         authenticationProvider.setUserDetailsService(service);
         authenticationProvider.setPasswordEncoder(passwordEncoderBean());
-
         return authenticationProvider;
     }
 

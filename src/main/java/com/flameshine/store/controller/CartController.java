@@ -26,33 +26,27 @@ public class CartController {
     @GetMapping
     public ModelAndView cart() {
         return new ModelAndView(Constants.CART_PATH)
-            .addObject("products", cartOperator.getProducts())
-            .addObject("total", cartOperator.getTotalAmount());
+            .addObject("products", cartOperator.products())
+            .addObject("total", cartOperator.totalAmount());
     }
 
     @GetMapping("/add/{id}")
     public ModelAndView add(@PathVariable("id") Long id) {
-
         productOperator.findById(id)
             .ifPresent(cartOperator::add);
-
         return cart();
     }
 
     @GetMapping("/remove/{id}")
     public ModelAndView remove(@PathVariable("id") Long id) {
-
         productOperator.findById(id)
             .ifPresent(cartOperator::remove);
-
         return cart();
     }
 
     @GetMapping("/checkout")
     public ModelAndView checkout() {
-
         cartOperator.checkout();
-
         return cart();
     }
 }

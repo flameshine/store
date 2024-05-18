@@ -17,9 +17,7 @@ public class ErrorController {
 
     @ExceptionHandler(Exception.class)
     protected ModelAndView handle(Exception e) {
-
         log.error("An unhandled exception has occurred", e);
-
         return new ModelAndView(Constants.ERROR_PATH)
             .addObject("message", e.getMessage());
     }

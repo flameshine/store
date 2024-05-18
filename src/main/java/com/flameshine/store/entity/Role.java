@@ -1,4 +1,4 @@
-package com.flameshine.store.model;
+package com.flameshine.store.entity;
 
 import lombok.RequiredArgsConstructor;
 import lombok.Getter;

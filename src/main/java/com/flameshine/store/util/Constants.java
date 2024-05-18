@@ -17,4 +17,6 @@ public final class Constants {
     public static final String CART_PATH = "/cart";
     public static final String USERS_PATH = "/users";
     public static final String ERROR_PATH = "/error";
+
+    public static final int DEFAULT_PAGE_SIZE = 5;
 }

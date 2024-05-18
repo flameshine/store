@@ -55,10 +55,12 @@ public class CartOperatorImpl implements CartOperator {
     @Transactional
     public void checkout() {
 
-        products.forEach((product, cartQuantity) -> repository.findById(product.getId())
-            .map(Product::getQuantity)
-            .ifPresent(quantity -> product.setQuantity(quantity - cartQuantity))
-        );
+        for (var e : products.entrySet()) {
+            var product = e.getKey();
+            repository.findById(product.getId())
+                .map(Product::getQuantity)
+                .ifPresent(quantity -> product.setQuantity(quantity - e.getValue()));
+        }
 
         repository.saveAll(
             products.keySet()
@@ -68,7 +70,7 @@ public class CartOperatorImpl implements CartOperator {
     }
 
     @Override
-    public BigDecimal getTotalAmount() {
+    public BigDecimal totalAmount() {
         return products.entrySet().stream()
             .map(x -> x.getKey().getPrice().multiply(BigDecimal.valueOf(x.getValue())))
             .reduce(BigDecimal::add)
@@ -76,7 +78,7 @@ public class CartOperatorImpl implements CartOperator {
     }
 
     @Override
-    public Map<Product, Integer> getProducts() {
+    public Map<Product, Integer> products() {
         return Collections.unmodifiableMap(products);
     }
 }
